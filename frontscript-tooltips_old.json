@@ -1,0 +1,37 @@
+{
+  "DATA": {
+    "type": "step",
+    "description": "Creates a new data table from external files or existing tables.",
+    "example": "DATA USERS_1964; SET USERS (WHEREYEAR(BIRTHDAY) >= 1964); RUN;"
+  },
+  "PROC SORT": {
+    "type": "procedure",
+    "description": "Sorts a data table by the values of one or more variables.",
+    "example": "PROC SORT DATA = USERS_1964; BY LASTNAME; RUN;"
+  },
+  "MERGE": {
+    "type": "statement",
+    "description": "Reads simultaneously several input tables (join of tables).",
+    "example": "MERGE A B; BY ID;"
+  },
+  "SET": {
+    "type": "statement",
+    "description": "Concatenates multiple tables by reading all lines into the output table.",
+    "example": "SET TABLE1 TABLE2;"
+  },
+  "OUTPUT": {
+    "type": "statement",
+    "description": "Reads lines from existing tables into the output table, can filter or rename.",
+    "example": "OUTPUT A (WHERE(COUNTRY='UK'));"
+  },
+  "PROC PRINT": {
+    "type": "procedure",
+    "description": "Prints an eFront Report data table using specified variables.",
+    "example": "PROC PRINT DATA=USERS_1964; VAR NAME AGE; RUN;"
+  },
+  "RUN": {
+    "type": "keyword",
+    "description": "Ends and executes the current step.",
+    "example": "RUN;"
+  }
+}

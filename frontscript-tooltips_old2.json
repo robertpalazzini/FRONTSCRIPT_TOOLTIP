@@ -1,0 +1,117 @@
+{
+  "DATA": {
+    "type": "step",
+    "description": "Creates a new data table from external files or existing tables.",
+    "example": "DATA NEWTABLE; SET OLDTABLE; RUN;"
+  },
+  "PROC SORT": {
+    "type": "procedure",
+    "description": "Sorts a table by one or more variables.",
+    "example": "PROC SORT DATA=NEWDATA; BY NAME; RUN;"
+  },
+  "MERGE": {
+    "type": "statement",
+    "description": "Merges multiple tables by matching BY variables.",
+    "example": "MERGE TABLE1 TABLE2; BY ID;"
+  },
+  "SET": {
+    "type": "statement",
+    "description": "Appends rows from one or more tables into the current table.",
+    "example": "SET TABLE_A TABLE_B;"
+  },
+  "OUTPUT": {
+    "type": "statement",
+    "description": "Writes rows to an output table with optional filtering.",
+    "example": "OUTPUT TABLE1 (WHERE STATUS='ACTIVE');"
+  },
+  "PROC PRINT": {
+    "type": "procedure",
+    "description": "Prints the contents of a data table.",
+    "example": "PROC PRINT DATA=MYDATA; RUN;"
+  },
+  "RUN": {
+    "type": "keyword",
+    "description": "Ends a DATA or PROC step and executes it.",
+    "example": "RUN;"
+  },
+  "COLUMN": {
+    "type": "statement",
+    "description": "Creates a new column with specified properties.",
+    "example": "COLUMN AGE TYPE=INT;"
+  },
+  "LIBNAME": {
+    "type": "statement",
+    "description": "Assigns a library reference to a folder path.",
+    "example": "LIBNAME LIB1 \"/data/tables\";"
+  },
+  "IF": {
+    "type": "statement",
+    "description": "Conditional logic statement for controlling row processing.",
+    "example": "IF AGE > 18 THEN STATUS = 'ADULT';"
+  },
+  "ELSE": {
+    "type": "statement",
+    "description": "Specifies the alternative path in an IF-ELSE condition.",
+    "example": "IF X > 0 THEN A = 1; ELSE A = 0;"
+  },
+  "THEN": {
+    "type": "keyword",
+    "description": "Used in IF-THEN conditions to execute logic.",
+    "example": "IF AMOUNT > 100 THEN FLAG = 1;"
+  },
+  "END": {
+    "type": "keyword",
+    "description": "Ends a logic block such as IF or LOOP.",
+    "example": "IF CONDITION THEN DO; ... END;"
+  },
+  "BY": {
+    "type": "statement",
+    "description": "Defines the grouping or sorting variable for SET, MERGE, or PROC.",
+    "example": "MERGE A B; BY ID;"
+  },
+  "PROC EXPORT": {
+    "type": "procedure",
+    "description": "Exports a table to an external file format.",
+    "example": "PROC EXPORT DATA=MYDATA OUTFILE='output.csv'; RUN;"
+  },
+  "PROC IMPORT": {
+    "type": "procedure",
+    "description": "Imports an external file into a data table.",
+    "example": "PROC IMPORT DATAFILE='input.csv' OUT=MYDATA; RUN;"
+  },
+  "%LET": {
+    "type": "macro",
+    "description": "Assigns a value to a macro variable.",
+    "example": "%LET TODAY = %SYSFUNC(TODAY(), DATE9.);"
+  },
+  "%PARAM": {
+    "type": "macro",
+    "description": "Defines a parameter for FrontScript automation.",
+    "example": "%PARAM REPORT_DATE LABEL='Date' TYPE=DATE;"
+  },
+  "%MACRO": {
+    "type": "macro",
+    "description": "Begins a macro definition.",
+    "example": "%MACRO CLEANUP; ... %MEND;"
+  },
+  "%MEND": {
+    "type": "macro",
+    "description": "Ends a macro definition.",
+    "example": "%MEND CLEANUP;"
+  },
+  "FORMAT": {
+    "type": "function",
+    "description": "Formats a value using a specific format.",
+    "example": "FORMAT(AMOUNT, 'CURRENCY');"
+  },
+  "DATEDIFF": {
+    "type": "function",
+    "description": "Calculates the difference in days between two dates.",
+    "example": "DATEDIFF(END_DATE, START_DATE);"
+  },
+  "TODAY": {
+    "type": "function",
+    "description": "Returns the current date.",
+    "example": "IF REPORT_DATE = TODAY() THEN FLAG = 1;"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "FrontScript Tooltip Helper",
+  "version": "1.0",
+  "description": "Show tooltips for FrontScript keywords and functions.",
+  "permissions": ["scripting", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["content.js"],
+      "css": ["tooltip.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["frontscript-tooltips.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
