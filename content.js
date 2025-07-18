@@ -12,14 +12,11 @@
   if (!tooltipEnabled) return;
   const tooltipData = await fetch(chrome.runtime.getURL('frontscript-tooltips.json')).then(r => r.json());
 
-  const codeMirror = document.querySelector('.CodeMirror');
-  if (!codeMirror) return;
-
   const tooltip = document.createElement('div');
   tooltip.className = "frontscript-tooltip";
   document.body.appendChild(tooltip);
 
-  codeMirror.addEventListener('mouseover', event => {
+  document.addEventListener('mouseover', event => {
     const text = event.target.textContent;
     if (!text) {
       tooltip.style.display = 'none';
@@ -45,7 +42,7 @@ ${example}`;
     tooltip.style.display = 'block';
   });
 
-  codeMirror.addEventListener('mouseout', () => {
+  document.addEventListener('mouseout', () => {
     tooltip.style.display = 'none';
   });
 })();
