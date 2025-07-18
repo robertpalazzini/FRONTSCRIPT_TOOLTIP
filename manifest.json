@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "Show tooltips for FrontScript keywords and functions.",
   "permissions": ["scripting", "activeTab"],
-  "host_permissions": ["https://example.com/*"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -15,7 +15,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://example.com/*"],
+      "matches": ["https://*/*", "http://*/*"],
       "js": ["content.js"],
       "css": ["tooltip.css"],
       "run_at": "document_idle"
