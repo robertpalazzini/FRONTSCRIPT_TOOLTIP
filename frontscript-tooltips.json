@@ -1,342 +1,1140 @@
 {
-  "%DEFINE": "4.4.1. %DEFINE statement .................................................................... 179 4.4.1.1. Description ......................................................................... 179 4.4",
-  "%INCLUDE": "4.4.2. %INCLUDE statement ................................................................. 180 4.4.2.1. Description ......................................................................... 180 4.4.2",
-  "%CONTINUE": "4.4.3. %CONTINUE statement .............................................................. 181 4.4.3.1. Description ......................................................................... 181 4.4.3.2",
-  "%LET": "4.4.4. %LET statement .......................................................................... 181 4.4.4.1. Description ......................................................................... 181 ",
-  "%PARAM": "4.4.5. %PARAM statement .................................................................... 182 4.4.5.1. Description ......................................................................... 182 4.4.",
-  "%P": "4.4.6. %Param - Informats ..................................................................... 184 4.5. Step statements ...............................................................................",
-  "%DO": "4.7.1. %DO WHILE...%LOOP WHILE ................................................... 262 4.7.1.1. Description ......................................................................... 262 4.7.1.2. Synta",
-  "%LOOP": "4.7.1. %DO WHILE...%LOOP WHILE ................................................... 262 4.7.1.1. Description ......................................................................... 262 4.7.1.2. Synta",
-  "%FOR": "4.7.2. %FOR...%NEXT .......................................................................... 263 4.7.2.1. Description ......................................................................... 263 4.",
-  "%NEXT": "4.7.2. %FOR...%NEXT .......................................................................... 263 4.7.2.1. Description ......................................................................... 263 4.",
-  "%IF": "4.7.3. %IF...%THEN...%END ................................................................. 264 4.7.3.1. Description ......................................................................... 264 4.7.3",
-  "%THEN": "4.7.3. %IF...%THEN...%END ................................................................. 264 4.7.3.1. Description ......................................................................... 264 4.7.3",
-  "%END": "4.7.3. %IF...%THEN...%END ................................................................. 264 4.7.3.1. Description ......................................................................... 264 4.7.3",
-  "%SELECT": "4.7.4. %SELECT... %WHEN... %THEN... %END .................................. 265 4.7.4.1. Description ......................................................................... 265 4.7.4.2. Syntax .....",
-  "%WHEN": "4.7.4. %SELECT... %WHEN... %THEN... %END .................................. 265 4.7.4.1. Description ......................................................................... 265 4.7.4.2. Syntax .....",
-  "%WHILE": "4.7.5. %WHILE...%END ......................................................................... 266 4.7.5.1. Description ......................................................................... 266 4.",
-  "%DEBUG": "4.12.6. The variable: %DEBUG ............................................................. 321 4.12.6.1. Description ....................................................................... 321 4.12.6.",
-  "%OUTPUTLOG": "5.9.1. PROC EFRONTIMPORT_AJX - %OUTPUTLOG ....................... 403 5.9.1.1. Goal ................................................................................... 403 5.9.1.2. Features being illu",
-  "%ELSE": "9.4. %ELSE ................................................................................................... 904 9.5. %ELSEIF ........................................................................",
-  "%ELSEIF": "9.5. %ELSEIF ............................................................................................... 905 9.6. %END .............................................................................",
-  "%EXIT": "9.7. %EXIT %DO .......................................................................................... 907 9.8. %EXIT %FOR ..........................................................................",
-  "%TO": "9.17. %TO ..................................................................................................... 917 9.18. %WHILE .......................................................................",
-  "%REPORT_DATE": "\u2022 If you define the %REPORT_DATE macro, the date to be used is the value of the variable %DATE, otherwise the system uses the current date. \u2022 If you define the %USE_DRAFT, draft transactions are used ",
-  "%DATE": "variable %DATE, otherwise the system uses the current date. \u2022 If you define the %USE_DRAFT, draft transactions are used by the calculation engine, otherwise they are ignored.",
-  "%USE_DRAFT": "\u2022 If you define the %USE_DRAFT, draft transactions are used by the calculation engine, otherwise they are ignored. \u2022 If you define a value for the variable %CE_CURRENCY , this value will be used as",
-  "%CE_CURRENCY": "\u2022 If you define a value for the variable %CE_CURRENCY , this value will be used as currency (ex.: 'EUR', 'USD'). \u2022 If you define the %USE_INVESTEE_CURR, calculations are done in investee",
-  "%USE_INVESTEE_CURR": "\u2022 If you define the %USE_INVESTEE_CURR, calculations are done in investee currency, otherwise calculations are done in investor currency. \u2022 If you define the %CALCULATE_SHARES macro, the ghost transac",
-  "%CALCULATE_SHARES": "\u2022 If you define the %CALCULATE_SHARES macro, the ghost transactions integrate the number of diluted investment instruments. 4.1.5.6. Output",
-  "%T": "%FOR %T %IN (%folder_name) TRACE %T; %NEXT;",
-  "%IN": "%FOR %T %IN (%folder_name) TRACE %T; %NEXT;",
-  "%IQID": "(IQID=%IQID TODATE=TODAY()) Note: You need to use the internal / program name of the parameter! 4.1.23.4. Parameters to be passed along with standard libraries",
-  "%DASHBOARD_CURRENCY": "REFCURRENCY=%DASHBOARD_CURRENCY) Note: You need to use the internal / program name of the parameter!",
-  "%USE_INVESTOR_CURR": "\u2022 If you define the %USE_INVESTOR_CURR, calculations are done in investor currency, otherwise calculations are done in fund currency. eFront Script Reference Guide - V21.0",
-  "%START_DATE": "\u2022 If you define the %START_DATE, the system will take the value defined for the start date, and perform calculations for all the fund operations up from this date. 4.1.26.6. Output",
-  "%TODATE": "FILTER= (DATE <= %TODATE) FILTER= (DATE <= %TODATE PORTFOLIO=%allPortfolios) mandatory;",
-  "%I": "\u2022 When using %FOR %I%TO, you don't necessarily need to declare %I beforehand, eFront Script creates it dynamically. Ex.: %FOR %I=1%TO 10. \u2022 You can nest %IF, %DO, and %FOR loops.",
-  "%OTHERWISE": "%OTHERWISE </ subordinate statements>; %END; %END;",
-  "%WHLE": "false the first time it is evaluated, the %WHLE loop does not iterate even once. 4.7.5.2. Syntax %WHILE <condition>",
-  "%MYVAR": "PUT %MYVAR; RUN; 4.9.3. Functions - dates",
-  "%EDATE": "(DATEADD(\"WEEK,-1,%EDATE)); Substracts One week from date %EDATE eFront Script Reference Guide - V21.0",
-  "%MERGED_FILE": "PROC PRINT; PUT %MERGED_FILE; RUN; Result: All pages from Document2.pdf are appended",
-  "%M": "%MyProfileName; GETCURRENTUSER PROFILESLIST()",
-  "%LANGUAGE": "PUT %LANGUAGE; RUN; %LET LANGUAGE =",
-  "%CONTACTS": "FOR ID IN (%CONTACTS) OUTPUT; INDEX=INDEX+1;",
-  "%PARAM_NAME1": "NAME = %PARAM_NAME1; OUTPUT; // Write a line in the table COL1 = \"Second line\";",
-  "%PARAM_NAME2": "NAME = %PARAM_NAME2; OUTPUT; // Write another line in the table eFront Script Reference Guide - V21.0",
-  "%INS": "INSTRUMENT=%INS; OUTPUT; RUN;",
-  "%SCENARIO_TYPE_NAME": "%SCENARIO_TYPE_NAME & \"'\"; COLUMN DEFINITION TYPE = \"STRING\"; %LET DEFINTIION = DEFINITION;",
-  "%DEFINTIION": "PROC EFRONTBLOB BLOB=%DEFINTIION PATH=PERIODDEFINITON FORMAT=\"COLLECTION\" OUT=WORK.TEST; RUN;",
-  "%PROPERTIES": "ID=\"6D4B5DF1BB6647619A6E5FA2EBAFC197\" PROPERTIES=%PROPERTIES; RUN; 5.7.1.4. Comment",
-  "%LETPROPERTIES": "%LETPROPERTIES = \"Cutoffdate=\" & %Date; PROC EFRONTFOLDER FOLDER=\"F_AJXPECFSCENARIO\" ID=%IQID_Scenario PROPERTIES=%Properties;",
-  "%D": "%LETPROPERTIES = \"Cutoffdate=\" & %Date; PROC EFRONTFOLDER FOLDER=\"F_AJXPECFSCENARIO\" ID=%IQID_Scenario PROPERTIES=%Properties;",
-  "%IQID_S": "PROC EFRONTFOLDER FOLDER=\"F_AJXPECFSCENARIO\" ID=%IQID_Scenario PROPERTIES=%Properties; RUN;",
-  "%DIRECTORY": "%LET FILE_PATH = %DIRECTORY & \"\\bloomberg.xls\"; TRACE %FILE_PATH; DATA WORK.T;",
-  "%FILE_PATH": "TRACE %FILE_PATH; DATA WORK.T; INFILE \"C:\\TMP\\BLOOMBERG.XLS\" AREAS=\"C7:C999;J2;A7:A999;J7:J999\";",
-  "%BULK_EXPORT_FILE1": "FILE=%BULK_EXPORT_FILE1 NOHEADER SEMICOLUMN; RUN; 5.12.1.4. Result",
-  "%STARTDATE": "FORMAT(%STARTDATE, \"ddmmyyyy\") & \"_\" & FORMAT(%ENDDATE, \"ddmmyyyy\") & \".TXT\"; //Export the data table",
-  "%ENDDATE": "FORMAT(%STARTDATE, \"ddmmyyyy\") & \"_\" & FORMAT(%ENDDATE, \"ddmmyyyy\") & \".TXT\"; //Export the data table",
-  "%FILENAME_TAB": "FILE=%FILENAME_TAB TAB; RUN; 5.12.2.4. Result",
-  "%CURRENT_DATE": "%LET DATE_STAMP = FORMAT(%CURRENT_DATE,\"yyyy-MM-dd-HHmmss\"); //Export the temporary data table and create an CSV file on the server PROC EXPORT DATA=WORK.FX_RATES COMMA DROP NOHEADER LABEL",
-  "%EXPORT_PATH": "FILE=%EXPORT_PATH &%INSTANCE & %FILE_NAME & %M_T & %DATE_STAMP & %EXPORT_FORMAT; RUN;",
-  "%INSTANCE": "FILE=%EXPORT_PATH &%INSTANCE & %FILE_NAME & %M_T & %DATE_STAMP & %EXPORT_FORMAT; RUN;",
-  "%FILE_NAME": "FILE=%EXPORT_PATH &%INSTANCE & %FILE_NAME & %M_T & %DATE_STAMP & %EXPORT_FORMAT; RUN;",
-  "%M_T": "FILE=%EXPORT_PATH &%INSTANCE & %FILE_NAME & %M_T & %DATE_STAMP & %EXPORT_FORMAT; RUN;",
-  "%DATE_STAMP": "FILE=%EXPORT_PATH &%INSTANCE & %FILE_NAME & %M_T & %DATE_STAMP & %EXPORT_FORMAT; RUN;",
-  "%EXPORT_FORMAT": "& %EXPORT_FORMAT; RUN; TRACE \"FX Rates Extracted\";",
-  "%UNDEFINE": "%UNDEFINE CURRENT_DATE; %UNDEFINE FILTER_LAST_EXTRACT; %UNDEFINE LAST_EXTRACT_DATE;",
-  "%SOURCE_CCY": "DESC = %SOURCE_CCY&\" to \"&CURRENCY1; //input parameters START_DATE = %START_DATE;",
-  "%END_DATE": "END_DATE = %END_DATE; //automatically create image names from sheet names, which are named by cross pair names",
-  "%NETPATH": "PROC EXPORTEXCEL FILE = CSTR(%NETPATH) DROP; TABLE = work.T_HV_FUND_USERCURR_LIGHT SHEETNAME = \"FIA_T_FUND_TRANSACTIONS\"",
-  "%PORTFOLIO_ID": "TABLE=\"CFFPortfolio.PortfolioCashflows\" (IQID=%PORTFOLIO_ID TODATE=%ACTUAL_END_DATE); RUN;",
-  "%ACTUAL_END_DATE": "TODATE=%ACTUAL_END_DATE); RUN; 5.15.2.4. Comments",
-  "%R": "TODATE=%Reference_Date REFCURRENCY=%Currency); RUN; 5.15.3.4. Comments",
-  "%C": "TODATE=%Reference_Date REFCURRENCY=%Currency); RUN; 5.15.3.4. Comments",
-  "%FUND_ID": "PROC FAQUERY QUERY=\"DEALS\\TestQB\"(IQID=%FUND_ID); TABLE \"default\"(COLUMNS = COL2 COL4) OUT=Work.test; TABLE %QUERY_NAME OUT=Work.test2;",
-  "%QUERY_NAME": "TABLE %QUERY_NAME OUT=Work.test2; RUN; PROC PRINT DATA=WORK.TEST;",
-  "%ASATDATE": "%ASATDATE >= DATE); RUN; ...",
-  "%PORT_ID": "SET T_CF_DATACUBE_PORTFOLIO (WHERE PORTFOLIO_IQID IN (%PORT_ID)); //TO CONVERT VALUES INTO STRING TO GIVE NEGATIVES () INSTEAD OF - SIGN COLUMN CASH_IN_CON TYPE=DOUBLEFORMAT=p_money.;",
-  "%X_MEAN": "SUP = (X - %X_MEAN) * (Y - %Y_MEAN); INF_X = (X - %X_MEAN) * (X - %X_MEAN); INF_Y = (Y - %Y_MEAN) * (Y - %Y_MEAN);",
-  "%Y_MEAN": "SUP = (X - %X_MEAN) * (Y - %Y_MEAN); INF_X = (X - %X_MEAN) * (X - %X_MEAN); INF_Y = (Y - %Y_MEAN) * (Y - %Y_MEAN);",
-  "%SUBSCRIBERS_ID": "(%SUBSCRIBERS_ID)); COLUMN LINE_COUNTER TYPE=INTEGER; LINE_COUNTER = _N_;",
-  "%NB_LETTER": "%NB_LETTER = _N_; RUN; // for as many document you need to generate\u2026",
-  "%COUNTER": "%FOR %COUNTER = 1 %TO %NB_LETTER DATA LETTER_OUTPUT.T_PARTNERS_INFO_PER_SUBSCRIBER (DROP=BUFFER BUFFER_NAME BUFFER_NAME2 BUFFER_RATE BUFFER_FORMAT",
-  "%N": "%Next; eFront Script Reference Guide - V21.0 July 10, 2023",
-  "%MY_STRING": "PUT %MY_STRING; RUN; 5.22.6.4. Result",
-  "%F": "FILE = %FilePath TITLE = \"Call-February\" FUND = %Fund",
-  "%B": "BATCH = %Batch; RUN; eFront Script Reference Guide - V21.0",
-  "%PARAM_TYPE_DEFAULT": "\u2022 %PARAM_TYPE_DEFAULT \u2022 %PARAM - ??LOOKUP - ??XLOOKUPCODE \u2022 %PARAM - ??PICKID(SQL- query) - ??FILTER",
-  "%EXECUTE_DATA_DO_WHILE": "%IF%EXECUTE_DATA_DO_WHILE %THEN %INCLUDE \"\\\\EFRONT_SUP.2(Private) \\TEST\\EXAMPLES\\Programs\\DATA_DO_WHILE\";",
-  "%EXECUTE_DATA_COLUMN_OUTPUT": "%IF%EXECUTE_DATA_COLUMN_OUTPUT %THEN %INCLUDE \"\\\\EFRONT_SUP.2(Private) \\TEST\\EXAMPLES\\Programs\\DATA_COLUMN_OUTPUT\";",
-  "%TEST": "TRACE %TEST %I; %LET I = %I-1; %IF %I = 3 %THEN",
-  "%TABLE": "TITLE1 %TABLE; RUN; %NEXT;",
-  "%C_INVESTMENTATCOST_PLUS": "IF INSTR(%C_INVESTMENTATCOST_PLUS,\";\" || TRIM(UCASE(TRANSACTION_TYPE)) || \";\") <> 0 THEN _OUTPUT_= TRUE;",
-  "%L": "%Let ID = \"0744A17F0D3D44AE81ACBEE1DEB201C4\"; // Id of fund operation %FOR%I = 1 %TO(LINKFILES(%ID)) Trace FILENAME(%I); // Display in the log the filename. Useful to check if you found the",
-  "%ID": "%FOR%I = 1 %TO(LINKFILES(%ID)) Trace FILENAME(%I); // Display in the log the filename. Useful to check if you found the right file.",
-  "%FIRSTNAME": "R=%FIRSTNAME; I=0; eFront Script Reference Guide - V21.0",
-  "%PREFIX": "PROC PRINT DATA = TEST.ALLFUNDS (WHERE (FUND LIKE (%PREFIX & \"%\"))) LABEL NOOBS; RUN;",
-  "%EMZFUND": "INVESTOR_FUND_ID IN (%EMZFUND)); IF INSTR(%C_INVESTMENTATCOST_PLUS,\";\" || TRIM(UCASE(TRANSACTION_TYPE)) || \";\") <> 0 THEN",
-  "%PARAM_IDFUND": "SET [SP_DW_TB].[EFFV_CDW_T_FUND](WHERE FUND_ID IN (%PARAM_IDFUND)); COLUMN FICHIER; COLUMN I TYPE=INTEGER;",
-  "%X_DATE": "PUT FORMAT(%X_DATE, \"d/m/yyyy\"); 5.35.16.4. Result 5.35.17. %PARAM - ??LOOKUP - ??XLOOKUPCODE",
-  "%LETFILE": "%LETFILE = GETTEMPPATH() & \"\\test.csv\"; //Export the temporary data table and create an CSV file on the server PROC EXPORT DATA=WORK.TMP DROP NOERROR FILE=%FILE NOHEADER",
-  "%FILE": "PROC EXPORT DATA=WORK.TMP DROP NOERROR FILE=%FILE NOHEADER SEMICOLUMN; RUN;",
-  "%USERID_1": "PUT \"Userid_1: \" & %USERID_1; PUT \"Userid: \" & %USERID; PUT \"User: \" & %USER;",
-  "%USERID": "PUT \"Userid: \" & %USERID; PUT \"User: \" & %USER; PUT \"User country: \" & %USER_COUNTRY;",
-  "%USER": "PUT \"User: \" & %USER; PUT \"User country: \" & %USER_COUNTRY; RUN;",
-  "%USER_COUNTRY": "PUT \"User country: \" & %USER_COUNTRY; RUN; eFront Script Reference Guide - V21.0",
-  "%PATH_TO_CHANGE": "Replace(Replace(LINKFILE(%I),%PATH_TO_CHANGE,%WEBSITE_URL),\"\\\",\"/\") & \"\"\">\" & FILENAME(%I) & \"</a>\"; Run;",
-  "%WEBSITE_URL": "Replace(Replace(LINKFILE(%I),%PATH_TO_CHANGE,%WEBSITE_URL),\"\\\",\"/\") & \"\"\">\" & FILENAME(%I) & \"</a>\"; Run;",
-  "%COMPANY_ID": "%Let List = %COMPANY_ID; %Include \"Empty List\"; %Undefine List;",
-  "%U": "%Undefine List; DATA Work.T_Contact_Info; //SET Views.V_Contact;",
-  "%A": "%LET Note_Date = %As_Of_Date; %INCLUDE \"P_Contact_Notes\"; %UNDEFINE Filter_Note_Date;",
-  "%DAYSTOADD": "%LET MODDAYSTOADD=%DAYSTOADD-(5*CEILING(%DAYSTOADD/5)); TRACE %MODDAYSTOADD; //Calculate the correction to move past the weekend if necessary as a result of the",
-  "%MODDAYSTOADD": "TRACE %MODDAYSTOADD; //Calculate the correction to move past the weekend if necessary as a result of the remainder days (derived above)",
-  "%CORRECTION": "%STARTDATE+(7*CEILING(%DAYSTOADD/5))+%CORRECTION); // Trace the result TRACE %NEWDATE;",
-  "%NEWDATE": "TRACE %NEWDATE; // This might be useful since you can easily use positive or negative \"DAYSTOADD\" and therefore move backwards and forwards at will.",
-  "%SQL": "SQL %SQL; RUN; PROC PRINT DATA=ALLFUNDS;",
-  "%GEO": "FILTER=(FREGION=%GEO); RUN; //For illustration purpose, print the cube",
-  "%IQID_FOF_FUND": "\u2022 Set the variable %IQID_FOF_FUND to the invested fund IQID (collection or unique value). \u2022 Set the variable %IQID_MASTER_INVESTOR to the invested master fund IQID",
-  "%IQID_MASTER_INVESTOR": "\u2022 Set the variable %IQID_MASTER_INVESTOR to the invested master fund IQID (collection or unique value). \u2022 If you define the FOF_INVESTOR_PORTFOLIO_REPORT macro, calculations are",
-  "%IQID_FOF_INVESTOR": "\u2022 Set the variable %IQID_FOF_INVESTOR to the investor IQID (collection or unique value). \u2022 If you define the FOF_INVESTOR_REPORT macro, calculations are done on behalf",
-  "%S": "STAKE_NC;%Stake{F}% d\u00e9tention OTHER_INCOME_OUTSIDE_OF_COMMITMENT;Other income outside of commitment{F}Autres revenues hors engagement",
-  "%IQID_FUND": "//%LET IQID_INVESTOR = %IQID_FUND; // Fund direct positions in invested portfolio companies DATA T_DIRECT_INVESTMENT_POSITIONS(where INVESTMENT_ID<>\"\"); // to",
-  "%IQID_COMPANY": "INVESTOR_ID IN (%IQID_COMPANY)); RUN; %LET COMPANY_LIST = COLLECTION(\"T_DIRECT_INVESTMENT_POSITIONS\",",
-  "%SQL_QUERY": "SQL=%SQL_QUERY CONNECTION=\"DWH\"; RUN;",
-  "WHERE": "WHERE(<condition>) Filters the data to be kept. To write the <condition>, use available Functions - Operators - Values.",
-  "GETTEMPPATH": "GETTEMPPATH(), store the result in macro variables Mandatory; DROP",
-  "CHOICE": "CHOICE(VAL1=Valeur 1,VAL2=Valeur 2)\"; INFORMAT= \"??XCHOICE(<id_1>=<value_1>, <id_n>=<value_n>)\"",
-  "XCHOICE": "XCHOICE(VAL1=Valeur 1,VAL2=Valeur 2)\"; You can also use the DEFAULT option to defin checked by default:",
-  "LOOKUPCODE": "LOOKUPCODE(<reference_table>.<additional_field)\" Applies to standard",
-  "LOOKUP": "LOOKUP(<reference_table>.<additional_field)\" Applies to standard",
-  "XLOOKUPCODE": "XLOOKUPCODE(<reference_table>.<additional_field)\" Applies to standard",
-  "XLOOKUP": "XLOOKUP(<reference_table>.<additional_field)\" Applies to standard",
-  "ERREUR": "ERREUR(0113): 'RUN' expected The RUN statement is missing. This error is most likely to occur when you use",
-  "ABS": "ABS(<number>) Returns the absolute value of <number>. <number> = double",
-  "ACOS": "ACOS(<number>) Returns the inverse cosine (arccosine) of <number>",
-  "ASIN": "ASIN(<number>) Returns the inverse sine (arcsine) of <number>",
-  "ATAN": "ATAN(<number>) Returns the inverse tangent (arctangent) of <number>",
-  "CBOOL": "CBOOL(<expression>) Returns a boolean value for an <expression>",
-  "CDATE": "CDATE(<expression>) Converts an expression into a date. CDBL(<expression>)",
-  "CDBL": "CDBL(<expression>) Converts an <expression> to a double.",
-  "CEILING": "CEILING(<number>) Returns the smallest integer not less than <number>. <number> = double",
-  "WEEKDAY": "WEEKDAY() CINT(<expression>) Converts an expression to the",
-  "CINT": "CINT(<expression>) Converts an expression to the nearest integer.",
-  "ROUND": "ROUND()_CINT() COS(<number>) Returns the cosine of <number>",
-  "COS": "COS(<number>) Returns the cosine of <number> COSH(<number>)",
-  "COSH": "COSH(<number>) Returns the hyperbolic cosine of <number>",
-  "CSTR": "CSTR(<expression>) Converts an <expression> into a character string.",
-  "DISTRIBTRIANG": "DISTRIBTRIANG(<min>, <max>, <median>) Returns a random number on a",
-  "EXP": "EXP(<number>) Returns the exponential value for base=<number>",
-  "FLOOR": "FLOOR(<number>) Returns the largest integer less than or equal to <number>. <number> =",
-  "LOG": "LOG(<number>) Returns the logarithm for base=<number>",
-  "MAX": "MAX(<number-1> ... <number-n) Returns the maximum value amidst the numbers being specified.",
-  "MIN": "MIN(<number-1> ... <number-n) Returns the minimum value amidst the numbers being specified.",
-  "N0": "N0(<number-1>,<number-2>) Returns 0 if the absolute value of <number-1> is inferior to <number-2>",
-  "POW": "POW(<number-1>, <number-2>) Returns the value of <number-1> power <number-2>",
-  "RANDOM": "RANDOM(integer) Returns a random number from the range between 0 and <integer>",
-  "ROUNDINGMETHOD": "ROUNDINGMETHOD(<value>, <remaining_digitals>, \"<method>\")",
-  "RND": "RND() Returns a random number between 0 and 1.",
-  "SIN": "SIN(<number>) Returns the sine of <number> SINH(<number>)",
-  "SINH": "SINH(<number>) Returns the hyperbolic sine of <number>",
-  "SQRT": "SQRT(<number>) Returns the square root of <number> refer to example:",
-  "TAN": "TAN(<number>) Returns the tangent of <number> TANH(<number>)",
-  "TANH": "TANH(<number>) Returns the hyperbolic tangent of <number>",
-  "TOBOOL": "TOBOOL(<expression>) Returns a boolean value for an <expression>",
-  "TODAT": "TODAT(<expression>) Converts an expression into a date. TODBL(<expression>)",
-  "TODBL": "TODBL(<expression>) Converts an <expression> to a double.",
-  "TOINT": "TOINT(<expression>) Converts an expression to an integer. TOSTR(<expression>)",
-  "TOSTR": "TOSTR(<expression>) Converts an <expression> into a character string.",
-  "ASC": "ASC(<char>) Returns the ASCII code of a character",
-  "CHR": "CHR(<UNICODE_code>) Converts <UNICODE_code> to <char>",
-  "COMPRESS": "COMPRESS(<string>) Removes all blanks from a <string>.",
-  "CRLF": "CRLF() Returns WINDOWS compatible new line character",
-  "FIND": "FIND(<string-1>, <string-2>) Returns the position of <string-2> in <string-1>,",
-  "FORMAT": "FORMAT(<string>, <format>) Applies the <format> to the <string>",
-  "INSTR": "INSTR(<string-1>, <string-2>) Returns the start position of the <string-2> within",
-  "LANG": "LANG(\"<string>{f}<Frenchstring>\") Localizes the input <string> based on the application",
-  "LCASE": "LCASE(<string>) Converts all letters in a <string> to lowcase",
-  "LEFT": "LEFT(<string>,<length>) Returns the characters on the left of a <string>, with",
-  "LEN": "LEN(<string>) Returns the length of the <string>",
-  "LENGTH": "LENGTH(<string>) Returns the length of the <string>",
-  "LOWCASE": "LOWCASE(<string>) Converts all letters in a <string> to lowcase",
-  "LTRIM": "LTRIM(<string>) Removes all trailing blanks on the left, and returns the",
-  "MID": "MID(<string>, <position>, <length>) Returns a substring of a <string>. The substring is",
-  "REPLACE": "REPLACE(<string>, <string_to_replace>, <new_string>) Replaces in a <string>,",
-  "RIGHT": "RIGHT(<string>, <length>) Returns the characters on the right of a <string>, with",
-  "RTRIM": "RTRIM(<string>) Removes all trailing blanks on the right, and returns the",
-  "SPLIT": "SPLIT(<string>, <separator>) Creates a collection of items. Comma is the default",
-  "STRIP": "STRIP(<string>) Returns a character string with all leading and trailing blanks",
-  "SUBSTR": "SUBSTR(<variable>, <position>, <length>) =<string> Returns TRUE | FALSE.",
-  "TRIM": "TRIM(<string>) Removes all trailing blanks, and returns the trimmed",
-  "UCASE": "UCASE(<string>) Converts all letters in a string to uppercase",
-  "UPCASE": "UPCASE(<string>) Converts all letters in a string to uppercase",
-  "GETURLWEBSITE": "GETURLWEBSITE(); PROC PRINT; PUT %MYVAR;",
-  "DATEADD": "DATEADD(\"<period>\",<nb>,<date>) Adds <nb> times the",
-  "DATEDIFF": "DATEDIFF() - SEMESTERENDDATE() - 2 DATEDIFF() - QuarterBegDate() - DateADD() Another example:",
-  "DATESERIAL": "DATESERIAL(<year>, <month>, <day>) Returns the date",
-  "DAY": "DAY(<date>) Returns the day of the",
-  "DMY": "DMY() - MDY() - FORMAT() eFront Script Reference Guide - V21.0 July 10, 2023",
-  "DAYOFYEAR": "DAYOFYEAR(<date>) Returns the number of the",
-  "DML": "DML(<date>) Puts the date in the right",
-  "YMD": "YMD() - FORMAT() DMY() - MDY() - FORMAT() PROC EXPORT - FORMAT()",
-  "MDY": "MDY(<date>) Returns the month, the",
-  "MONTH": "MONTH(<date>) Returns the month from a",
-  "MONTHBEGDATE": "MONTHBEGDATE(<date>) Returns the first day of the",
-  "MONTHENDDATE": "MONTHENDDATE(<date>) Returns the last day of the",
-  "NOW": "NOW() Returns the current date",
-  "QUARTER": "QUARTER(<date>) Returns the quarter that",
-  "QUARTERBEGDATE": "QUARTERBEGDATE(<date>) Returns the first day of the",
-  "QUARTERENDDATE": "QUARTERENDDATE(<date>) Returns the last day of the",
-  "SEMESTER": "SEMESTER(<date>) Returns the semester that",
-  "SEMESTERBEGDATE": "SEMESTERBEGDATE(<date>) Returns the first day of the",
-  "SEMESTERENDDATE": "SEMESTERENDDATE(<date>) Returns the last day of the",
-  "TICKCOUNT": "TICKCOUNT() Returns the number of",
-  "TODAY": "TODAY() Returns the current date",
-  "WEEKBEGDATE": "WEEKBEGDATE(<date>) Returns the first day",
-  "WEEKENDDATE": "WEEKENDDATE(<date>) Returns the last day",
-  "WEEKOFYEAR": "WEEKOFYEAR(<date>) Returns the number of the",
-  "YEAR": "YEAR(<date>) Returns the year from a",
-  "DIRECTORIES": "DIRECTORIES(<path>) Returns the number of directories being",
-  "DIRECTORY": "DIRECTORY(<n>) Returns the complete path to the directory at",
-  "DIRECTOR": "DIRECTOR() sends the directory at position <n> into a temporary folder,",
-  "DIRECTORYNAME": "DIRECTORYNAME(<n>) Returns the name of the directory at position <n>.",
-  "FILES": "FILES(<path>) Returns the number of files being associated with the",
-  "FILE": "FILE(<n>) Returns the complete path to the file at position",
-  "FILENAME": "FILENAME() - FILE() eFront Script Reference Guide - V21.0 July 10, 2023",
-  "LINKFILES": "LINKFILES() - LINKFILE() - FILENAME() FILESEXT(<path>, <extension>)",
-  "FILESEXT": "FILESEXT(<path>, <extension>) Retrieves the number of",
-  "LINKFILESEXT": "LINKFILESEXT(<object_id>, <ext_1>; <ext_n>) Returns the number of",
-  "LINKFILE": "LINKFILE(<n>) Returns the complete path that leads to file <n>",
-  "LINKFILENAME": "LINKFILENAME(<n>) Returns the name of file <n> of the files attached",
-  "MAKEDIRECTORY": "MAKEDIRECTORY(<dir>) Creates a subdirectory in the current directory,",
-  "APPENDPDF": "APPENDPDF(\"<file_na me1>\",\"<file_name2>\") Appends the content of an",
-  "CURRLITERAL": "CURRLITERAL(<value >, <language>, <currency>, 'centime')",
-  "CONVERTCURR": "CONVERTCURR(<am ount>, <source_curr>, <target_curr>, <date>)",
-  "CONVERTCURR2": "CONVERTCURR2(1,INVESTEE_FUND_CCY, MANAGED_FUND_CCY,ENTRY_DATE,\" \",CURRENCY_TABLE_IQID);",
-  "COLLECTION": "COLLECTION(\"<table _name>\", \"<Column name>\")",
-  "EXISTCOLUMN": "EXISTCOLUMN(\"<tabl e_name>\",\"<column_n ame>\")",
-  "EXISTMACRO": "EXISTMACRO(\"<macr o_name>\") Tests the existence of a",
-  "EXISTTABLE": "EXISTTABLE(\"<table_ name>\") Tests the existence of a table",
-  "GETACCOUNTID": "GETACCOUNTID() Returns the unique identification number of the",
-  "D": "D() Returns the ID of the specified contact.",
-  "NFO": "NFO(\"<fieldname>\") Returns the user specified <fieldname> value",
-  "GETCURRENTUSERINFO": "GETCURRENTUSERINFO(\"FIRSTNAME1\"); RUN; Returns: Olivier",
-  "PROFILE": "PROFILE() Returns the user's current profile ID",
-  "GETCURRENTUSERPROFILE": "GETCURRENTUSERPROFILE(); TRACE \"My current profile ID is: \" & %MyProfileName;",
-  "PROFILESLIST": "PROFILESLIST() Not authored yet Only applies to eFront",
-  "GETUSERPFOILESLIST": "GETUSERPFOILESLIST(GetUserID()); TRACE %MyProfiles; eFront Script Reference Guide - V21.0",
-  "GETDBSERVER": "GETDBSERVER() Returns the DB server type Example:",
-  "GETINFOREGIONID": "GETINFOREGIONID() Returns the ID of the INFO region.",
-  "GETPROFILEINFO": "GETPROFILEINFO(\"< user_id>\",\" <field_name>\")",
-  "ID": "ID() Returns the ID of the SHARED region",
-  "GETUSERID": "GETUSERID() Returns the unique identification number of the",
-  "GETUSERINFO": "GETUSERINFO(\"<use r_id>\",\" <field_name>\") For the user identified by",
-  "GETUSERPROFILE": "GETUSERPROFILE(GETUSERID()) PROC EFRONTMENUS - GETUSERPROFILE - GETUSERID",
-  "GUID": "GUID() Returns a unique identification number (Global",
-  "LAG": "LAG(<column>) Selects the value of the preceding line.",
-  "PARENT": "PARENT(<column>) eFront Script Reference Guide - V21.0 July 10, 2023",
-  "LOCALIZE": "LOCALIZE(<column>) Returns the column label in the language that",
-  "LOOKUPDYN": "LOOKUPDYN(\"<table_ name>\",\"<column_nam e>\",\"<code>\")",
-  "NZ": "NZ(<value-1>, <value-2>) Returns <value-1> if",
-  "REGISTRY": "REGISTRY(<type>, <key>, <name>) Not authored yet.",
-  "SETLANGUAGE": "SETLANGUAGE(<lang uage>) Forces the language for",
-  "SETPDFMETADATA": "SETPDFMETADATA(\" <file_name>\",\"<table_n ame>\",\"<key_column>\"",
-  "TABLEINFO": "TABLEINFO(\"table\", \"<info>\") Returns information about",
-  "TABLENCOL": "TABLENCOL(\"table\") Returns the number of columns of a data table.",
-  "TABLENOBS": "TABLENOBS(table) Returns the number of rows of a data table.",
-  "BETWEEN": "BETWEEN(,) NOT BETWEEN(,) 5",
-  "CONVERT": "CONVERT(VARCHAR(8000),A1.FUND_INFO)FROM VCFUND A LEFT JOIN VCFUNDOTHER A1 ON A1.IQID = A.FUNDOTHER WHERE ??FILTER\"; DATA WORK.FUND;",
-  "PICKID": "PICKID(VCPORTFOLIO;PORTFOLIO)\"; %PARAM ASATDATE LABEL = \"To Date:\" TYPE = DATE DEFAULT=TODAY; // NOTNULL;",
-  "INSTRUMENT": "INSTRUMENT(STYLE(COLHEADER)=(WIDTH=\"200\")) INVESTOR DATE(LABEL=\"Transaction Date\")",
-  "DATE": "DATE(LABEL=\"Transaction Date\") TTYPE .SUM(VAR=DUE FORMAT=\"#,##00\"LABEL=\"Amount Due\")",
-  "USER_ID": "USER_ID(LABEL=\"Customer\" CONTRACT_ID .SUM(VAR = UNIT_PRICE FORMAT = P_MONEY. STYLE(TOTAL) = (FONT_FACE = \"Arial\" FONT_SIZE = \"14pt\"));",
-  "PRINTCOL": "PRINTCOL(DATA)=(WIDTH=\"250px\" BORDER=\"NONE\"FONT_SIZE=\"8pt\" FONT_FACE=\"TAHOMA\"); STYLESHEET END;",
-  "TABULATE": "TABULATE(TITLE) = (ALIGN=CENTER PADDING=\"8px\"); TABULATE(TITLE1) = (ALIGN=RIGHT PADDING=\"8px\"); TABULATE(DATA) = (BACKGROUND=LIGHTBLUE FOREGROUND=WHITE",
-  "PRINT": "PRINT(TITLE)=(BACKGROUND=\"aqua\" FONT_WEIGHT=\"BOLD\"); PRINT(TITLE1)=(METALLIC); PRINT(GRANDTOTAL)=(FONT_WEIGHT=\"BOLD\");",
-  "XPICKID": "XPICKID(SELECT CODE, LIBELLE FROM REINSTRUMENTTYPE A WHERE CLASS1 IN(2,3,4) AND CODE IN('PP','CC','ACC'))\"; eFront Script Reference Guide - V21.0",
-  "IN": "IN(2,3,4) AND CODE IN('PP','CC','ACC'))\"; eFront Script Reference Guide - V21.0 July 10, 2023",
-  "AY": "AY()))); RUN; 5.36.4.4. Result",
-  "EF_IMG": "EF_IMG(\"LOGO\";C5:C6;\"27\";;;100\") 5.36.7.5. Result 5.36.8. GETTEMPPATH()",
-  "PROC CONVERTCURR": "4.1.3. PROC CONVERTCURR step ........................................................ 92 4.1.3.1. Description ........................................................................... 92 4.1.3.2. Sy",
-  "PROC DELETE": "4.1.4. PROC DELETE step ...................................................................... 94 4.1.4.1. Description ........................................................................... 94 4.",
-  "PROC DIRECTCASHFLOWS": "4.1.5. PROC DIRECTCASHFLOWS step ................................................ 94 4.1.5.1. Description ........................................................................... 94 4.1.5.2. Syntax",
-  "PROC EFRONTACCRUALS": "4.1.6. PROC EFRONTACCRUALS step .................................................. 97 4.1.6.1. Description ........................................................................... 97 4.1.6.2. Synta",
-  "PROC EFRONTBLOB": "4.1.7. PROC EFRONTBLOB step ........................................................... 99 4.1.7.1. Description ........................................................................... 99 4.1.7.2. ",
-  "PROC EFRONTDASHBOARD": "4.1.8. PROC EFRONTDASHBOARD step ............................................ 102 4.1.8.1. Description ......................................................................... 102 4.1.8.2. Syntax ...",
-  "PROC EFRONTFOLDER": "4.1.9. PROC EFRONTFOLDER step .................................................... 103 4.1.9.1. Description ......................................................................... 103 4.1.9.2. Synta",
-  "PROC EFRONTIMPORT": "4.1.10. PROC EFRONTIMPORT step ................................................... 105 4.1.10.1. Description ....................................................................... 105 4.1.10.2. Pre-r",
-  "PROC EFRONTIMPORT_AJX": "4.1.11. PROC EFRONTIMPORT_AJX step ........................................... 106 4.1.11.1. Description ....................................................................... 106 4.1.11.2. Prerequis",
-  "PROC EFRONTMAIL": "4.1.12. PROC EFRONTMAIL step ........................................................ 107 4.1.12.1. Description ....................................................................... 107 4.1.12.2. Pr",
-  "PROC EFRONTMENUS": "4.1.13. PROC EFRONTMENUS step .................................................... 109 4.1.13.1. Description ....................................................................... 109 4.1.13.2. Synta",
-  "PROC EFRONTPACKAGES": "4.1.14. PROC EFRONTPACKAGES step ............................................. 110 4.1.14.1. Description ....................................................................... 110 4.1.14.2. Syntax ..",
-  "PROC EFRONTPROFILES": "4.1.15. PROC EFRONTPROFILES step ............................................... 113 4.1.15.1. Description ....................................................................... 113 4.1.15.2. Syntax ",
-  "PROC EFRONTREGIONS": "4.1.16. PROC EFRONTREGIONS step ................................................ 114 4.1.16.1. Description ....................................................................... 114 4.1.16.2. Syntax ",
-  "PROC EFRONTTABLES": "4.1.17. PROC EFRONTTABLES step ................................................... 115 4.1.17.1. Description ....................................................................... 115 4.1.17.2. Synta",
-  "PROC EFRONTUSERPROFILES": "4.1.18. PROC EFRONTUSERPROFILES step ..................................... 116 4.1.18.1. Description ....................................................................... 116 eFront Script Reference",
-  "PROC ERROR": "4.1.19. PROC ERROR step ................................................................... 117 4.1.19.1. Description ....................................................................... 117 4.1.19",
-  "PROC EXPORTCHART": "4.1.20. PROC EXPORTCHART step ..................................................... 118 4.1.20.1. Description ....................................................................... 118 4.1.20.2. Synt",
-  "PROC EXPORTEXCEL": "4.1.21. PROC EXPORTEXCEL step ..................................................... 119 4.1.21.1. Description ....................................................................... 119 4.1.21.2. Synt",
-  "PROC EXPORT": "4.1.22. PROC EXPORT step ................................................................. 121 4.1.22.1. Description ....................................................................... 121 4.1.22.",
-  "PROC FALIBRARY": "4.1.23. PROC FALIBRARY step ............................................................ 124 4.1.23.1. Description ....................................................................... 124 4.1.23.2.",
-  "PROC FAQUERY": "4.1.24. PROC FAQUERY step ............................................................... 128 4.1.24.1. Description ....................................................................... 128 4.1.24.2",
-  "PROC FORMAT": "4.1.25. PROC FORMAT step ................................................................. 131 4.1.25.1. Description ....................................................................... 131 4.1.25.",
-  "PROC FUNDCASHFLOWS": "4.1.26. PROC FUNDCASHFLOWS step ............................................... 133 4.1.26.1. Description ....................................................................... 133 4.1.26.2. Syntax .",
-  "PROC GCHART": "4.1.27. PROC GCHART step ................................................................. 135 4.1.27.1. Description ....................................................................... 135 4.1.27.",
-  "PROC GPLOT": "4.1.28. PROC GPLOT step ................................................................... 136 4.1.28.1. Description ....................................................................... 136 4.1.28",
-  "PROC MEMORY": "4.1.29. PROC MEMORY step ................................................................ 138 4.1.29.1. Description ....................................................................... 138 4.1.29.2",
-  "PROC MEANS": "4.1.30. PROC MEANS step ................................................................... 139 4.1.30.1. Description ....................................................................... 139 4.1.30",
-  "PROC OFFICE": "4.1.31. PROC OFFICE step .................................................................. 141 4.1.31.1. Description ....................................................................... 141 4.1.31",
-  "PROC PRINT": "4.1.32. PROC PRINT step ..................................................................... 142 4.1.32.1. Description ....................................................................... 142 4.1.",
-  "PROC PRINTCOL": "4.1.33. PROC PRINTCOL step ............................................................. 145 4.1.33.1. Description ....................................................................... 145 4.1.33.2.",
-  "PROC PRINTFORM": "4.1.34. PROC PRINTFORM step .......................................................... 146 4.1.34.1. Description ....................................................................... 146 4.1.34.2. S",
-  "PROC SENDTOIC": "4.1.35. PROC SENDTOIC step ............................................................. 148 4.1.35.1. Description ....................................................................... 148 4.1.35.2.",
-  "PROC SETFILTER": "4.1.36. PROC SETFILTER step ............................................................. 151 4.1.36.1. Description ....................................................................... 151 4.1.36.2",
-  "PROC SORT": "4.1.37. PROC SORT step ...................................................................... 152 4.1.37.1. Description ....................................................................... 152 eFro",
-  "PROC SQLEXEC": "4.1.38. PROC SQLEXEC step ............................................................... 153 4.1.38.1. Description ....................................................................... 153 4.1.38.2",
-  "PROC SQLIMPORT": "4.1.39. PROC SQLIMPORT step ........................................................... 154 4.1.39.1. Description ....................................................................... 154 4.1.39.2. ",
-  "PROC SQLTABLE": "4.1.40. PROC SQLTABLE step .............................................................. 157 4.1.40.1. Description ....................................................................... 157 4.1.40.2",
-  "PROC TABULATE": "4.1.41. PROC TABULATE step .............................................................. 159 4.1.41.1. Description ....................................................................... 159 4.1.41.2",
-  "PROC TRANSPOSE": "4.1.42. PROC TRANSPOSE step ......................................................... 161 4.1.42.1. Description ....................................................................... 161 eFront Scrip",
-  "PROC TRANSPOSE2": "4.1.43. PROC TRANSPOSE2 step ....................................................... 163 4.1.43.1. Description ....................................................................... 163 4.1.43.2. Syn",
-  "PROC UPDATE": "4.1.44. PROC UPDATE step ................................................................. 164 4.1.44.1. Description ....................................................................... 164 4.1.44.",
-  "PROC WSGETCOMPANYDATA": "4.1.45. PROC WSGETCOMPANYDATA ............................................... 166 4.1.45.1. Description ....................................................................... 166 4.1.45.2. Syntax ...",
-  "PROC WSGETINVESTMENTDATA": "4.1.46. PROC WSGETINVESTMENTDATA .......................................... 167 4.1.46.1. Description ....................................................................... 167 4.1.46.2. Syntax .....",
-  "PROC WSGETINVESTORSDATA": "4.1.47. PROC WSGETINVESTORSDATA ............................................. 168 4.1.47.1. Description ....................................................................... 168 4.1.47.2. Syntax ...",
-  "PROC EXCEL": "PROC EXCEL PROC EXECSQL PROC EXPORT",
-  "PROC EXECSQL": "PROC EXECSQL PROC EXPORT PROC FORMAT",
-  "PROC IMPORT": "PROC IMPORT COLUMN statement INFILE statement",
-  "PROC UPDATEFOLDER": "PROC UPDATEFOLDER Updates a WebEdge folder. STYLESHEET",
-  "PROC EFRONTMENUSPROFILE": "PROC EFRONTMENUSPROFILE=GETUSERPROFILE(GETUSERID()); RUN; 4.1.13.3. Options",
-  "PROC SQLIMPORTDATA": "PROC SQLIMPORTDATA = destination_table (</ table_options> </ options>); eFront Script Reference Guide - V21.0 July 10, 2023",
-  "PROC SQLTABLEDATA": "PROC SQLTABLEDATA = table_to_export (</ table_options> </ options>); RUN; 4.1.40.3. Options",
-  "PROC PROC": "PROC PROC MEANS DATA =table_to_process (</ table_options>); CLASScol_1col_n; </ subordinate statements>;",
-  "PROC EFRON": "PROC EFRONtBLOB - %PARAM PROC EFRONTBLOB - DATA - CLASS - PREFIX - ID PROC EFRONTFOLDER",
-  "PROC SENTTOIC": "PROC SENTTOIC PROC SENDTOIC PROC SETFILTER",
-  "PROC EFRONTDASHBOARDDASHBOARD": "PROC EFRONTDASHBOARDDASHBOARD=\"Dashboard_folder\\Dashboard_name\" PAGES=\"1-3,5\"; RUN;",
-  "PROC PRINTDATA": "PROC PRINTDATA=T.TABLES; RUN; eFront Script Reference Guide - V21.0",
-  "PROC EXCELEXPORT": "The following examples illustrate the PROC EXCELEXPORT step, and subordinate statements: \u2022 PROC EXPORTEXCEL (1)",
-  "PROC MEANSDATA": "PROC MEANSDATA=WORK.t; CLASS C; JOIN X(DELIMITER=\", \");",
-  "PROC DATA": "PROC DATA=WORK.T_FUNDS; SET LIBRARY_VIEW.FV_V_FUND; RUN;",
-  "PROC STYLESHEET": "The following examples illustrate the PROC STYLESHEET step, and subordinate statements: \u2022 STYLESHEET - PROC TABULATE (1)"
+  "Proc": [
+    {
+      "name": "DATA",
+      "description": "Creates a new data table from external files or existing tables, or builds one from scratch.",
+      "example": "DATA WORK.MYTABLE;\nSET EXISTING_TABLE;\nRUN;"
+    },
+    {
+      "name": "ODS",
+      "description": "Directs output of other steps to destinations like Office, HTML, or Listings.",
+      "example": "ODS HTML FILE=\"report.html\";\nPROC PRINT DATA=WORK.MYTABLE;\nRUN;\nODS HTML END;"
+    },
+    {
+      "name": "CONVERTCURR",
+      "description": "Converts currency values using specified FX rates in cubes (used in Cube programs).",
+      "example": "PROC CONVERTCURR DATA=INPUT OUT=OUTPUT FXRATES=RATES\nCURRENCY_COLUMN=\"CURR\" FXRATES_CURRENCY_COLUMN=\"SRC\" FXRATES_RATE_COLUMN=\"RATE\";\nVAR AMOUNT;\nRUN;"
+    },
+    {
+      "name": "DELETE",
+      "description": "Deletes an eFront Cube cube from the server.",
+      "example": "PROC DELETE DATA=WORK.MYCUBE;\nRUN;"
+    },
+    {
+      "name": "DIRECTCASHFLOWS",
+      "description": "Generates a table with direct cash flow transactions via the Calculation Engine.",
+      "example": "PROC DIRECTCASHFLOWS TRANSACTIONS=(1,2,3) INSTRUMENTS=(101,102) OUT=WORK.CASHFLOWS;\nRUN;"
+    },
+    {
+      "name": "EFRONTACCRUALS",
+      "description": "Calculates accrued interest per instrument for a given date.",
+      "example": "PROC EFRONTACCRUALS DATE=\"2023-12-31\" OUT=WORK.ACCRUALS;\nRUN;"
+    },
+    {
+      "name": "EFRONTBLOB",
+      "description": "Extracts data from BLOB fields in FIA tables into a structured output.",
+      "example": "PROC EFRONTBLOB DATA=\"BLOB_TABLE\" ID=\"BLOB_ID\" CLASS=\"Deal\" PATH=\"MyPath\" OUT=WORK.BLOB_OUT;\nRUN;"
+    },
+    {
+      "name": "EFRONTDASHBOARD",
+      "description": "Exports a dashboard as a PDF file.",
+      "example": "PROC EFRONTDASHBOARD DASHBOARD=\"\\Dashboards\\MyBoard\" PAGES=\"1-3\";\nRUN;"
+    },
+    {
+      "name": "EFRONTFOLDER",
+      "description": "Retrieves data from a specific folder object in eFront.",
+      "example": "PROC EFRONTFOLDER FOLDER=\"Deal\" ID=\"123\" PROPERTIES=\"PropertyName\";\nRUN;"
+    },
+    {
+      "name": "EFRONTIMPORT",
+      "description": "Imports data from an eFront Report table using a predefined import mask.",
+      "example": "PROC EFRONTIMPORT DATA=WORK.IMPORTTABLE NAME=\"IMPORT_MASK\";\nRUN;"
+    },
+    {
+      "name": "EFRONTIMPORT_AJX",
+      "description": "Executes a specific sheet import from a registered FIA import definition.",
+      "example": "PROC EFRONTIMPORT_AJX DATA=WORK.IMPORTTABLE NAME=\"IMPORT_MASK\" SHEETNAME=\"Sheet1\";\nRUN;"
+    },
+    {
+      "name": "EFRONTMAIL",
+      "description": "Sends emails using table-defined values for TO, CC, attachments, etc.",
+      "example": "PROC EFRONTMAIL DATA=WORK.MAILTABLE TO=EMAIL TO SUBJECT=SUBJ BODY=TEXT;\nRUN;"
+    },
+    {
+      "name": "EFRONTMENUS",
+      "description": "Retrieves all user menus and submenus from application configuration.",
+      "example": "PROC EFRONTMENUS PROFILE=GETUSERPROFILE(GETUSERID()) OUT=WORK.MENUS;\nRUN;"
+    },
+    {
+      "name": "EFRONTPACKAGES",
+      "description": "Returns details on integrated packages and options in the application.",
+      "example": "PROC EFRONTPACKAGES;\nRUN;"
+    },
+    {
+      "name": "EFRONTPROFILES",
+      "description": "Retrieves user profile definitions from the application.",
+      "example": "PROC EFRONTPROFILES;\nRUN;"
+    },
+    {
+      "name": "EFRONTREGIONS",
+      "description": "Retrieves user region settings and access rights.",
+      "example": "PROC EFRONTREGIONS;\nRUN;"
+    },
+    {
+      "name": "EFRONTTABLES",
+      "description": "Returns metadata about data model: tables, columns, indexes, and relationships.",
+      "example": "PROC EFRONTTABLES;\nRUN;"
+    },
+    {
+      "name": "EFRONTUSERPROFILES",
+      "description": "Retrieves user profile assignments in the application.",
+      "example": "PROC EFRONTUSERPROFILES;\nRUN;"
+    },
+    {
+      "name": "ERROR",
+      "description": "Stops program execution and raises an error with a custom message.",
+      "example": "PROC ERROR \"Something went wrong!\";\nRUN;"
+    },
+    {
+      "name": "EXPORTCHART",
+      "description": "Exports charts from Excel files as JPEG images.",
+      "example": "PROC EXPORTCHART FILE=\"charts.xlsx\" OUT=WORK.CHARTS;\nRUN;"
+    },
+    {
+      "name": "EXPORTEXCEL",
+      "description": "Exports one or more tables to individual sheets of a single Excel workbook.",
+      "example": "PROC EXPORTEXCEL FILE=\"output.xlsx\";\nRUN;"
+    },
+    {
+      "name": "EXPORT",
+      "description": "Exports a table or view in CSV format to disk.",
+      "example": "PROC EXPORT DATA=WORK.MYTABLE FILE=\"output.csv\";\nRUN;"
+    },
+    {
+      "name": "FALIBRARY",
+      "description": "Imports tables or cubes from eFront Analytics into eFront Report.",
+      "example": "PROC FALIBRARY LIBRARY=Portfolio.Cashflows;\nRUN;"
+    },
+    {
+      "name": "FPROC AQUERY",
+      "description": "Exports the result of a QueryBuilder query into an eFront Report table.",
+      "example": "PROC FAQUERY QUERY=\"SELECT * FROM Table\";\nRUN;"
+    },
+    {
+      "name": "FORMAT",
+      "description": "Creates custom formats for data display using VALUE or PICTURE definitions.",
+      "example": "PROC FORMAT;\nVALUE $GENDER\n  \"M\"=\"Male\"\n  \"F\"=\"Female\";\nRUN;"
+    },
+    {
+      "name": "FUNDCASHFLOWS",
+      "description": "Extracts investor operation IDs via the Calculation Engine (fund investments).",
+      "example": "PROC FUNDCASHFLOWS FUNDID=\"123\" OUT=WORK.CASH;\nRUN;"
+    },
+    {
+      "name": "GCHART",
+      "description": "Generates chart types such as pie, bar, donut from a report table.",
+      "example": "PROC GCHART DATA=WORK.MYTABLE;\nVBAR CATEGORY / SUMVAR=AMOUNT;\nRUN;"
+    },
+    {
+      "name": "GPLOT",
+      "description": "Generates plot and line charts from a data table.",
+      "example": "PROC GPLOT DATA=WORK.MYTABLE;\nPLOT Y*X;\nRUN;"
+    },
+    {
+      "name": "MEMORY",
+      "description": "Displays memory use for tables or unloads them.",
+      "example": "PROC MEMORY;\nRUN;"
+    },
+    {
+      "name": "MEANS",
+      "description": "Calculates basic statistics like mean, sum, min, max on a table.",
+      "example": "PROC MEANS DATA=WORK.MYTABLE;\nVAR VALUE;\nRUN;"
+    },
+    {
+      "name": "OFFICE",
+      "description": "Generates Office/Word/Excel/XML files using templates and input tables.",
+      "example": "PROC OFFICE TEMPLATE=\"&report.docx\" DATA=WORK.MYTABLE;\nRUN;"
+    },
+    {
+      "name": "PRINT",
+      "description": "Prints tables or specific variables using a customizable layout.",
+      "example": "PROC PRINT DATA=WORK.MYTABLE;\nRUN;"
+    },
+    {
+      "name": "PRINTCOL",
+      "description": "Prints a column from a table into a multi-column layout.",
+      "example": "PROC PRINTCOL DATA=WORK.MYTABLE COLUMN=NAME;\nRUN;"
+    },
+    {
+      "name": "PRINTFORM",
+      "description": "Prints formatted forms using fixed layout specifications.",
+      "example": "PROC PRINTFORM FORM=\"MyForm\" DATA=WORK.MYTABLE;\nRUN;"
+    },
+    {
+      "name": "SENDTOIC",
+      "description": "Sends documents to Investment Caf\u221a\u00a9 Classic (PDF, DOCX).",
+      "example": "PROC SENDTOIC DATA=WORK.DOCS;\nRUN;"
+    },
+    {
+      "name": "SETFILTER",
+      "description": "Automatically filters a cube when it\u201a\u00c4\u00f4s opened in a dashboard.",
+      "example": "PROC SETFILTER DATA=WORK.MYCUBE FILTER=\"YEAR=2023\";\nRUN;"
+    },
+    {
+      "name": "SORT",
+      "description": "Sorts tables by one or more character/numeric columns.",
+      "example": "PROC SORT DATA=WORK.MYTABLE;\nBY NAME;\nRUN;"
+    },
+    {
+      "name": "SQLEXEC",
+      "description": "Executes SQL queries against an external database.",
+      "example": "PROC SQLEXEC CONNECTION=\"DB_CONN\" SQL=\"SELECT * FROM customers\";\nRUN;"
+    },
+    {
+      "name": "SQLIMPORT",
+      "description": "Imports external SQL query results into an eFront Report table.",
+      "example": "PROC SQLIMPORT CONNECTION=\"DB_CONN\" SQL=\"SELECT * FROM orders\" OUT=WORK.ORDERS;\nRUN;"
+    },
+    {
+      "name": "SQLTABLE",
+      "description": "Exports eFront Report table data to an external SQL database.",
+      "example": "PROC SQLTABLE DATA=WORK.MYTABLE CONNECTION=\"DB_CONN\" TABLE=\"target_table\";\nRUN;"
+    },
+    {
+      "name": "TABULATE",
+      "description": "Creates pivot tables and computes statistics grouped by dimensions.",
+      "example": "PROC TABULATE DATA=WORK.MYTABLE;\nCLASS REGION;\nVAR SALES;\nTABLE REGION, SALES*SUM;\nRUN;"
+    },
+    {
+      "name": "TRANSPOSE",
+      "description": "Transposes column values into rows in an output table.",
+      "example": "PROC TRANSPOSE DATA=WORK.MYTABLE OUT=WORK.TRANSPOSED;\nRUN;"
+    },
+    {
+      "name": "TRANSPOSE2",
+      "description": "Reshapes table by turning variable values into new columns.",
+      "example": "PROC TRANSPOSE2 DATA=WORK.MYTABLE OUT=WORK.PIVOTED;\nRUN;"
+    },
+    {
+      "name": "UPDATE",
+      "description": "Performs high-performance merging of two cubes (left join style).",
+      "example": "PROC UPDATE DATA=WORK.BASE OUT=WORK.UPDATED;\nBY ID;\nRUN;"
+    },
+    {
+      "name": "WPROC SGETCOMPANYDATA",
+      "description": "Calls a web service to retrieve company data (limited use).",
+      "example": "PROC WSGETCOMPANYDATA COMPANYID=123 OUT=WORK.COMPANY;\nRUN;"
+    },
+    {
+      "name": "WSGETINVESTMENTDATA",
+      "description": "Calls a web service to retrieve investment data.",
+      "example": "PROC WSGETINVESTMENTDATA ID=456 OUT=WORK.INVESTMENT;\nRUN;"
+    },
+    {
+      "name": "WSGETINVESTORSDATA",
+      "description": "Calls a web service to retrieve investor data.",
+      "example": "PROC WSGETINVESTORSDATA ID=789 OUT=WORK.INVESTORS;\nRUN;"
+    },
+    {
+      "name": "STYLESHEET",
+      "description": "Defines style instructions (e.g., for charts or table elements).",
+      "example": "PROC STYLESHEET FILE=\"style.css\";\nRUN;"
+    },
+    {
+      "name": "TABLE",
+      "description": "Writes report outputs into HTML table layout.",
+      "example": "PROC TABLE DATA=WORK.MYTABLE;\nRUN;"
+    }
+  ],
+  "Macro": [
+    {
+      "name": "%DEFINE",
+      "description": "Declares a macro variable and assigns it a value.",
+      "example": "%DEFINE name = 'John';"
+    },
+    {
+      "name": "%INCLUDE",
+      "description": "Includes the contents of an external FrontScript file.",
+      "example": "%INCLUDE \"\\Shared\\Scripts\\MyScript.frs\";"
+    },
+    {
+      "name": "%CONTINUE",
+      "description": "Skips the current iteration of a macro loop.",
+      "example": "%FOR %X %IN (1 2 3 4 5)\n  %IF %X = 3 %THEN %CONTINUE;\n  PUT %X;\n%NEXT;"
+    },
+    {
+      "name": "%LET",
+      "description": "Assigns a value to a macro variable.",
+      "example": "%LET startDate = '2023-01-01';"
+    },
+    {
+      "name": "%PARAM",
+      "description": "Declares a macro parameter for dynamic input.",
+      "example": "%PARAM FundID = ??ID(FUND);"
+    },
+    {
+      "name": "%DO",
+      "description": "Begins a macro loop (usually used with %WHILE or %FOR).",
+      "example": "%LET I = 1;\n%DO WHILE (%I <= 5)\n  PUT %I;\n  %LET I = %I + 1;\n%END;"
+    },
+    {
+      "name": "%LOOP",
+      "description": "Used to form the body of a macro loop, typically following %DO or %WHILE.",
+      "example": "%LET I = 1;\n%DO WHILE (%I <= 3)\n  PUT %I;\n  %LET I = %I + 1;\n%LOOP;"
+    },
+    {
+      "name": "%FOR",
+      "description": "Starts a loop that iterates over a list of values or range.",
+      "example": "%FOR %X %IN (A B C)\n  PUT %X;\n%NEXT;"
+    },
+    {
+      "name": "%NEXT",
+      "description": "Ends a %FOR macro loop and goes to the next iteration.",
+      "example": "%FOR %X %IN (1 2 3)\n  PUT %X;\n%NEXT;"
+    },
+    {
+      "name": "%IF",
+      "description": "Evaluates a condition for macro-level logic.",
+      "example": "%IF %FundID = 123 %THEN PUT 'Match';"
+    },
+    {
+      "name": "%THEN",
+      "description": "Executes code if the %IF condition is true.",
+      "example": "%IF %FundID = 123 %THEN PUT 'Match';"
+    },
+    {
+      "name": "%END",
+      "description": "Closes control structures like %IF, %FOR, or %WHILE blocks.",
+      "example": "%IF %X = 1 %THEN DO;\n  PUT 'One';\n%END;"
+    },
+    {
+      "name": "%SELECT",
+      "description": "Starts a macro case selection control block.",
+      "example": "%SELECT %Option\n  %WHEN 'A' %THEN PUT 'Alpha';\n  %WHEN 'B' %THEN PUT 'Beta';\n%END;"
+    },
+    {
+      "name": "%WHEN",
+      "description": "Specifies a case inside a %SELECT block.",
+      "example": "%SELECT %Type\n  %WHEN 'X' %THEN PUT 'Choice X';\n%END;"
+    },
+    {
+      "name": "%EXIT %DO",
+      "description": "Forcibly exits a %DO loop prematurely.",
+      "example": "%DO WHILE (%X < 10)\n  %IF %X = 5 %THEN %EXIT %DO;\n%LOOP;"
+    },
+    {
+      "name": "%EXIT %FOR",
+      "description": "Forcibly exits a %FOR loop prematurely.",
+      "example": "%FOR %I %IN (1 2 3 4)\n  %IF %I = 3 %THEN %EXIT %FOR;\n%NEXT;"
+    },
+    {
+      "name": "%TO",
+      "description": "Used in combination with %FOR to define the loop range.",
+      "example": "%FOR %I = 1 %TO 5\n  PUT %I;\n%NEXT;"
+    },
+    {
+      "name": "%WHILE",
+      "description": "Begins a loop that executes as long as a macro condition is true.",
+      "example": "%LET I = 1;\n%DO WHILE (%I <= 3)\n  PUT %I;\n  %LET I = %I + 1;\n%END;"
+    }
+  ],
+  "Keyword": [
+    {
+      "name": "DO",
+      "description": "Begins a code block or loop.",
+      "example": "DO;\n  x = x + 1;\nEND;"
+    },
+    {
+      "name": "WHILE",
+      "description": "Starts a loop that continues while a condition is true.",
+      "example": "DO WHILE (x < 10);\n  x = x + 1;\nEND;"
+    },
+    {
+      "name": "LOOP",
+      "description": "Marks the body of a WHILE or FOR loop.",
+      "example": "%LET I = 1;\n%DO WHILE (%I <= 5)\n  PUT %I;\n  %LET I = %I + 1;\n%LOOP;"
+    },
+    {
+      "name": "IF",
+      "description": "Executes a block of code if a condition is true.",
+      "example": "IF amount > 1000 THEN PUT 'Large';"
+    },
+    {
+      "name": "THEN",
+      "description": "Follows an IF condition to specify the block to execute if true.",
+      "example": "IF status = 'ACTIVE' THEN output = 1;"
+    },
+    {
+      "name": "ELSE",
+      "description": "Specifies an alternate block to execute if the IF condition is false.",
+      "example": "IF x = 1 THEN y = 'Yes'; ELSE y = 'No';"
+    },
+    {
+      "name": "END",
+      "description": "Closes a block of code (e.g., IF, DO, SELECT).",
+      "example": "DO;\n  PUT 'Hello';\nEND;"
+    },
+    {
+      "name": "SELECT",
+      "description": "Begins a conditional branching block, like a switch statement.",
+      "example": "SELECT type;\n  WHEN 'A' DO;\n    PUT 'Alpha';\n  END;\nEND;"
+    },
+    {
+      "name": "WHEN",
+      "description": "Defines a specific condition inside a SELECT block.",
+      "example": "SELECT status;\n  WHEN 'Open' DO;\n    PUT 'Open Case';\n  END;\nEND;"
+    },
+    {
+      "name": "CASE",
+      "description": "Defines a value or condition in a switch-style structure (sometimes used interchangeably with WHEN).",
+      "example": "SELECT value;\n  CASE 1 DO;\n    PUT 'One';\n  END;\nEND;"
+    },
+    {
+      "name": "DEFAULT",
+      "description": "Defines the default block to execute in a SELECT if no WHEN condition is matched.",
+      "example": "SELECT x;\n  WHEN 1 PUT 'One';\n  DEFAULT PUT 'Other';\nEND;"
+    },
+    {
+      "name": "BREAK",
+      "description": "Exits the current loop or SELECT structure.",
+      "example": "DO WHILE (x < 10);\n  IF x = 5 THEN BREAK;\n  x = x + 1;\nEND;"
+    },
+    {
+      "name": "CONTINUE",
+      "description": "Skips the rest of the current iteration of a loop and begins the next iteration.",
+      "example": "DO WHILE (x < 10);\n  x = x + 1;\n  IF x = 5 THEN CONTINUE;\n  PUT x;\nEND;"
+    },
+    {
+      "name": "RETURN",
+      "description": "Exits the current program or function and optionally returns a value.",
+      "example": "IF error = 1 THEN RETURN;"
+    },
+    {
+      "name": "RUN",
+      "description": "Executes a PROC or DATA step.",
+      "example": "PROC SORT DATA=work.table;\nBY name;\nRUN;"
+    },
+    {
+      "name": "STOP",
+      "description": "Terminates the program immediately.",
+      "example": "IF x > 100 THEN STOP;"
+    },
+    {
+      "name": "ABORT",
+      "description": "Stops program execution with an error.",
+      "example": "IF status = 'FAIL' THEN ABORT;"
+    },
+    {
+      "name": "MERGE",
+      "description": "Combines datasets based on key variables.",
+      "example": "MERGE a(IN=a) b(IN=b);\nBY id;"
+    },
+    {
+      "name": "SET",
+      "description": "Reads data into a DATA step from an existing table.",
+      "example": "SET transactions;\namount = amount * 1.1;"
+    },
+    {
+      "name": "SQL",
+      "description": "Introduces an SQL code block inside a program.",
+      "example": "SQL {\n  SELECT * FROM users;\n};"
+    },
+    {
+      "name": "INFILE",
+      "description": "Reads data from an external file line by line.",
+      "example": "INFILE 'data.csv' DLM=',';"
+    },
+    {
+      "name": "INLINE",
+      "description": "Defines inline data directly within a script.",
+      "example": "DATA work.inline;\nINLINE;\n1 John\n2 Alice\nRUN;"
+    },
+    {
+      "name": "OUTPUT",
+      "description": "Writes a data row to the output table.",
+      "example": "OUTPUT;"
+    },
+    {
+      "name": "COLUMN",
+      "description": "Defines a column to be printed or used in a table layout.",
+      "example": "COLUMN name age salary;"
+    },
+    {
+      "name": "FORMAT",
+      "description": "Applies a user-defined format to variables.",
+      "example": "FORMAT salary dollar12.2;"
+    },
+    {
+      "name": "TABLE",
+      "description": "Defines the structure or layout of an output table.",
+      "example": "PROC TABLE DATA=work.summary;\nRUN;"
+    },
+    {
+      "name": "TITLE",
+      "description": "Adds a title to output listings or reports.",
+      "example": "TITLE 'Summary Report';"
+    },
+    {
+      "name": "TRACE",
+      "description": "Outputs debug information or execution trace.",
+      "example": "TRACE 'Step 1 completed';"
+    },
+    {
+      "name": "VAR",
+      "description": "Defines variables for analysis or output.",
+      "example": "VAR sales profit;"
+    },
+    {
+      "name": "SUM",
+      "description": "Specifies a variable to be summed in statistics or tables.",
+      "example": "SUM revenue;"
+    },
+    {
+      "name": "MEAN",
+      "description": "Specifies a variable for which the average is computed.",
+      "example": "MEAN salary;"
+    },
+    {
+      "name": "MAX",
+      "description": "Specifies a variable for which the maximum value is computed.",
+      "example": "MAX temperature;"
+    },
+    {
+      "name": "MIN",
+      "description": "Specifies a variable for which the minimum value is computed.",
+      "example": "MIN humidity;"
+    },
+    {
+      "name": "JOIN",
+      "description": "Combines tables based on key fields (SQL style).",
+      "example": "PROC SQL;\nSELECT * FROM a JOIN b ON a.id = b.id;\nQUIT;"
+    },
+    {
+      "name": "FIRST",
+      "description": "Refers to the first record in a BY group.",
+      "example": "IF FIRST.name THEN counter = 0;"
+    },
+    {
+      "name": "LAST",
+      "description": "Refers to the last record in a BY group.",
+      "example": "IF LAST.name THEN PUT 'End of group';"
+    },
+    {
+      "name": "NOBS",
+      "description": "Returns the number of observations in a table.",
+      "example": "IF _N_ = 1 THEN SET data NOBS=n;"
+    },
+    {
+      "name": "VALUE",
+      "description": "Assigns or retrieves a formatted value.",
+      "example": "VALUE $gender\n  'M'='Male'\n  'F'='Female';"
+    },
+    {
+      "name": "VBAR",
+      "description": "Generates a vertical bar chart.",
+      "example": "PROC GCHART DATA=work.sales;\nVBAR product / SUMVAR=revenue;\nRUN;"
+    },
+    {
+      "name": "HBAR",
+      "description": "Generates a horizontal bar chart.",
+      "example": "PROC GCHART DATA=work.sales;\nHBAR region / SUMVAR=sales;\nRUN;"
+    },
+    {
+      "name": "PIE",
+      "description": "Generates a pie chart.",
+      "example": "PROC GCHART DATA=work.sales;\nPIE category;\nRUN;"
+    },
+    {
+      "name": "DONUT",
+      "description": "Generates a donut chart.",
+      "example": "PROC GCHART DATA=work.sales;\nDONUT category;\nRUN;"
+    },
+    {
+      "name": "PRINT",
+      "description": "Prints the contents of a dataset or report.",
+      "example": "PROC PRINT DATA=work.table;\nRUN;"
+    },
+    {
+      "name": "ODS",
+      "description": "Directs output to destinations like HTML, RTF, or Excel.",
+      "example": "ODS HTML FILE='report.html';\nRUN;"
+    },
+    {
+      "name": "EXPORT",
+      "description": "Exports data to a file format (CSV, Excel, etc.).",
+      "example": "PROC EXPORT DATA=work.table OUTFILE='output.csv';\nRUN;"
+    },
+    {
+      "name": "SORT",
+      "description": "Sorts a dataset by one or more variables.",
+      "example": "PROC SORT DATA=work.table;\nBY date;\nRUN;"
+    },
+    {
+      "name": "UPDATE",
+      "description": "Updates an existing dataset with new values.",
+      "example": "UPDATE base SET salary = salary * 1.05 WHERE dept = 'HR';"
+    },
+    {
+      "name": "BY",
+      "description": "Specifies grouping criteria for procedures like SORT or MEANS.",
+      "example": "BY region;"
+    },
+    {
+      "name": "CLASS",
+      "description": "Defines classification variables in procedures like TABULATE.",
+      "example": "CLASS department;"
+    },
+    {
+      "name": "LIBNAME",
+      "description": "Declares a library reference (libref) to a directory or database.",
+      "example": "LIBNAME mylib 'C:\\data';"
+    },
+    {
+      "name": "PUT",
+      "description": "Writes a message or variable value to the log/output stream.",
+      "example": "PUT 'Processing complete';"
+    },
+    {
+      "name": "FOR",
+      "description": "Begins a counted loop that runs from a start value to an end value.",
+      "example": "FOR I = 1 TO 5;\n  PUT I;\nEND;"
+    },
+    {
+      "name": "NEXT",
+      "description": "Ends the current iteration of a FOR loop and begins the next one.",
+      "example": "FOR I = 1 TO 3;\n  PUT I;\nNEXT;"
+    },
+    {
+      "name": "WHERE",
+      "description": "Applies a conditional filter to rows in procedures or data steps.",
+      "example": "SET transactions;\nWHERE amount > 1000;"
+    }
+  ],
+  "Function": [
+    {
+      "name": "ABS",
+      "description": "Returns the absolute (non-negative) value of a number.",
+      "example": "ABS(-10) => 10"
+    },
+    {
+      "name": "ACOS",
+      "description": "Returns the arccosine of a value, in radians.",
+      "example": "ACOS(1) => 0"
+    },
+    {
+      "name": "ASIN",
+      "description": "Returns the arcsine of a value, in radians.",
+      "example": "ASIN(0) => 0"
+    },
+    {
+      "name": "ATAN",
+      "description": "Returns the arctangent of a value, in radians.",
+      "example": "ATAN(1) => 0.7854"
+    },
+    {
+      "name": "CBOOL",
+      "description": "Converts a value to a Boolean (TRUE/FALSE).",
+      "example": "CBOOL(1) => TRUE"
+    },
+    {
+      "name": "CDATE",
+      "description": "Converts a value to a date type.",
+      "example": "CDATE('2024-12-31') => 31DEC2024"
+    },
+    {
+      "name": "CDBL",
+      "description": "Converts a value to a floating-point number.",
+      "example": "CDBL('3.14') => 3.14"
+    },
+    {
+      "name": "CEILING",
+      "description": "Rounds a number up to the nearest integer.",
+      "example": "CEILING(3.2) => 4"
+    },
+    {
+      "name": "CINT",
+      "description": "Converts a value to an integer.",
+      "example": "CINT(2.8) => 3"
+    },
+    {
+      "name": "COS",
+      "description": "Returns the cosine of a number (in radians).",
+      "example": "COS(0) => 1"
+    },
+    {
+      "name": "COSH",
+      "description": "Returns the hyperbolic cosine of a number.",
+      "example": "COSH(0) => 1"
+    },
+    {
+      "name": "CSTR",
+      "description": "Converts a value to a string.",
+      "example": "CSTR(123) => '123'"
+    },
+    {
+      "name": "DISTRIBNORM",
+      "description": "Returns a value from a normal distribution.",
+      "example": "DISTRIBNORM(0, 1) => random normal value"
+    },
+    {
+      "name": "DISTRIBTRIANG",
+      "description": "Returns a value from a triangular distribution.",
+      "example": "DISTRIBTRIANG(1, 5, 10) => random value"
+    },
+    {
+      "name": "E",
+      "description": "Returns Euler\u201a\u00c4\u00f4s number (~2.718).",
+      "example": "E() => 2.718281828"
+    },
+    {
+      "name": "EXP",
+      "description": "Returns e raised to the power of a number.",
+      "example": "EXP(1) => 2.718281828"
+    },
+    {
+      "name": "FLOOR",
+      "description": "Rounds a number down to the nearest integer.",
+      "example": "FLOOR(3.8) => 3"
+    },
+    {
+      "name": "LOG",
+      "description": "Returns the natural logarithm of a number.",
+      "example": "LOG(2.71828) => 1"
+    },
+    {
+      "name": "LOG10",
+      "description": "Returns the base-10 logarithm of a number.",
+      "example": "LOG10(1000) => 3"
+    },
+    {
+      "name": "MAX",
+      "description": "Returns the maximum value among arguments.",
+      "example": "MAX(3, 8, 5) => 8"
+    },
+    {
+      "name": "MIN",
+      "description": "Returns the minimum value among arguments.",
+      "example": "MIN(3, 8, 5) => 3"
+    },
+    {
+      "name": "N0",
+      "description": "Converts a number to integer format (no decimals).",
+      "example": "N0(4.7) => 5"
+    },
+    {
+      "name": "PI",
+      "description": "Returns the value of pi (~3.14159).",
+      "example": "PI() => 3.14159265359"
+    },
+    {
+      "name": "POW",
+      "description": "Raises a number to the power of another number.",
+      "example": "POW(2, 3) => 8"
+    },
+    {
+      "name": "RANDOM",
+      "description": "Returns a random number between 0 and 1.",
+      "example": "RANDOM() => 0.832 (varies)"
+    },
+    {
+      "name": "ROUND",
+      "description": "Rounds a number to the specified number of digits.",
+      "example": "ROUND(3.14159, 2) => 3.14"
+    },
+    {
+      "name": "ROUNDINGMETHOD",
+      "description": "Specifies the method to be used in rounding operations.",
+      "example": "ROUNDINGMETHOD('NEAREST')"
+    },
+    {
+      "name": "RND",
+      "description": "Alias for RANDOM.",
+      "example": "RND() => 0.123 (varies)"
+    },
+    {
+      "name": "SIN",
+      "description": "Returns the sine of a number (in radians).",
+      "example": "SIN(PI()/2) => 1"
+    },
+    {
+      "name": "SINH",
+      "description": "Returns the hyperbolic sine of a number.",
+      "example": "SINH(0) => 0"
+    },
+    {
+      "name": "SQRT",
+      "description": "Returns the square root of a number.",
+      "example": "SQRT(16) => 4"
+    },
+    {
+      "name": "TAN",
+      "description": "Returns the tangent of a number (in radians).",
+      "example": "TAN(0) => 0"
+    },
+    {
+      "name": "TANH",
+      "description": "Returns the hyperbolic tangent of a number.",
+      "example": "TANH(0) => 0"
+    },
+    {
+      "name": "TOBOOL",
+      "description": "Converts a value to Boolean.",
+      "example": "TOBOOL('True') => TRUE"
+    },
+    {
+      "name": "TODAT",
+      "description": "Converts a string to a date format.",
+      "example": "TODAT('2024-01-01') => 01JAN2024"
+    },
+    {
+      "name": "TODBL",
+      "description": "Converts a value to a double.",
+      "example": "TODBL('3.5') => 3.5"
+    },
+    {
+      "name": "TOINT",
+      "description": "Converts a value to an integer.",
+      "example": "TOINT(3.7) => 4"
+    },
+    {
+      "name": "TOSTR",
+      "description": "Converts a value to a string.",
+      "example": "TOSTR(1234) => '1234'"
+    },
+    {
+      "name": "ASC",
+      "description": "Returns the ASCII code of the first character of a string.",
+      "example": "ASC('A') => 65"
+    },
+    {
+      "name": "CHR",
+      "description": "Returns the character corresponding to the specified ASCII code.",
+      "example": "CHR(65) => 'A'"
+    },
+    {
+      "name": "COMPRESS",
+      "description": "Removes all spaces from a string.",
+      "example": "COMPRESS('a b c') => 'abc'"
+    },
+    {
+      "name": "CRLF",
+      "description": "Returns a carriage return and line feed combination.",
+      "example": "CRLF() => '\\r\\n'"
+    },
+    {
+      "name": "FIND",
+      "description": "Returns the position of a substring within a string.",
+      "example": "FIND('cat', 'catalog') => 1"
+    },
+    {
+      "name": "FORMAT",
+      "description": "Applies a custom format to a value.",
+      "example": "FORMAT(1234.5, 'N2') => '1,234.50'"
+    },
+    {
+      "name": "INSTR",
+      "description": "Returns the position of one string within another.",
+      "example": "INSTR('hello', 'e') => 2"
+    },
+    {
+      "name": "LANG",
+      "description": "Returns the current language code.",
+      "example": "LANG() => 'EN'"
+    },
+    {
+      "name": "LCASE",
+      "description": "Converts all characters of a string to lowercase.",
+      "example": "LCASE('HELLO') => 'hello'"
+    },
+    {
+      "name": "LEFT",
+      "description": "Returns the leftmost characters of a string.",
+      "example": "LEFT('abcdef', 3) => 'abc'"
+    },
+    {
+      "name": "LEN",
+      "description": "Returns the length of a string.",
+      "example": "LEN('hello') => 5"
+    },
+    {
+      "name": "LENGTH",
+      "description": "Alias for LEN.",
+      "example": "LENGTH('hello') => 5"
+    },
+    {
+      "name": "LOWCASE",
+      "description": "Alias for LCASE.",
+      "example": "LOWCASE('ABC') => 'abc'"
+    },
+    {
+      "name": "LTRIM",
+      "description": "Removes leading spaces from a string.",
+      "example": "LTRIM('  hello') => 'hello'"
+    },
+    {
+      "name": "MID",
+      "description": "Returns a substring from a string starting at a specified position.",
+      "example": "MID('abcdef', 2, 3) => 'bcd'"
+    },
+    {
+      "name": "REPLACE",
+      "description": "Replaces all occurrences of a substring with another substring.",
+      "example": "REPLACE('cat', 'a', 'o') => 'cot'"
+    },
+    {
+      "name": "RIGHT",
+      "description": "Returns the rightmost characters of a string.",
+      "example": "RIGHT('abcdef', 3) => 'def'"
+    },
+    {
+      "name": "RTRIM",
+      "description": "Removes trailing spaces from a string.",
+      "example": "RTRIM('hello  ') => 'hello'"
+    },
+    {
+      "name": "SPLIT",
+      "description": "Splits a string into parts based on a delimiter.",
+      "example": "SPLIT('a,b,c', ',') => ['a', 'b', 'c']"
+    },
+    {
+      "name": "STRIP",
+      "description": "Removes leading and trailing spaces from a string.",
+      "example": "STRIP('  hello ') => 'hello'"
+    },
+    {
+      "name": "SUBSTR",
+      "description": "Returns a portion of a string (substring).",
+      "example": "SUBSTR('abcdef', 2, 3) => 'bcd'"
+    },
+    {
+      "name": "TRIM",
+      "description": "Removes leading and trailing whitespace from a string.",
+      "example": "TRIM('  abc  ') => 'abc'"
+    },
+    {
+      "name": "UCASE",
+      "description": "Converts a string to uppercase.",
+      "example": "UCASE('hello') => 'HELLO'"
+    },
+    {
+      "name": "UPCASE",
+      "description": "Alias for UCASE.",
+      "example": "UPCASE('hello') => 'HELLO'"
+    },
+    {
+      "name": "DATEADD",
+      "description": "Adds a time interval to a date.",
+      "example": "DATEADD('2024-01-01', 'd', 10) => '2024-01-11'"
+    },
+    {
+      "name": "DATEDIFF",
+      "description": "Returns the difference between two dates.",
+      "example": "DATEDIFF('2024-01-01', '2024-01-10') => 9"
+    },
+    {
+      "name": "DATESERIAL",
+      "description": "Returns a date from specified year, month, and day.",
+      "example": "DATESERIAL(2024, 1, 15) => '2024-01-15'"
+    },
+    {
+      "name": "DAY",
+      "description": "Returns the day of the month from a date.",
+      "example": "DAY('2024-01-15') => 15"
+    },
+    {
+      "name": "DMY",
+      "description": "Creates a date from day, month, and year values.",
+      "example": "DMY(15, 1, 2024) => '2024-01-15'"
+    },
+    {
+      "name": "MDY",
+      "description": "Creates a date from month, day, and year values.",
+      "example": "MDY(1, 15, 2024) => '2024-01-15'"
+    },
+    {
+      "name": "MONTH",
+      "description": "Returns the month from a date.",
+      "example": "MONTH('2024-01-15') => 1"
+    },
+    {
+      "name": "QUARTER",
+      "description": "Returns the quarter of the year for a date.",
+      "example": "QUARTER('2024-05-10') => 2"
+    },
+    {
+      "name": "QUARTERBEGDATE",
+      "description": "Returns the first day of the quarter for a given date.",
+      "example": "QUARTERBEGDATE('2024-05-10') => '2024-04-01'"
+    },
+    {
+      "name": "SEMESTERENDDATE",
+      "description": "Returns the last day of the semester for a given date.",
+      "example": "SEMESTERENDDATE('2024-05-10') => '2024-06-30'"
+    },
+    {
+      "name": "WEEKBEGDATE",
+      "description": "Returns the first day of the week for a given date.",
+      "example": "WEEKBEGDATE('2024-01-15') => '2024-01-15'"
+    },
+    {
+      "name": "WEEKDAY",
+      "description": "Returns the day of the week (1\u201a\u00c4\u00ec7) from a date.",
+      "example": "WEEKDAY('2024-01-15') => 2"
+    },
+    {
+      "name": "WEEKENDDATE",
+      "description": "Returns the last day of the week for a given date.",
+      "example": "WEEKENDDATE('2024-01-15') => '2024-01-21'"
+    },
+    {
+      "name": "WEEKOFYEAR",
+      "description": "Returns the week number of the year for a date.",
+      "example": "WEEKOFYEAR('2024-01-15') => 3"
+    },
+    {
+      "name": "YEAR",
+      "description": "Returns the year part of a date.",
+      "example": "YEAR('2024-01-15') => 2024"
+    },
+    {
+      "name": "YEARBEGDATE",
+      "description": "Returns the first day of the year for a given date.",
+      "example": "YEARBEGDATE('2024-01-15') => '2024-01-01'"
+    },
+    {
+      "name": "YEARENDDATE",
+      "description": "Returns the last day of the year for a given date.",
+      "example": "YEARENDDATE('2024-01-15') => '2024-12-31'"
+    },
+    {
+      "name": "YMD",
+      "description": "Creates a date from year, month, and day values.",
+      "example": "YMD(2024, 1, 15) => '2024-01-15'"
+    },
+    {
+      "name": "DIRECTORIES",
+      "description": "Returns a list of directory names in a given path.",
+      "example": "DIRECTORIES('C:\\temp') => ['sub1', 'sub2']"
+    },
+    {
+      "name": "DIRECTORY",
+      "description": "Returns the name of a directory.",
+      "example": "DIRECTORY('C:\\temp\\file.txt') => 'C:\\temp'"
+    },
+    {
+      "name": "DIRECTORYNAME",
+      "description": "Returns the directory portion of a file path.",
+      "example": "DIRECTORYNAME('C:\\temp\\file.txt') => 'temp'"
+    },
+    {
+      "name": "FILES",
+      "description": "Returns a list of file names in a directory.",
+      "example": "FILES('C:\\temp') => ['a.txt', 'b.doc']"
+    },
+    {
+      "name": "FILE",
+      "description": "Returns a file object by path.",
+      "example": "FILE('C:\\temp\\file.txt')"
+    },
+    {
+      "name": "FILENAME",
+      "description": "Returns the name of a file from its path.",
+      "example": "FILENAME('C:\\temp\\file.txt') => 'file.txt'"
+    },
+    {
+      "name": "FILESEXT",
+      "description": "Returns the extension of a file.",
+      "example": "FILESEXT('report.xlsx') => 'xlsx'"
+    },
+    {
+      "name": "LINKFILES",
+      "description": "Returns the list of linked files for a folder.",
+      "example": "LINKFILES('Deal', 123) => ['doc1.pdf']"
+    },
+    {
+      "name": "LINKFILE",
+      "description": "Returns a linked file object.",
+      "example": "LINKFILE('Deal', 123, 'doc1.pdf')"
+    },
+    {
+      "name": "LINKFILENAME",
+      "description": "Returns the name of a linked file.",
+      "example": "LINKFILENAME('Deal', 123, 0) => 'doc1.pdf'"
+    },
+    {
+      "name": "LINKFILESEXT",
+      "description": "Returns the extension of a linked file.",
+      "example": "LINKFILESEXT('Deal', 123, 0) => 'pdf'"
+    },
+    {
+      "name": "MAKEDIRECTORY",
+      "description": "Creates a new directory at a specified path.",
+      "example": "MAKEDIRECTORY('C:\\newfolder')"
+    },
+    {
+      "name": "APPENDPDF",
+      "description": "Appends one PDF file to another.",
+      "example": "APPENDPDF('main.pdf', 'appendix.pdf')"
+    },
+    {
+      "name": "CURRLITERAL",
+      "description": "Returns the literal name of a currency.",
+      "example": "CURRLITERAL('USD') => 'US Dollar'"
+    },
+    {
+      "name": "CONVERTCURR",
+      "description": "Converts an amount from one currency to another using cube FX rates.",
+      "example": "CONVERTCURR(100, 'USD', 'EUR', '2024-01-01')"
+    },
+    {
+      "name": "CONVERTCURR2",
+      "description": "Converts currencies using cube FX rates with dynamic options.",
+      "example": "CONVERTCURR2(100, 'USD', 'EUR', '2024-01-01', 'avg')"
+    },
+    {
+      "name": "COLLECTION",
+      "description": "Returns a collection of items matching criteria.",
+      "example": "COLLECTION('Deal', 'Status=Active') => [123, 124]"
+    },
+    {
+      "name": "EXISTCOLUMN",
+      "description": "Checks if a column exists in a table.",
+      "example": "EXISTCOLUMN('Deals', 'Status') => TRUE"
+    },
+    {
+      "name": "EXISTMACRO",
+      "description": "Checks if a macro variable exists.",
+      "example": "EXISTMACRO('%FundID') => TRUE"
+    },
+    {
+      "name": "EXISTTABLE",
+      "description": "Checks if a table exists in memory or on disk.",
+      "example": "EXISTTABLE('WORK.MYTABLE') => TRUE"
+    },
+    {
+      "name": "GETTEMPPATH",
+      "description": "Returns the path to the temporary folder.",
+      "example": "GETTEMPPATH() => 'C:\\Temp'"
+    },
+    {
+      "name": "GETACCOUNTID",
+      "description": "Returns the account ID of the current user.",
+      "example": "GETACCOUNTID() => 'AC12345'"
+    },
+    {
+      "name": "GETUSERID",
+      "description": "Returns the ID of the current user.",
+      "example": "GETUSERID() => 'USR001'"
+    },
+    {
+      "name": "GETUSERINFO",
+      "description": "Returns user metadata as a string.",
+      "example": "GETUSERINFO('email') => 'user@example.com'"
+    },
+    {
+      "name": "GETURLWEBSITE",
+      "description": "Returns the full URL of the current web application.",
+      "example": "GETURLWEBSITE() => 'https://app.efront.com'"
+    }
+  ]
 }
