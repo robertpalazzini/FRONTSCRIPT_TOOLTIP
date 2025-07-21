@@ -29,14 +29,21 @@ This Chrome extension enhances the eFront embedded FrontReport coding window by 
 3. Enable "Developer Mode"
 4. Click “Load unpacked” and select the unzipped project folder
 
+
+## 💬 Feedback
+
+Have a suggestion or found a bug?  
+Please [open an issue](https://github.com/robertpalazzini/FRONTSCRIPText/issues) or start a discussion!
+
+
 ## 💬 License
 
-MIT — use freely, but no warranty.
+use freely, but no warranty.
 
 ---
 Developed by Robert Palazzini for personal use
 
-*Made with 🧠 for FrontScript developers working in eFront FrontReport environments.*
+*Made for FrontScript developers working in eFront FrontReport environments.*
 
 
 This extension is provided “as is” without warranty of any kind. By downloading or using it, you agree that the author is not liable for any direct, indirect, incidental, or consequential damages arising from its use. Use at your own risk.
