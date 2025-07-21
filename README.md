@@ -30,5 +30,6 @@ This Chrome extension enhances the eFront embedded FrontReport coding window by 
 MIT — use freely, but no warranty.
 
 ---
+Developed by Robert Palazzini for personal use
 
 *Made with 🧠 for FrontScript developers working in eFront FrontReport environments.*
