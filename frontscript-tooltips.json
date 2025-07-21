@@ -116,7 +116,7 @@
       "example": "PROC FALIBRARY LIBRARY=Portfolio.Cashflows;\nRUN;"
     },
     {
-      "name": "FPROC AQUERY",
+      "name": "FAQUERY",
       "description": "Exports the result of a QueryBuilder query into an eFront Report table.",
       "example": "PROC FAQUERY QUERY=\"SELECT * FROM Table\";\nRUN;"
     },
