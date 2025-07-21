@@ -23,3 +23,6 @@ The FrontScript Tooltip Helper Chrome extension does **not collect, store, or tr
 This is a private, secure developer productivity tool that operates 100% on your machine, in your browser.
 
 No privacy risk. No data handling.
+
+
+This extension is provided “as is” without warranty of any kind. By downloading or using it, you agree that the author is not liable for any direct, indirect, incidental, or consequential damages arising from its use. Use at your own risk.
