@@ -3,8 +3,13 @@
   "name": "FrontScript Tooltip Helper",
   "version": "1.0",
   "description": "Show tooltips for FrontScript keywords and functions.",
-  "permissions": ["scripting", "activeTab"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": [
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://*.efrontcloud.com/*"
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -15,16 +20,26 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
-      "js": ["content.js"],
-      "css": ["tooltip.css"],
+      "matches": [
+        "https://*.efrontcloud.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "tooltip.css"
+      ],
       "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["frontscript-tooltips.json"],
-      "matches": ["<all_urls>"]
+      "resources": [
+        "frontscript-tooltips.json"
+      ],
+      "matches": [
+        "https://*.efrontcloud.com/*"
+      ]
     }
   ]
 }
