@@ -1,0 +1,24 @@
+# Privacy Policy
+
+The FrontScript Tooltip Helper Chrome extension does **not collect, store, or transmit any user data**.
+
+## What We Collect
+
+- ❌ No personal data
+- ❌ No usage analytics
+- ❌ No cookies
+- ❌ No tracking
+- ❌ No storage of any code you write
+
+## How It Works
+
+- The extension runs **only** on `*.efrontcloud.com`
+- It activates **only within** the embedded IDE (CodeMirror editors)
+- It reads static, local definitions from a JSON file packaged with the extension
+- It does not communicate with any remote server
+
+## Summary
+
+This is a private, secure developer productivity tool that operates 100% on your machine, in your browser.
+
+No privacy risk. No data handling.
