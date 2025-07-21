@@ -9,11 +9,12 @@ The FrontScript Tooltip Helper Chrome extension does **not collect, store, or tr
 - ❌ No cookies
 - ❌ No tracking
 - ❌ No storage of any code you write
+- ❌ No API calls or endpoints
 
 ## How It Works
 
 - The extension runs **only** on `*.efrontcloud.com`
-- It activates **only within** the embedded IDE (CodeMirror editors)
+- It activates **only within** the embedded FrontReport IDE (CodeMirror editors)
 - It reads static, local definitions from a JSON file packaged with the extension
 - It does not communicate with any remote server
 
