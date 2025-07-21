@@ -1,3 +1,7 @@
+## 🔖 Version
+
+Current version: **1.2**
+
 # FrontScript Tooltip Helper
 
 This Chrome extension enhances the eFront embedded FrontReport coding window by displaying tooltips for FrontScript keywords, functions, procedures, and macros.
