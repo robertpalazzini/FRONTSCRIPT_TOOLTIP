@@ -13,6 +13,8 @@ This Chrome extension enhances the eFront embedded FrontReport coding window by 
 - Works with all major FrontScript syntax elements
 - Lightweight, no data collection, no performance hit
 
+STILL A WORK IN PROGRESS - Please add comments, issues and i'll try to fix asap.
+
 ## 🛡 Security
 
 - 🟢 Runs **only on `https://*.efrontcloud.com`**
