@@ -28,28 +28,41 @@
   tooltip.className = "frontscript-tooltip";
   document.body.appendChild(tooltip);
 
-  document.addEventListener('mouseover', event => {
+  function getWordFromPoint(x, y) {
+    const range = document.caretRangeFromPoint ?
+      document.caretRangeFromPoint(x, y) :
+      (function() {
+        const pos = document.caretPositionFromPoint && document.caretPositionFromPoint(x, y);
+        if (!pos) return null;
+        const r = document.createRange();
+        r.setStart(pos.offsetNode, pos.offset);
+        r.setEnd(pos.offsetNode, pos.offset);
+        return r;
+      })();
+    if (!range || !range.startContainer) return '';
+    const text = range.startContainer.textContent || '';
+    let start = range.startOffset;
+    while (start > 0 && /[\w%]/.test(text[start - 1])) start--;
+    let end = range.startOffset;
+    while (end < text.length && /[\w%]/.test(text[end])) end++;
+    return text.slice(start, end);
+  }
+
+  document.addEventListener('mousemove', event => {
     if (!event.target.closest('.CodeMirror')) {
       tooltip.style.display = 'none';
       return;
     }
 
-    const text = event.target.textContent;
-    if (!text) {
+    const word = getWordFromPoint(event.clientX, event.clientY);
+    const key = word.toUpperCase();
+    if (!key || !tooltipData[key]) {
       tooltip.style.display = 'none';
       return;
     }
 
-    //const words = text.trim().split(/[^\w_\.]+/);
-    const words = text.trim().match(/%?\w+/g) || [];
-    const hoveredWord = words.find(w => tooltipData[w.toUpperCase()]);
-    if (!hoveredWord) {
-      tooltip.style.display = 'none';
-      return;
-    }
-
-    const { description, example } = tooltipData[hoveredWord.toUpperCase()];
-    tooltip.innerText = `${hoveredWord.toUpperCase()}
+    const { description, example } = tooltipData[key];
+    tooltip.innerText = `${key}
 
 ${description}
 
