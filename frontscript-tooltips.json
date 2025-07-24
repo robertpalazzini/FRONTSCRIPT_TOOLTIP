@@ -2,7 +2,7 @@
   "Proc": [
     {
       "name": "DATA",
-      "description": "Creates a new data table from external files or existing tables, or builds one from scratch.",
+      "description": "Creates a new data table from external files or existing tables, or builds one from scratch.\nNote: WORK tables are kept in memory only and not saved to disk.",
       "example": "DATA WORK.MYTABLE;\nSET EXISTING_TABLE;\nRUN;"
     },
     {
@@ -28,7 +28,7 @@
     {
       "name": "EFRONTACCRUALS",
       "description": "Calculates accrued interest per instrument for a given date.",
-      "example": "PROC EFRONTACCRUALS DATE=\"2023-12-31\" OUT=WORK.ACCRUALS;\nRUN;"
+      "example": "PROC EFRONTACCRUALS DATA=WORK.T_TEMP_INSTRUMENTS\nOUT=WORK.ACCRUALS_OPEN;\nID=INVESTMENTINS USEDRAFT USERECURRING DATE=\"2024-31-12\";\nRUN;"
     },
     {
       "name": "EFRONTBLOB",
