@@ -2,7 +2,7 @@
   "Proc": [
     {
       "name": "DATA",
-      "description": "Creates a new data table from external files or existing tables, or builds one from scratch.",
+      "description": "Creates a new data table from external files or existing tables, or builds one from scratch.\nNote: WORK tables are kept in memory only and not saved to disk.",
       "example": "DATA WORK.MYTABLE;\nSET EXISTING_TABLE;\nRUN;"
     },
     {
