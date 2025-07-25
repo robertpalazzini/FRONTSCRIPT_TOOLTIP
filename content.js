@@ -42,6 +42,7 @@
     if (!range || !range.startContainer) return '';
     const node = range.startContainer;
     const text = node.textContent || '';
+
     let start = range.startOffset;
     while (start > 0 && /[\w%]/.test(text[start - 1])) start--;
     let end = range.startOffset;
