@@ -40,12 +40,31 @@
         return r;
       })();
     if (!range || !range.startContainer) return '';
-    const text = range.startContainer.textContent || '';
+    const node = range.startContainer;
+    const text = node.textContent || '';
+
     let start = range.startOffset;
     while (start > 0 && /[\w%]/.test(text[start - 1])) start--;
     let end = range.startOffset;
     while (end < text.length && /[\w%]/.test(text[end])) end++;
-    return text.slice(start, end);
+
+    let word = text.slice(start, end);
+
+    if (start === 0 && node.previousSibling && node.previousSibling.nodeType === Node.TEXT_NODE) {
+      const prevText = node.previousSibling.textContent;
+      if (prevText && prevText.endsWith('%')) {
+        word = '%' + word;
+      }
+    }
+
+    if (word === '%' && node.nextSibling && node.nextSibling.nodeType === Node.TEXT_NODE) {
+      const match = /^([\w]+)/.exec(node.nextSibling.textContent || '');
+      if (match) {
+        word += match[1];
+      }
+    }
+
+    return word;
   }
 
   document.addEventListener('mousemove', event => {
