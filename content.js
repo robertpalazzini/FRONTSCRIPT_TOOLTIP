@@ -40,12 +40,19 @@
         return r;
       })();
     if (!range || !range.startContainer) return { word: '', prevChar: '' };
-    const node = range.startContainer;
+    let node = range.startContainer;
+    let offset = range.startOffset;
+    if (node.nodeType !== Node.TEXT_NODE && node.childNodes[offset] && node.childNodes[offset].nodeType === Node.TEXT_NODE) {
+      node = node.childNodes[offset];
+      offset = 0;
+    }
     const text = node.textContent || '';
 
-    let start = range.startOffset;
+    while (offset > 0 && !/[\w%]/.test(text[offset - 1])) offset--;
+
+    let start = offset;
     while (start > 0 && /[\w%]/.test(text[start - 1])) start--;
-    let end = range.startOffset;
+    let end = offset;
     while (end < text.length && /[\w%]/.test(text[end])) end++;
 
     let word = text.slice(start, end);
