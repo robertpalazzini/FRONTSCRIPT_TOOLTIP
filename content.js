@@ -50,17 +50,35 @@
 
     let word = text.slice(start, end);
 
-    if (start === 0 && node.previousSibling) {
-      const prevText = node.previousSibling.textContent;
-      if (prevText && prevText.endsWith('%')) {
-        word = '%' + word;
+    if (start === 0) {
+      let prev = node.previousSibling;
+      while (prev && prev.textContent && /[\w%]$/.test(prev.textContent)) {
+        const prevText = prev.textContent;
+        let i = prevText.length;
+        let segment = '';
+        while (i > 0 && /[\w%]/.test(prevText[i - 1])) {
+          segment = prevText[i - 1] + segment;
+          i--;
+        }
+        word = segment + word;
+        if (i > 0) break;
+        prev = prev.previousSibling;
       }
     }
 
-    if (word === '%' && node.nextSibling) {
-      const match = /^([\w]+)/.exec(node.nextSibling.textContent || '');
-      if (match) {
-        word += match[1];
+    if (end === text.length && /[\w%]$/.test(word)) {
+      let next = node.nextSibling;
+      while (next && next.textContent && /^[\w%]/.test(next.textContent)) {
+        const nextText = next.textContent;
+        let i = 0;
+        let segment = '';
+        while (i < nextText.length && /[\w%]/.test(nextText[i])) {
+          segment += nextText[i];
+          i++;
+        }
+        word += segment;
+        if (i < nextText.length) break;
+        next = next.nextSibling;
       }
     }
 
