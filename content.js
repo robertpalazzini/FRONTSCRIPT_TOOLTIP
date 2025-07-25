@@ -50,14 +50,14 @@
 
     let word = text.slice(start, end);
 
-    if (start === 0 && node.previousSibling && node.previousSibling.nodeType === Node.TEXT_NODE) {
+    if (start === 0 && node.previousSibling) {
       const prevText = node.previousSibling.textContent;
       if (prevText && prevText.endsWith('%')) {
         word = '%' + word;
       }
     }
 
-    if (word === '%' && node.nextSibling && node.nextSibling.nodeType === Node.TEXT_NODE) {
+    if (word === '%' && node.nextSibling) {
       const match = /^([\w]+)/.exec(node.nextSibling.textContent || '');
       if (match) {
         word += match[1];
