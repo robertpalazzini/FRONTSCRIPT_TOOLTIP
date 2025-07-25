@@ -48,7 +48,10 @@
     }
     const text = node.textContent || '';
 
-    while (offset > 0 && !/[\w%]/.test(text[offset - 1])) offset--;
+    const charAtPoint = offset < text.length ? text[offset] : '';
+    if (!(/[\w%]/.test(charAtPoint))) {
+      return { word: '', prevChar: '' };
+    }
 
     let start = offset;
     while (start > 0 && /[\w%]/.test(text[start - 1])) start--;
