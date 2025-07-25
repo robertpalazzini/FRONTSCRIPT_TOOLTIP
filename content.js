@@ -39,7 +39,7 @@
         r.setEnd(pos.offsetNode, pos.offset);
         return r;
       })();
-    if (!range || !range.startContainer) return '';
+    if (!range || !range.startContainer) return { word: '', prevChar: '' };
     const node = range.startContainer;
     const text = node.textContent || '';
 
@@ -49,6 +49,7 @@
     while (end < text.length && /[\w%]/.test(text[end])) end++;
 
     let word = text.slice(start, end);
+    let prevChar = '';
 
     if (start === 0) {
       let prev = node.previousSibling;
@@ -61,9 +62,22 @@
           i--;
         }
         word = segment + word;
-        if (i > 0) break;
+        if (i > 0) {
+          prevChar = prevText[i - 1] || '';
+          break;
+        }
         prev = prev.previousSibling;
       }
+      if (!prevChar) {
+        while (prev && (!prev.textContent || prev.textContent.length === 0)) {
+          prev = prev.previousSibling;
+        }
+        if (prev && prev.textContent) {
+          prevChar = prev.textContent.slice(-1);
+        }
+      }
+    } else {
+      prevChar = text[start - 1];
     }
 
     if (end === text.length && /[\w%]$/.test(word)) {
@@ -82,7 +96,7 @@
       }
     }
 
-    return word;
+    return { word, prevChar };
   }
 
   document.addEventListener('mousemove', event => {
@@ -91,8 +105,11 @@
       return;
     }
 
-    const word = getWordFromPoint(event.clientX, event.clientY);
-    const key = word.toUpperCase();
+    const { word, prevChar } = getWordFromPoint(event.clientX, event.clientY);
+    let key = word.toUpperCase();
+    if (prevChar === '%' && tooltipData['%' + key]) {
+      key = '%' + key;
+    }
     if (!key || !tooltipData[key]) {
       tooltip.style.display = 'none';
       return;
