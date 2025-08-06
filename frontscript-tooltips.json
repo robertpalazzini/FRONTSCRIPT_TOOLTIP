@@ -265,7 +265,7 @@
     {
       "name": "%PARAM",
       "description": "Declares a macro parameter for dynamic input.",
-      "example": "%PARAM EXCLUDEDRAFT LABEL = 'Exclude Draft transactions?' TYPE= BOOLEAN;"
+      "example": "%PARAM EXCLUDEDRAFT LABEL \"Exclude Draft transactions?\" TYPE= BOOLEAN;"
     }
   ],
   "Keyword": [
@@ -421,7 +421,7 @@
     {
       "name": "SUM",
       "description": "Specifies a variable to be summed in statistics or tables.",
-      "example": "SUM FEES  (NAME = FEES LABEL = 'Fees');"
+      "example": "SUM FEES  (NAME = FEES LABEL = \"Fees\");"
     },
     {
       "name": "MEAN",
