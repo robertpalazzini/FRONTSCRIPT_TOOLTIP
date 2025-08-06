@@ -420,7 +420,7 @@
     },
     {
       "name": "SUM",
-      "description": "Specifies a variable to be summed in statistics or tables.",
+      "description": "Specifies a variable to be summed in statistics or MEANS table.",
       "example": "SUM FEES  (NAME = FEES LABEL = \"Fees\");"
     },
     {
