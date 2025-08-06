@@ -12,7 +12,7 @@
 
   if (!tooltipEnabled) return;
 
-  const editorSelector = '.CodeMirror.cm-s-Frontscript';
+  const editorSelector = '.CodeMirror.cm-s-frontscript';
   if (!document.querySelector(editorSelector)) return;
 
   const rawData = await fetch(chrome.runtime.getURL('frontscript-tooltips.json')).then(r => r.json());
