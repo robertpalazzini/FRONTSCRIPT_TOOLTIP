@@ -255,12 +255,7 @@
     {
       "name": "%INCLUDE",
       "description": "Includes the contents of an external FrontScript file.",
-      "example": "%INCLUDE \"\\Shared\\Scripts\\MyScript.frs\";"
-    },
-    {
-      "name": "%CONTINUE",
-      "description": "Skips the current iteration of a macro loop.",
-      "example": "%FOR %X %IN (1 2 3 4 5)\n  %IF %X = 3 %THEN %CONTINUE;\n  PUT %X;\n%NEXT;"
+      "example": "%INCLUDE \"\\Shared\\Scripts\\P_MyProgram\";"
     },
     {
       "name": "%LET",
@@ -270,123 +265,62 @@
     {
       "name": "%PARAM",
       "description": "Declares a macro parameter for dynamic input.",
-      "example": "%PARAM FundID = ??ID(FUND);"
-    },
-    {
-      "name": "%DO",
-      "description": "Begins a macro loop (usually used with %WHILE or %FOR).",
-      "example": "%LET I = 1;\n%DO WHILE (%I <= 5)\n  PUT %I;\n  %LET I = %I + 1;\n%END;"
-    },
-    {
-      "name": "%LOOP",
-      "description": "Used to form the body of a macro loop, typically following %DO or %WHILE.",
-      "example": "%LET I = 1;\n%DO WHILE (%I <= 3)\n  PUT %I;\n  %LET I = %I + 1;\n%LOOP;"
-    },
-    {
-      "name": "%FOR",
-      "description": "Starts a loop that iterates over a list of values or range.",
-      "example": "%FOR %X %IN (A B C)\n  PUT %X;\n%NEXT;"
-    },
-    {
-      "name": "%NEXT",
-      "description": "Ends a %FOR macro loop and goes to the next iteration.",
-      "example": "%FOR %X %IN (1 2 3)\n  PUT %X;\n%NEXT;"
-    },
-    {
-      "name": "%IF",
-      "description": "Evaluates a condition for macro-level logic.",
-      "example": "%IF %FundID = 123 %THEN PUT 'Match';"
-    },
-    {
-      "name": "%THEN",
-      "description": "Executes code if the %IF condition is true.",
-      "example": "%IF %FundID = 123 %THEN PUT 'Match';"
-    },
-    {
-      "name": "%END",
-      "description": "Closes control structures like %IF, %FOR, or %WHILE blocks.",
-      "example": "%IF %X = 1 %THEN DO;\n  PUT 'One';\n%END;"
-    },
-    {
-      "name": "%SELECT",
-      "description": "Starts a macro case selection control block.",
-      "example": "%SELECT %Option\n  %WHEN 'A' %THEN PUT 'Alpha';\n  %WHEN 'B' %THEN PUT 'Beta';\n%END;"
-    },
-    {
-      "name": "%WHEN",
-      "description": "Specifies a case inside a %SELECT block.",
-      "example": "%SELECT %Type\n  %WHEN 'X' %THEN PUT 'Choice X';\n%END;"
-    },
-    {
-      "name": "%EXIT %DO",
-      "description": "Forcibly exits a %DO loop prematurely.",
-      "example": "%DO WHILE (%X < 10)\n  %IF %X = 5 %THEN %EXIT %DO;\n%LOOP;"
-    },
-    {
-      "name": "%EXIT %FOR",
-      "description": "Forcibly exits a %FOR loop prematurely.",
-      "example": "%FOR %I %IN (1 2 3 4)\n  %IF %I = 3 %THEN %EXIT %FOR;\n%NEXT;"
-    },
-    {
-      "name": "%TO",
-      "description": "Used in combination with %FOR to define the loop range.",
-      "example": "%FOR %I = 1 %TO 5\n  PUT %I;\n%NEXT;"
-    },
-    {
-      "name": "%WHILE",
-      "description": "Begins a loop that executes as long as a macro condition is true.",
-      "example": "%LET I = 1;\n%DO WHILE (%I <= 3)\n  PUT %I;\n  %LET I = %I + 1;\n%END;"
+      "example": "%PARAM EXCLUDEDRAFT LABEL = 'Exclude Draft transactions?' TYPE= BOOLEAN;"
     }
   ],
   "Keyword": [
     {
       "name": "DO",
-      "description": "Begins a code block or loop.",
+      "description": "Begins a code block or loop.\n\nCan be Macro (%) function too.",
       "example": "DO;\n  x = x + 1;\nEND;"
     },
     {
       "name": "WHILE",
-      "description": "Starts a loop that continues while a condition is true.",
+      "description": "Starts a loop that continues while a condition is true.\n\nCan be Macro (%) function too.",
       "example": "DO WHILE (x < 10);\n  x = x + 1;\nEND;"
     },
     {
       "name": "LOOP",
-      "description": "Marks the body of a WHILE or FOR loop.",
+      "description": "Marks the body of a WHILE or FOR loop.\n\nCan be Macro (%) function too.",
       "example": "%LET I = 1;\n%DO WHILE (%I <= 5)\n  PUT %I;\n  %LET I = %I + 1;\n%LOOP;"
     },
     {
       "name": "IF",
-      "description": "Executes a block of code if a condition is true.",
+      "description": "Executes a block of code if a condition is true.\n\nCan be Macro (%) function too.",
       "example": "IF amount > 1000 THEN PUT 'Large';"
     },
     {
       "name": "THEN",
-      "description": "Follows an IF condition to specify the block to execute if true.",
+      "description": "Follows an IF condition to specify the block to execute if true.\n\nCan be Macro (%) function too.",
       "example": "IF status = 'ACTIVE' THEN output = 1;"
     },
     {
       "name": "ELSE",
-      "description": "Specifies an alternate block to execute if the IF condition is false.",
+      "description": "Specifies an alternate block to execute if the IF condition is false.\n\nCan be Macro (%) function too.",
       "example": "IF x = 1 THEN y = 'Yes'; ELSE y = 'No';"
     },
     {
+      "name": "ELSEIF",
+      "description": "Specifies an alternate block to execute if the IF condition is false.\n\nCan be Macro (%) function too.",
+      "example": "IF x = 1 THEN y = 'Yes'; ELSEIF x = 0 then y= 'No'; END; ;"
+    },    {
       "name": "END",
-      "description": "Closes a block of code (e.g., IF, DO, SELECT).",
+      "description": "Closes a block of code (e.g., IF, DO, SELECT).\n\nCan be Macro (%) function too.",
       "example": "DO;\n  PUT 'Hello';\nEND;"
     },
     {
       "name": "SELECT",
-      "description": "Begins a conditional branching block, like a switch statement.",
+      "description": "Begins a conditional branching block, like a switch statement.\n\nCan be Macro (%) function too.",
       "example": "SELECT type;\n  WHEN 'A' DO;\n    PUT 'Alpha';\n  END;\nEND;"
     },
     {
       "name": "WHEN",
-      "description": "Defines a specific condition inside a SELECT block.",
+      "description": "Defines a specific condition inside a SELECT block.\n\nCan be Macro (%) function too.",
       "example": "SELECT status;\n  WHEN 'Open' DO;\n    PUT 'Open Case';\n  END;\nEND;"
     },
     {
       "name": "CASE",
-      "description": "Defines a value or condition in a switch-style structure (sometimes used interchangeably with WHEN).",
+      "description": "Defines a value or condition in a switch-style structure (sometimes used interchangeably with WHEN).\n\nCan be Macro (%) function too.",
       "example": "SELECT value;\n  CASE 1 DO;\n    PUT 'One';\n  END;\nEND;"
     },
     {
@@ -396,12 +330,12 @@
     },
     {
       "name": "BREAK",
-      "description": "Exits the current loop or SELECT structure.",
+      "description": "Exits the current loop or SELECT structure.\n\nCan be Macro (%) function too.",
       "example": "DO WHILE (x < 10);\n  IF x = 5 THEN BREAK;\n  x = x + 1;\nEND;"
     },
     {
       "name": "CONTINUE",
-      "description": "Skips the rest of the current iteration of a loop and begins the next iteration.",
+      "description": "Skips the rest of the current iteration of a loop and begins the next iteration.\n\nCan be Macro (%) function too.",
       "example": "DO WHILE (x < 10);\n  x = x + 1;\n  IF x = 5 THEN CONTINUE;\n  PUT x;\nEND;"
     },
     {
@@ -487,7 +421,7 @@
     {
       "name": "SUM",
       "description": "Specifies a variable to be summed in statistics or tables.",
-      "example": "SUM revenue;"
+      "example": "SUM FEES  (NAME = FEES LABEL = 'Fees');"
     },
     {
       "name": "MEAN",
@@ -608,6 +542,16 @@
       "name": "WHERE",
       "description": "Applies a conditional filter to rows in procedures or data steps.",
       "example": "SET transactions;\nWHERE amount > 1000;"
+    },    
+    {
+      "name": "KEEP",
+      "description": "Applies a conditional filter to columns in procedures or data steps.",
+      "example": "SET transactions (KEEP = Col1 Col2);"
+    },
+   {
+      "name": "DROP",
+      "description": "Applies a conditional filter to remove colmns in procedures or data steps.",
+      "example": "SET transactions (DROP = Colx Coly);"
     }
   ],
   "Function": [
