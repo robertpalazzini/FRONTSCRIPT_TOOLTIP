@@ -12,6 +12,9 @@
 
   if (!tooltipEnabled) return;
 
+  const editorSelector = '.CodeMirror.cm-s-Frontscript';
+  if (!document.querySelector(editorSelector)) return;
+
   const rawData = await fetch(chrome.runtime.getURL('frontscript-tooltips.json')).then(r => r.json());
   const tooltipData = {};
 
@@ -115,7 +118,7 @@
   }
 
   document.addEventListener('mousemove', event => {
-    if (!event.target.closest('.CodeMirror')) {
+    if (!event.target.closest(editorSelector)) {
       tooltip.style.display = 'none';
       return;
     }
@@ -142,7 +145,9 @@ ${example}`;
     tooltip.style.display = 'block';
   });
 
-  document.addEventListener('mouseout', () => {
-    tooltip.style.display = 'none';
+  document.querySelectorAll(editorSelector).forEach(editor => {
+    editor.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
   });
 })();
