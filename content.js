@@ -3,6 +3,7 @@
   function waitForEfrontApp(timeout = 10000) {
     return new Promise((resolve) => {
       const check = () => {
+        //Checkls for eFront specific CodeMirror Element
         if (document.querySelector('.CodeMirror.cm-s-frontscript')) {
           resolve(true);
           return;
