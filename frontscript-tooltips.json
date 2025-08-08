@@ -9,6 +9,11 @@
       "name": "PROC",
       "description": "Core FrontScript Procedure Step. Followed by STEP options.",
       "example": "PROC PRINT DATA= WORK.MYTABLE;\nRUN;"
+    },    
+    {
+      "name": "TYPE",
+      "description": "Variable or column data type. Can be BOOLEN, BYTE CHAR,\nDATE, DOUBLE, INTEGER, LOGICAL, LONG, REAL, STRING or  TEXT.",
+      "example": "COLUMN UserName TYPE = STRING;"
     },
     {
       "name": "ODS",
