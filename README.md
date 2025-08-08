@@ -17,8 +17,8 @@ STILL A WORK IN PROGRESS - Please add comments, issues and i'll try to fix asap.
 
 ## 🛡 Security
 
-- 🟢 Runs **only on `https://*.efrontcloud.com`**
-- 🟢 Activates **only inside `.CodeMirror` editors**
+- 🟢 Runs in any **efront environemnt** (self-hosted or cloud)
+- 🟢 Activates **only inside `CodeMirror` FrotnScript editor**
 - 🟢 Loads static JSON definitions locally
 - 🟢 No tracking, analytics, or network requests
 - 🟢 Open source, auditable, minimal footprint
