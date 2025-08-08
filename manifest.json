@@ -9,7 +9,7 @@
     "activeTab"
   ],
   "host_permissions": [
-    "https://*.efrontcloud.com/*"
+    "<all_urls>"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -22,7 +22,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://*.efrontcloud.com/*"
+        "<all_urls>"
       ],
       "js": [
         "content.js"
@@ -39,7 +39,7 @@
         "frontscript-tooltips.json"
       ],
       "matches": [
-        "https://*.efrontcloud.com/*"
+        "<all_urls>"
       ]
     }
   ]
