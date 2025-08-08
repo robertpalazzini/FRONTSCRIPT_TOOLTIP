@@ -1,5 +1,13 @@
-
 (async function () {
+  // Detect if we are inside the eFront application
+  function isEfrontApp() {
+    // This selector is unique to the eFront FrontScript editor
+    return document.querySelector('.CodeMirror.cm-s-frontscript') !== null;
+  }
+
+  // Bail out early if not in eFront
+  if (!isEfrontApp()) return;
+
   const tooltipEnabled = await new Promise((resolve) => {
     try {
       chrome.runtime.sendMessage({ type: "GET_TOOLTIP_ENABLED" }, (response) => {
