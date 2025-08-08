@@ -7,7 +7,7 @@
     },
     {
       "name": "PROC",
-      "description": "Code FrontScript Procedure Step. Followed by STEP options.",
+      "description": "Core FrontScript Procedure Step. Followed by STEP options.",
       "example": "PROC PRINT DATA= WORK.MYTABLE;\nRUN;"
     },
     {
