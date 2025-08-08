@@ -8,7 +8,7 @@ This Chrome extension enhances the eFront embedded FrontReport coding window by 
 
 ## 🔍 Features
 
-- Hover over any FrontScript keyword inside the embedded FrontReport window (CodeMirror editor) on any `efrontcloud.com` domain.
+- Hover over any FrontScript keyword inside the embedded FrontReport window (CodeMirror editor) in any efront environment (self-hosted or Cloud).
 - Instantly see a helpful description and example
 - Works with all major FrontScript syntax elements
 - Lightweight, no data collection, no performance hit
