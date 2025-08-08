@@ -6,6 +6,11 @@
       "example": "DATA WORK.MYTABLE;\nSET EXISTING_TABLE;\nRUN;"
     },
     {
+      "name": "PROC",
+      "description": "Code FrontScript Procedure Step. Followed by STEP options.",
+      "example": "PROC PRINT DATA= WORK.MYTABLE;\nRUN;"
+    },
+    {
       "name": "ODS",
       "description": "Directs output of other steps to destinations like Office, HTML, or Listings.",
       "example": "ODS HTML FILE=\"report.html\";\nPROC PRINT DATA=WORK.MYTABLE;\nRUN;\nODS HTML END;"
@@ -248,23 +253,23 @@
   ],
   "Macro": [
     {
-      "name": "%DEFINE",
-      "description": "Declares a macro variable and assigns it a value.",
+      "name": "DEFINE",
+      "description": "Macro Function. Declares a macro variable and assigns it a value.",
       "example": "%DEFINE name = 'John';"
     },
     {
-      "name": "%INCLUDE",
-      "description": "Includes the contents of an external FrontScript file.",
+      "name": "INCLUDE",
+      "description": "Macro Function. Includes the contents of an external FrontScript file.",
       "example": "%INCLUDE \"\\Shared\\Scripts\\P_MyProgram\";"
     },
     {
-      "name": "%LET",
-      "description": "Assigns a value to a macro variable.",
+      "name": "LET",
+      "description": "Macro Function. Assigns a value to a macro variable.",
       "example": "%LET startDate = '2023-01-01';"
     },
     {
-      "name": "%PARAM",
-      "description": "Declares a macro parameter for dynamic input.",
+      "name": "PARAM",
+      "description": "Macro Function. Declares a macro parameter for dynamic input.",
       "example": "%PARAM EXCLUDEDRAFT LABEL \"Exclude Draft transactions?\" TYPE= BOOLEAN;"
     }
   ],

@@ -1,13 +1,26 @@
 (async function () {
-  // Detect if we are inside the eFront application
-  function isEfrontApp() {
-    // This selector is unique to the eFront FrontScript editor
-    return document.querySelector('.CodeMirror.cm-s-frontscript') !== null;
+  // Wait for the eFront CodeMirror editor to appear
+  function waitForEfrontApp(timeout = 10000) {
+    return new Promise((resolve) => {
+      const check = () => {
+        if (document.querySelector('.CodeMirror.cm-s-frontscript')) {
+          resolve(true);
+          return;
+        }
+        if ((timeout -= 100) <= 0) {
+          resolve(false);
+          return;
+        }
+        setTimeout(check, 100);
+      };
+      check();
+    });
   }
 
-  // Bail out early if not in eFront
-  if (!isEfrontApp()) return;
+  const found = await waitForEfrontApp();
+  if (!found) return; // bail if not found within timeout
 
+  // Tooltip enabled check
   const tooltipEnabled = await new Promise((resolve) => {
     try {
       chrome.runtime.sendMessage({ type: "GET_TOOLTIP_ENABLED" }, (response) => {
@@ -20,6 +33,7 @@
 
   if (!tooltipEnabled) return;
 
+  // Load tooltip definitions
   const rawData = await fetch(chrome.runtime.getURL('frontscript-tooltips.json')).then(r => r.json());
   const tooltipData = {};
 
