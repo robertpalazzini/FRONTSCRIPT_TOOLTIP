@@ -12,7 +12,7 @@
     },    
     {
       "name": "TYPE",
-      "description": "Variable or column data type. Can be BOOLEN, BYTE CHAR,\nDATE, DOUBLE, INTEGER, LOGICAL, LONG, REAL, STRING or  TEXT.",
+      "description": "Variable or column data type. Can be BOOLEN, BYTE CHAR, DATE, DOUBLE, INTEGER, LOGICAL, LONG, REAL, STRING or  TEXT.",
       "example": "COLUMN UserName TYPE = STRING;"
     },
     {
