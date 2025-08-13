@@ -26,7 +26,7 @@ STILL A WORK IN PROGRESS - Please add comments, issues and i'll try to fix asap.
 
 ## 📦 Installation
 
-1. Download zip file and unzip (will create folder called FRONTSCRIPT_TOOLTIP.)
+1. Download zip file and unzip into permament location (will create folder called FRONTSCRIPT_TOOLTIP - files must remain there)
 2. In you browser, click on "Manage Extensions" (Or visit `chrome://extensions`)
 3. Enable "Developer Mode"
 4. Click “Load unpacked” and select the unzipped folder [FRONTSCRIPT_TOOLTIP]
