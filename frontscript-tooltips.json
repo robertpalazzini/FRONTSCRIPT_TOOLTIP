@@ -371,12 +371,12 @@
     {
       "name": "MERGE",
       "description": "Combines datasets based on key variables.",
-      "example": "MERGE a(IN=a) b(IN=b);\nBY id;"
+      "example": "DATA T_NEWTABLE;\nMERGE T_LEFTTABLE (in=T1) T_RIGHTTABLE (in=T2);\nBY FUND_IQID;\nIF T1 THEN OUTPUT; END;\nrun;"
     },
     {
       "name": "SET",
       "description": "Reads data into a DATA step from an existing table.",
-      "example": "SET transactions;\namount = amount * 1.1;"
+      "example": "DATA T_NEWTABLE; SET V_SOURCEVIEW;\nAMOUNT = AMOUNT * 1.1;\nRUN;"
     },
     {
       "name": "SQL",
