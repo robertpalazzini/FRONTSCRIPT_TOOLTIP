@@ -158,7 +158,7 @@
     {
       "name": "MEANS",
       "description": "Calculates basic statistics like mean, sum, min, max on a table.",
-      "example": "PROC MEANS DATA=WORK.MYTABLE;\nOUT=WORK.NEWTABLE;\nCLASS INVESTOR;\nSUM AMOUNT (NAME = AMOUNT);\nVAR INVESTOR_TYPE;\nRUN;"
+      "example": "PROC MEANS DATA=WORK.MYTABLE OUT=WORK.NEWTABLE;\nCLASS INVESTOR;\nSUM AMOUNT (NAME = AMOUNT);\nVAR INVESTOR_TYPE;\nRUN;"
     },
     {
       "name": "OFFICE",
