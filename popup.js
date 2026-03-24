@@ -17,8 +17,11 @@ toggleAutocomplete.addEventListener('change', (e) => {
   chrome.storage.local.set({ autocompleteEnabled: e.target.checked });
 });
 
-// Open side panel
-openPanelBtn.addEventListener('click', () => {
-  chrome.runtime.sendMessage({ type: "OPEN_SIDE_PANEL" });
+// Open side panel directly from popup (user gesture context required)
+openPanelBtn.addEventListener('click', async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab) {
+    await chrome.sidePanel.open({ tabId: tab.id });
+  }
   window.close();
 });
