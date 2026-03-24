@@ -1,6 +1,6 @@
 ## 🔖 Version
 
-Current version: **1.2.1**
+Current version: **1.3**
 
 # FrontScript Tooltip Helper
 
