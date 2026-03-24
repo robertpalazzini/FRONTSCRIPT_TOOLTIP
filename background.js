@@ -15,7 +15,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === "OPEN_SIDE_PANEL") {
-    chrome.sidePanel.open({ tabId: sender.tab?.id || message.tabId });
+    if (sender.tab?.id) {
+      chrome.sidePanel.open({ tabId: sender.tab.id });
+    } else {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0]) {
+          chrome.sidePanel.open({ tabId: tabs[0].id });
+        }
+      });
+    }
     return;
   }
 
