@@ -290,29 +290,74 @@
   ],
   "Keyword": [
     {
+      "name": "ABORT",
+      "description": "Stops program execution with an error.",
+      "example": "IF status = 'FAIL' THEN ABORT;"
+    },
+    {
+      "name": "ARRAY",
+      "description": "Valid in: DATA steps. Establishes a link between 1 single column and a group of columns. The single column becomes an array, and each element of the group of columns becomes an array element. Each array element can be accessed through an array index used together with the name of the array column.",
+      "example": "DATA output_table;\nCOLUMN val1;\nCOLUMN val2;\nCOLUMN val3;\nARRAY vals{} val1 - val3;\nSET input_table;\nvals{1} = vals{1} * 2;\nRUN;"
+    },
+    {
+      "name": "BOX",
+      "description": "Valid in: PROC TABULATE steps. Specifies text and style elements for the empty box above row titles. CLASS, VAR, and TABLE statements are required.",
+      "example": "PROC TABULATE DATA=mytable;\nCLASS category;\nVAR amount;\nBOX \"Region\";\nTABLE category, amount * SUM;\nRUN;"
+    },
+    {
+      "name": "BREAK",
+      "description": "Exits the current loop or SELECT structure.\n\nCan be Macro (%) function too.",
+      "example": "DO WHILE (x < 10);\n  IF x = 5 THEN BREAK;\n  x = x + 1;\nEND;"
+    },
+    {
+      "name": "BY",
+      "description": "Specifies grouping criteria for procedures like SORT or MEANS.",
+      "example": "BY region;"
+    },
+    {
+      "name": "CASE",
+      "description": "Defines a value or condition in a switch-style structure (sometimes used interchangeably with WHEN).\n\nCan be Macro (%) function too.",
+      "example": "SELECT value;\n  CASE 1 DO;\n    PUT 'One';\n  END;\nEND;"
+    },
+    {
+      "name": "CLASS",
+      "description": "Defines classification variables in procedures like TABULATE.",
+      "example": "CLASS department;"
+    },
+    {
+      "name": "COLUMN",
+      "description": "Defines a column to be printed or used in a table layout.",
+      "example": "COLUMN name age salary;"
+    },
+    {
+      "name": "CONTINUE",
+      "description": "Exits the current control and jumps to the next statement in a loop.\n\nCan be Macro (%) function too.",
+      "example": "DO WHILE (x < 10);\n  x = x + 1;\n  IF x = 5 THEN CONTINUE;\n  PUT x;\nEND;"
+    },
+    {
+      "name": "DEFAULT",
+      "description": "Defines the default block to execute in a SELECT if no WHEN condition is matched.",
+      "example": "SELECT x;\n  WHEN 1 PUT 'One';\n  DEFAULT PUT 'Other';\nEND;"
+    },
+    {
       "name": "DO",
       "description": "Begins a code block or loop.\n\nCan be Macro (%) function too.",
       "example": "DO;\n  x = x + 1;\nEND;"
     },
     {
-      "name": "WHILE",
-      "description": "Starts a loop that continues while a condition is true.\n\nCan be Macro (%) function too.",
-      "example": "DO WHILE (x < 10);\n  x = x + 1;\nEND;"
+      "name": "DONUT",
+      "description": "Generates a donut chart.",
+      "example": "PROC GCHART DATA=work.sales;\nDONUT category;\nRUN;"
     },
     {
-      "name": "LOOP",
-      "description": "Marks the body of a WHILE or FOR loop.\n\nCan be Macro (%) function too.",
-      "example": "%LET I = 1;\n%DO WHILE (%I <= 5)\n  PUT %I;\n  %LET I = %I + 1;\n%LOOP;"
+      "name": "DONUT3D",
+      "description": "Valid in: PROC GCHART steps. Defines a 3-dimensional donut chart. The DONUT3D statement specifies the column(s) whose values to include in the chart. At least one column is required.",
+      "example": "PROC GCHART DATA=mytable;\nDONUT3D category (TYPE=SUM SUMVAR=amount);\nRUN;"
     },
     {
-      "name": "IF",
-      "description": "Executes a block of code if a condition is true.\n\nCan be Macro (%) function too.",
-      "example": "IF amount > 1000 THEN PUT 'Large';"
-    },
-    {
-      "name": "THEN",
-      "description": "Follows an IF condition to specify the block to execute if true.\n\nCan be Macro (%) function too.",
-      "example": "IF status = 'ACTIVE' THEN output = 1;"
+      "name": "DROP",
+      "description": "Applies a conditional filter to remove colmns in procedures or data steps.",
+      "example": "SET transactions (DROP = Colx Coly);"
     },
     {
       "name": "ELSE",
@@ -330,34 +375,184 @@
       "example": "DO;\n  PUT 'Hello';\nEND;"
     },
     {
-      "name": "SELECT",
-      "description": "Begins a conditional branching block, like a switch statement.\n\nCan be Macro (%) function too.",
-      "example": "SELECT type;\n  WHEN 'A' DO;\n    PUT 'Alpha';\n  END;\nEND;"
+      "name": "EXPORT",
+      "description": "Exports data to a file format (CSV, Excel, etc.).",
+      "example": "PROC EXPORT DATA=work.table OUTFILE='output.csv';\nRUN;"
     },
     {
-      "name": "WHEN",
-      "description": "Defines a specific condition inside a SELECT block.\n\nCan be Macro (%) function too.",
-      "example": "SELECT status;\n  WHEN 'Open' DO;\n    PUT 'Open Case';\n  END;\nEND;"
+      "name": "EXTEND",
+      "description": "Valid in: DATA steps. Reads all the lines from 1 or more existing cubes into an output table. If you specify more than one cube, cubes are appended to each other. Applies only to eFront Cube programs. Similar to SET but cannot add or remove rows, and has better performance as impacted columns are not recalculated.",
+      "example": "DATA output_table;\nEXTEND input_cube_1 input_cube_2;\nRUN;"
     },
     {
-      "name": "CASE",
-      "description": "Defines a value or condition in a switch-style structure (sometimes used interchangeably with WHEN).\n\nCan be Macro (%) function too.",
-      "example": "SELECT value;\n  CASE 1 DO;\n    PUT 'One';\n  END;\nEND;"
+      "name": "FIRST",
+      "description": "Refers to the first record in a BY group.",
+      "example": "IF FIRST.name THEN counter = 0;"
     },
     {
-      "name": "DEFAULT",
-      "description": "Defines the default block to execute in a SELECT if no WHEN condition is matched.",
-      "example": "SELECT x;\n  WHEN 1 PUT 'One';\n  DEFAULT PUT 'Other';\nEND;"
+      "name": "FOR",
+      "description": "Begins a counted loop that runs from a start value to an end value.",
+      "example": "FOR I = 1 TO 5;\n  PUT I;\nEND;"
     },
     {
-      "name": "BREAK",
-      "description": "Exits the current loop or SELECT structure.\n\nCan be Macro (%) function too.",
-      "example": "DO WHILE (x < 10);\n  IF x = 5 THEN BREAK;\n  x = x + 1;\nEND;"
+      "name": "FORMAT",
+      "description": "Applies a user-defined format to variables.",
+      "example": "FORMAT salary dollar12.2;"
     },
     {
-      "name": "CONTINUE",
-      "description": "Exits the current control and jumps to the next statement in a loop.\n\nCan be Macro (%) function too.",
-      "example": "DO WHILE (x < 10);\n  x = x + 1;\n  IF x = 5 THEN CONTINUE;\n  PUT x;\nEND;"
+      "name": "HBAR",
+      "description": "Generates a horizontal bar chart.",
+      "example": "PROC GCHART DATA=work.sales;\nHBAR region / SUMVAR=sales;\nRUN;"
+    },
+    {
+      "name": "HBAR3D",
+      "description": "Valid in: PROC GCHART steps. Defines a chart with horizontal three-dimensional bars. The HBAR3D statement specifies the column(s) whose values to include in the chart. At least one column is required.",
+      "example": "PROC GCHART DATA=mytable;\nHBAR3D category (TYPE=SUM SUMVAR=amount);\nRUN;"
+    },
+    {
+      "name": "ID",
+      "description": "Valid in: PROC TRANSPOSE steps. Identifies the input table column whose formatted values name the variables being transposed. eFront Script uses the values of the specified column as names for the new columns.",
+      "example": "PROC TRANSPOSE DATA=mytable OUT=transposed;\nVAR amount;\nID year;\nRUN;"
+    },
+    {
+      "name": "IDLABEL",
+      "description": "Valid in: PROC TRANSPOSE steps. Identifies the column labels for the variables being transposed. eFront Script uses the values of the specified column as labels for the new columns. Labels display when using the PROC PRINT step with the LABEL option.",
+      "example": "PROC TRANSPOSE DATA=mytable OUT=transposed;\nVAR amount;\nID year;\nIDLABEL year_label;\nRUN;"
+    },
+    {
+      "name": "IF",
+      "description": "Executes a block of code if a condition is true.\n\nCan be Macro (%) function too.",
+      "example": "IF amount > 1000 THEN PUT 'Large';"
+    },
+    {
+      "name": "INFILE",
+      "description": "Reads data from an external file line by line.",
+      "example": "INFILE 'data.csv' DLM=',';"
+    },
+    {
+      "name": "INFORMAT",
+      "description": "Option used with the %PARAM macro statement. Identifies a list of default values to display for interactive user input choice. The user can choose one or more values. According to the informat, the data_container varies, as does the type of values returned.",
+      "example": "%PARAM myfund INFORMAT=\"??PICKID(VCFUND;FUND)\";\nDATA output;\nCOLUMN fund_id;\nfund_id = %myfund;\nRUN;"
+    },
+    {
+      "name": "INLINE",
+      "description": "Defines inline data directly within a script.",
+      "example": "DATA work.inline;\nINLINE;\n1 John\n2 Alice\nRUN;"
+    },
+    {
+      "name": "IRR",
+      "description": "Valid in: PROC MEANS steps. Calculates the Internal Rate of Return. Column values must correspond to cashflow values. Options: NAME (output column name), LABEL, DATE (date column for non-annualized calculation), RESIDUALVALUE, RESIDUALDATE.",
+      "example": "PROC MEANS DATA=cashflows OUT=results;\nCLASS fund_id;\nIRR cashflow_amount (NAME=fund_irr DATE=cashflow_date);\nRUN;"
+    },
+    {
+      "name": "JOIN",
+      "description": "Used in PROC MEANS to join the input table with another table on matching key columns.",
+      "example": "PROC MEANS DATA=WORK.T_INVESTORS;\n  CLASS INVESTOR_ID;\n  JOIN WORK.T_FUNDS ON FUND_ID;\n  SUM AMOUNT (NAME=TOTAL);\nRUN;"
+    },
+    {
+      "name": "KEEP",
+      "description": "Applies a conditional filter to columns in procedures or data steps.",
+      "example": "SET transactions (KEEP = Col1 Col2);"
+    },
+    {
+      "name": "LAST",
+      "description": "Refers to the last record in a BY group.",
+      "example": "IF LAST.name THEN PUT 'End of group';"
+    },
+    {
+      "name": "LIBNAME",
+      "description": "Global statement. Assigns an alias to a library (folder). Must precede all programs that read from or write to the library. Use LIBNAME WORK DISK to store tables on disk instead of memory.",
+      "example": "LIBNAME MYLIB \"\\\\Shared\\\\Reports\";\n// Or use the current user folder:\nLIBNAME USER CURRENT;\n// Or store WORK tables on disk:\nLIBNAME WORK DISK;"
+    },
+    {
+      "name": "LOOP",
+      "description": "Marks the body of a WHILE or FOR loop.\n\nCan be Macro (%) function too.",
+      "example": "%LET I = 1;\n%DO WHILE (%I <= 5)\n  PUT %I;\n  %LET I = %I + 1;\n%LOOP;"
+    },
+    {
+      "name": "MAX",
+      "description": "Specifies a variable for which the maximum value is computed.",
+      "example": "MAX temperature;"
+    },
+    {
+      "name": "MEAN",
+      "description": "Specifies a variable for which the average is computed.",
+      "example": "MEAN salary;"
+    },
+    {
+      "name": "MERGE",
+      "description": "Combines datasets based on key variables.",
+      "example": "DATA T_NEWTABLE;\nMERGE T_LEFTTABLE (in=T1) T_RIGHTTABLE (in=T2);\nBY FUND_IQID;\nIF T1 THEN OUTPUT; END;\nrun;"
+    },
+    {
+      "name": "MIN",
+      "description": "Specifies a variable for which the minimum value is computed.",
+      "example": "MIN humidity;"
+    },
+    {
+      "name": "MULTIPLE",
+      "description": "Valid in: PROC MEANS steps. Returns the multiple of the return on investment. DATE and AMOUNT options are required. Options: NAME (output column name), DATE, AMOUNT, LABEL.",
+      "example": "PROC MEANS DATA=cashflows OUT=results;\nCLASS fund_id;\nMULTIPLE cashflow_amount (NAME=fund_multiple DATE=cashflow_date AMOUNT=cashflow_amount);\nRUN;"
+    },
+    {
+      "name": "N",
+      "description": "Valid in: PROC MEANS steps. Counts the number of variable instances (non missing values). Options: NAME (output column name), LABEL.",
+      "example": "PROC MEANS DATA=mytable OUT=results;\nCLASS category;\nN amount (NAME=count_amount);\nRUN;"
+    },
+    {
+      "name": "NEXT",
+      "description": "Ends the current iteration of a FOR loop and begins the next one.",
+      "example": "FOR I = 1 TO 3;\n  PUT I;\nNEXT;"
+    },
+    {
+      "name": "NOBS",
+      "description": "Returns the number of observations in a table.",
+      "example": "IF _N_ = 1 THEN SET data NOBS=n;"
+    },
+    {
+      "name": "ODS",
+      "description": "Directs output to destinations like HTML, RTF, or Excel.",
+      "example": "ODS HTML FILE='report.html';\nRUN;"
+    },
+    {
+      "name": "OUTPUT",
+      "description": "Writes a data row to the output table.",
+      "example": "OUTPUT;"
+    },
+    {
+      "name": "PICTURE",
+      "description": "Valid in: PROC FORMAT steps. Specifies a template (= picture) for formatting numeric values. You can use several PICTURE statements in a PROC FORMAT step.",
+      "example": "PROC FORMAT;\nPICTURE P_Money\nLOW-HIGH = \"$ 00.00\";\nRUN;\n\nPROC PRINT DATA=mytable LABEL;\nFORMAT unit_price P_Money.;\nRUN;"
+    },
+    {
+      "name": "PIE",
+      "description": "Generates a pie chart.",
+      "example": "PROC GCHART DATA=work.sales;\nPIE category;\nRUN;"
+    },
+    {
+      "name": "PIE3D",
+      "description": "Valid in: PROC GCHART steps. Defines a 3-dimensional pie chart. The PIE3D statement specifies the column(s) whose values to include in the chart. Each pie slice represents the value of the chart statistic for a particular column in relation to the total. At least one column is required.",
+      "example": "PROC GCHART DATA=mytable;\nPIE3D category (TYPE=SUM SUMVAR=amount);\nRUN;"
+    },
+    {
+      "name": "PLOT",
+      "description": "Valid in: PROC GPLOT steps. Defines a plots & lines chart. The PLOT statement specifies the column(s) whose values to include in the chart. At least one col_1*col_2 pair is required. Options: INTERPOL (line type: SPLINE|JOIN|STEP), SYMBOL (plot type: SQUARE|DIAMOND|PLUS|X|CIRCLE|STAR|TRIANGLE etc.).",
+      "example": "PROC GPLOT DATA=mytable;\nPLOT return_value*reference_date (INTERPOL=JOIN SYMBOL=CIRCLE);\nRUN;"
+    },
+    {
+      "name": "PRINT",
+      "description": "Prints the contents of a dataset or report.",
+      "example": "PROC PRINT DATA=work.table;\nRUN;"
+    },
+    {
+      "name": "PUT",
+      "description": "Writes a message or variable value to the log/output stream.",
+      "example": "PUT 'Processing complete';"
+    },
+    {
+      "name": "RECURSE",
+      "description": "Valid in: DATA steps. Generates dependency links from a table that includes Parent/Child informations. The COLUMN statement is required to list dependency links. Use the _LEVEL_ variable to display levels of hierarchy. Options: VAR (child column), PARENT (parent column), START (starting expression) — VAR and PARENT are required.",
+      "example": "DATA hierarchy;\nRECURSE parent_child (VAR=child_id PARENT=parent_id);\nCOLUMN level;\nlevel = _LEVEL_;\nRUN;"
     },
     {
       "name": "RETURN",
@@ -370,19 +565,9 @@
       "example": "PROC SORT DATA=work.table;\nBY name;\nRUN;"
     },
     {
-      "name": "STOP",
-      "description": "Terminates the program immediately.",
-      "example": "IF x > 100 THEN STOP;"
-    },
-    {
-      "name": "ABORT",
-      "description": "Stops program execution with an error.",
-      "example": "IF status = 'FAIL' THEN ABORT;"
-    },
-    {
-      "name": "MERGE",
-      "description": "Combines datasets based on key variables.",
-      "example": "DATA T_NEWTABLE;\nMERGE T_LEFTTABLE (in=T1) T_RIGHTTABLE (in=T2);\nBY FUND_IQID;\nIF T1 THEN OUTPUT; END;\nrun;"
+      "name": "SELECT",
+      "description": "Begins a conditional branching block, like a switch statement.\n\nCan be Macro (%) function too.",
+      "example": "SELECT type;\n  WHEN 'A' DO;\n    PUT 'Alpha';\n  END;\nEND;"
     },
     {
       "name": "SET",
@@ -390,39 +575,39 @@
       "example": "DATA T_NEWTABLE; SET V_SOURCEVIEW;\nAMOUNT = AMOUNT * 1.1;\nRUN;"
     },
     {
+      "name": "SORT",
+      "description": "Sorts a dataset by one or more variables.",
+      "example": "PROC SORT DATA=work.table;\nBY date;\nRUN;"
+    },
+    {
       "name": "SQL",
       "description": "Introduces an SQL code block inside a program.",
       "example": "SQL {\n  SELECT * FROM users;\n};"
     },
     {
-      "name": "INFILE",
-      "description": "Reads data from an external file line by line.",
-      "example": "INFILE 'data.csv' DLM=',';"
+      "name": "STOP",
+      "description": "Terminates the program immediately.",
+      "example": "IF x > 100 THEN STOP;"
     },
     {
-      "name": "INLINE",
-      "description": "Defines inline data directly within a script.",
-      "example": "DATA work.inline;\nINLINE;\n1 John\n2 Alice\nRUN;"
-    },
-    {
-      "name": "OUTPUT",
-      "description": "Writes a data row to the output table.",
-      "example": "OUTPUT;"
-    },
-    {
-      "name": "COLUMN",
-      "description": "Defines a column to be printed or used in a table layout.",
-      "example": "COLUMN name age salary;"
-    },
-    {
-      "name": "FORMAT",
-      "description": "Applies a user-defined format to variables.",
-      "example": "FORMAT salary dollar12.2;"
+      "name": "SUM",
+      "description": "Specifies a variable to be summed in statistics or MEANS table.",
+      "example": "SUM FEES  (NAME = FEES LABEL = \"Fees\");"
     },
     {
       "name": "TABLE",
       "description": "Defines the structure or layout of an output table.",
       "example": "PROC TABLE DATA=work.summary;\nRUN;"
+    },
+    {
+      "name": "TEMPLATE",
+      "description": "Valid in: PROC OFFICE, PROC EXCEL steps. Calls the template file to be used to create a WORD, EXCEL or XML report. The file name must be prefixed with &.",
+      "example": "PROC EXCEL DATA=mytable;\nTEMPLATE &\"MyTemplate.xls\";\nSET mytable;\nRUN;"
+    },
+    {
+      "name": "THEN",
+      "description": "Follows an IF condition to specify the block to execute if true.\n\nCan be Macro (%) function too.",
+      "example": "IF status = 'ACTIVE' THEN output = 1;"
     },
     {
       "name": "TITLE",
@@ -435,94 +620,9 @@
       "example": "TRACE 'Step 1 completed';"
     },
     {
-      "name": "VAR",
-      "description": "Defines variables for analysis or output.",
-      "example": "VAR sales profit;"
-    },
-    {
-      "name": "SUM",
-      "description": "Specifies a variable to be summed in statistics or MEANS table.",
-      "example": "SUM FEES  (NAME = FEES LABEL = \"Fees\");"
-    },
-    {
-      "name": "MEAN",
-      "description": "Specifies a variable for which the average is computed.",
-      "example": "MEAN salary;"
-    },
-    {
-      "name": "MAX",
-      "description": "Specifies a variable for which the maximum value is computed.",
-      "example": "MAX temperature;"
-    },
-    {
-      "name": "MIN",
-      "description": "Specifies a variable for which the minimum value is computed.",
-      "example": "MIN humidity;"
-    },
-    {
-      "name": "JOIN",
-      "description": "Used in PROC MEANS to join the input table with another table on matching key columns.",
-      "example": "PROC MEANS DATA=WORK.T_INVESTORS;\n  CLASS INVESTOR_ID;\n  JOIN WORK.T_FUNDS ON FUND_ID;\n  SUM AMOUNT (NAME=TOTAL);\nRUN;"
-    },
-    {
-      "name": "FIRST",
-      "description": "Refers to the first record in a BY group.",
-      "example": "IF FIRST.name THEN counter = 0;"
-    },
-    {
-      "name": "LAST",
-      "description": "Refers to the last record in a BY group.",
-      "example": "IF LAST.name THEN PUT 'End of group';"
-    },
-    {
-      "name": "NOBS",
-      "description": "Returns the number of observations in a table.",
-      "example": "IF _N_ = 1 THEN SET data NOBS=n;"
-    },
-    {
-      "name": "VALUE",
-      "description": "Assigns or retrieves a formatted value.",
-      "example": "VALUE $gender\n  'M'='Male'\n  'F'='Female';"
-    },
-    {
-      "name": "VBAR",
-      "description": "Generates a vertical bar chart.",
-      "example": "PROC GCHART DATA=work.sales;\nVBAR product / SUMVAR=revenue;\nRUN;"
-    },
-    {
-      "name": "HBAR",
-      "description": "Generates a horizontal bar chart.",
-      "example": "PROC GCHART DATA=work.sales;\nHBAR region / SUMVAR=sales;\nRUN;"
-    },
-    {
-      "name": "PIE",
-      "description": "Generates a pie chart.",
-      "example": "PROC GCHART DATA=work.sales;\nPIE category;\nRUN;"
-    },
-    {
-      "name": "DONUT",
-      "description": "Generates a donut chart.",
-      "example": "PROC GCHART DATA=work.sales;\nDONUT category;\nRUN;"
-    },
-    {
-      "name": "PRINT",
-      "description": "Prints the contents of a dataset or report.",
-      "example": "PROC PRINT DATA=work.table;\nRUN;"
-    },
-    {
-      "name": "ODS",
-      "description": "Directs output to destinations like HTML, RTF, or Excel.",
-      "example": "ODS HTML FILE='report.html';\nRUN;"
-    },
-    {
-      "name": "EXPORT",
-      "description": "Exports data to a file format (CSV, Excel, etc.).",
-      "example": "PROC EXPORT DATA=work.table OUTFILE='output.csv';\nRUN;"
-    },
-    {
-      "name": "SORT",
-      "description": "Sorts a dataset by one or more variables.",
-      "example": "PROC SORT DATA=work.table;\nBY date;\nRUN;"
+      "name": "TWR",
+      "description": "Valid in: PROC MEANS steps. Calculates the Time Weighted Return using the modified Dietz method. Options: NAME, LABEL, DATE (cashflow date), RESIDUALVALUE, RESIDUALDATE, NAV, GROUPBY, MONTH, DAY, FREQUENCY, ANNUALIZED, TWRTODATE (QTD|YTD), and others.",
+      "example": "PROC MEANS DATA=cashflows OUT=results;\nCLASS fund_id;\nTWR cashflow_amount (NAME=fund_twr DATE=cashflow_date RESIDUALVALUE=nav RESIDUALDATE=valuation_date);\nRUN;"
     },
     {
       "name": "UPDATE",
@@ -530,34 +630,29 @@
       "example": "UPDATE base SET salary = salary * 1.05 WHERE dept = 'HR';"
     },
     {
-      "name": "BY",
-      "description": "Specifies grouping criteria for procedures like SORT or MEANS.",
-      "example": "BY region;"
+      "name": "VALUE",
+      "description": "Assigns or retrieves a formatted value.",
+      "example": "VALUE $gender\n  'M'='Male'\n  'F'='Female';"
     },
     {
-      "name": "CLASS",
-      "description": "Defines classification variables in procedures like TABULATE.",
-      "example": "CLASS department;"
+      "name": "VAR",
+      "description": "Defines variables for analysis or output.",
+      "example": "VAR sales profit;"
     },
     {
-      "name": "LIBNAME",
-      "description": "Global statement. Assigns an alias to a library (folder). Must precede all programs that read from or write to the library. Use LIBNAME WORK DISK to store tables on disk instead of memory.",
-      "example": "LIBNAME MYLIB \"\\\\Shared\\\\Reports\";\n// Or use the current user folder:\nLIBNAME USER CURRENT;\n// Or store WORK tables on disk:\nLIBNAME WORK DISK;"
+      "name": "VBAR",
+      "description": "Generates a vertical bar chart.",
+      "example": "PROC GCHART DATA=work.sales;\nVBAR product / SUMVAR=revenue;\nRUN;"
     },
     {
-      "name": "PUT",
-      "description": "Writes a message or variable value to the log/output stream.",
-      "example": "PUT 'Processing complete';"
+      "name": "VBAR3D",
+      "description": "Valid in: PROC GCHART steps. Defines a chart with vertical three-dimensional bars. The VBAR3D statement specifies the column(s) whose values to include in the chart. At least one column is required.",
+      "example": "PROC GCHART DATA=mytable;\nVBAR3D category (TYPE=SUM SUMVAR=amount);\nRUN;"
     },
     {
-      "name": "FOR",
-      "description": "Begins a counted loop that runs from a start value to an end value.",
-      "example": "FOR I = 1 TO 5;\n  PUT I;\nEND;"
-    },
-    {
-      "name": "NEXT",
-      "description": "Ends the current iteration of a FOR loop and begins the next one.",
-      "example": "FOR I = 1 TO 3;\n  PUT I;\nNEXT;"
+      "name": "WHEN",
+      "description": "Defines a specific condition inside a SELECT block.\n\nCan be Macro (%) function too.",
+      "example": "SELECT status;\n  WHEN 'Open' DO;\n    PUT 'Open Case';\n  END;\nEND;"
     },
     {
       "name": "WHERE",
@@ -565,14 +660,9 @@
       "example": "SET transactions;\nWHERE amount > 1000;"
     },
     {
-      "name": "KEEP",
-      "description": "Applies a conditional filter to columns in procedures or data steps.",
-      "example": "SET transactions (KEEP = Col1 Col2);"
-    },
-    {
-      "name": "DROP",
-      "description": "Applies a conditional filter to remove colmns in procedures or data steps.",
-      "example": "SET transactions (DROP = Colx Coly);"
+      "name": "WHILE",
+      "description": "Starts a loop that continues while a condition is true.\n\nCan be Macro (%) function too.",
+      "example": "DO WHILE (x < 10);\n  x = x + 1;\nEND;"
     }
   ],
   "Function": [
