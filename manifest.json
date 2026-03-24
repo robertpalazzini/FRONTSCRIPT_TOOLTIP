@@ -38,14 +38,23 @@
         "tooltip.css"
       ],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "page-script.js"
+      ],
+      "run_at": "document_idle",
+      "world": "MAIN"
     }
   ],
   "web_accessible_resources": [
     {
       "resources": [
         "frontscript-tooltips.json",
-        "snippets.json",
-        "page-script.js"
+        "snippets.json"
       ],
       "matches": [
         "<all_urls>"

@@ -177,17 +177,12 @@
     tooltip.style.display = 'none';
   });
 
-  // ── Inject page-world script for CodeMirror API access ────────
-  // Content scripts run in an isolated world and cannot access JS
-  // properties on DOM elements (like element.CodeMirror). We inject
-  // page-script.js into the MAIN world and communicate via postMessage.
+  // ── Page-world script communication ────────────────────────────
+  // page-script.js is injected by Chrome into the MAIN world via the
+  // manifest "world": "MAIN" declaration. It has CodeMirror API access.
+  // We communicate via window.postMessage.
 
-  const pageScript = document.createElement('script');
-  pageScript.src = chrome.runtime.getURL('page-script.js');
-  pageScript.onload = () => pageScript.remove();
-  (document.head || document.documentElement).appendChild(pageScript);
-
-  // Send keyword data to page-script via postMessage
+  // Send keyword data to page-script
   function sendKeywordsToPage() {
     window.postMessage({
       source: '__FRONTSCRIPT_EXT',
@@ -202,9 +197,11 @@
       sendKeywordsToPage();
     }
   });
-  // Also send after a delay in case page-script loads first
-  setTimeout(sendKeywordsToPage, 300);
-  setTimeout(sendKeywordsToPage, 1000);
+  // Also send on delays — both scripts load at document_idle but
+  // execution order isn't guaranteed
+  setTimeout(sendKeywordsToPage, 500);
+  setTimeout(sendKeywordsToPage, 1500);
+  setTimeout(sendKeywordsToPage, 3000);
 
   // ── Bridge: Chrome messages → page-world via postMessage ──────
   // The side panel / background sends DO_INSERT_SNIPPET via chrome
