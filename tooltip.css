@@ -1,4 +1,4 @@
-
+/* ── Hover Tooltip ──────────────────────────────────────────── */
 .frontscript-tooltip {
   position: absolute;
   background: #222;
@@ -12,4 +12,72 @@
   display: none;
   white-space: pre-wrap;
   pointer-events: none;
+}
+
+/* ── Autocomplete Dropdown ─────────────────────────────────── */
+.fs-autocomplete {
+  position: absolute;
+  z-index: 10001;
+  background: #1e1e2e;
+  border: 1px solid #444;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  min-width: 220px;
+  max-width: 380px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  padding: 4px 0;
+}
+
+.fs-ac-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.fs-ac-item:hover,
+.fs-ac-item.selected {
+  background: #2a2a3c;
+}
+
+.fs-ac-item.selected {
+  background: #313244;
+}
+
+.fs-ac-name {
+  font-family: "Fira Code", "Consolas", monospace;
+  font-weight: 500;
+  color: #cdd6f4;
+  flex: 1;
+}
+
+.fs-ac-badge {
+  margin-left: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.fs-ac-badge.keyword  { background: #31324a; color: #89b4fa; }
+.fs-ac-badge.proc     { background: #2d3a2d; color: #a6e3a1; }
+.fs-ac-badge.function { background: #3a2d2d; color: #f38ba8; }
+.fs-ac-badge.macro    { background: #3a352d; color: #fab387; }
+
+/* Scrollbar for autocomplete */
+.fs-autocomplete::-webkit-scrollbar {
+  width: 5px;
+}
+.fs-autocomplete::-webkit-scrollbar-track {
+  background: #1e1e2e;
+}
+.fs-autocomplete::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
 }

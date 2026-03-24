@@ -1,9 +1,10 @@
 (async function () {
-  // Wait for the eFront CodeMirror editor to appear
+  "use strict";
+
+  // ── Wait for eFront CodeMirror editor ─────────────────────────
   function waitForEfrontApp(timeout = 10000) {
     return new Promise((resolve) => {
       const check = () => {
-        //Checkls for eFront specific CodeMirror Element
         if (document.querySelector('.CodeMirror.cm-s-frontscript')) {
           resolve(true);
           return;
@@ -19,9 +20,9 @@
   }
 
   const found = await waitForEfrontApp();
-  if (!found) return; // bail if not found within timeout
+  if (!found) return;
 
-  // Tooltip enabled check
+  // ── Tooltip enabled check ─────────────────────────────────────
   const tooltipEnabled = await new Promise((resolve) => {
     try {
       chrome.runtime.sendMessage({ type: "GET_TOOLTIP_ENABLED" }, (response) => {
@@ -34,19 +35,31 @@
 
   if (!tooltipEnabled) return;
 
-  // Load tooltip definitions
+  // ── Load tooltip definitions ──────────────────────────────────
   const rawData = await fetch(chrome.runtime.getURL('frontscript-tooltips.json')).then(r => r.json());
   const tooltipData = {};
+  const allKeywords = []; // sent to page-script for autocomplete
 
   for (const category in rawData) {
     rawData[category].forEach(entry => {
-      tooltipData[entry.name.toUpperCase()] = {
+      const key = entry.name.toUpperCase();
+      tooltipData[key] = {
         description: entry.description,
-        example: entry.example
+        example: entry.example,
+        category: category
       };
+      allKeywords.push({
+        name: entry.name,
+        upperName: key,
+        category: category,
+        description: entry.description
+      });
     });
   }
 
+  allKeywords.sort((a, b) => a.name.localeCompare(b.name));
+
+  // ── Hover Tooltip (works in isolated world via DOM inspection) ─
   const tooltip = document.createElement('div');
   tooltip.className = "frontscript-tooltip";
   document.body.appendChild(tooltip);
@@ -154,12 +167,7 @@
     }
 
     const { description, example } = tooltipData[key];
-    tooltip.innerText = `${key}
-
-${description}
-
-Example:
-${example}`;
+    tooltip.innerText = `${key}\n\n${description}\n\nExample:\n${example}`;
     tooltip.style.left = `${event.pageX + 10}px`;
     tooltip.style.top = `${event.pageY + 10}px`;
     tooltip.style.display = 'block';
@@ -167,5 +175,45 @@ ${example}`;
 
   document.addEventListener('mouseout', () => {
     tooltip.style.display = 'none';
+  });
+
+  // ── Page-world script communication ────────────────────────────
+  // page-script.js is injected by Chrome into the MAIN world via the
+  // manifest "world": "MAIN" declaration. It has CodeMirror API access.
+  // We communicate via window.postMessage.
+
+  // Send keyword data to page-script
+  function sendKeywordsToPage() {
+    window.postMessage({
+      source: '__FRONTSCRIPT_EXT',
+      type: 'SET_KEYWORDS',
+      keywords: allKeywords
+    }, '*');
+  }
+
+  // Page script signals it's ready
+  window.addEventListener('message', (event) => {
+    if (event.data?.source === '__FRONTSCRIPT_PAGE' && event.data?.type === 'PAGE_READY') {
+      sendKeywordsToPage();
+    }
+  });
+  // Also send on delays — both scripts load at document_idle but
+  // execution order isn't guaranteed
+  setTimeout(sendKeywordsToPage, 500);
+  setTimeout(sendKeywordsToPage, 1500);
+  setTimeout(sendKeywordsToPage, 3000);
+
+  // ── Bridge: Chrome messages → page-world via postMessage ──────
+  // The side panel / background sends DO_INSERT_SNIPPET via chrome
+  // messaging, which only the content script (isolated world) can
+  // receive. We forward it to the page-world script.
+  chrome.runtime.onMessage.addListener((message) => {
+    if (message.type === 'DO_INSERT_SNIPPET') {
+      window.postMessage({
+        source: '__FRONTSCRIPT_EXT',
+        type: 'INSERT_SNIPPET',
+        code: message.code
+      }, '*');
+    }
   });
 })();

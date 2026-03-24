@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FrontScript Reference</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <header class="sp-header">
+    <h1>FrontScript Reference</h1>
+    <div class="sp-search-wrap">
+      <input type="text" id="searchInput" placeholder="Search keywords, functions, procs..." autocomplete="off" />
+      <button id="clearSearch" class="sp-clear-btn" title="Clear search">&times;</button>
+    </div>
+  </header>
+
+  <nav class="sp-tabs">
+    <button class="sp-tab active" data-tab="reference">Reference</button>
+    <button class="sp-tab" data-tab="snippets">Snippets</button>
+  </nav>
+
+  <!-- Reference Tab -->
+  <div id="tab-reference" class="sp-tab-content active">
+    <div class="sp-filters">
+      <button class="sp-filter active" data-category="all">All</button>
+      <button class="sp-filter" data-category="Keyword">Keywords</button>
+      <button class="sp-filter" data-category="Proc">Procs</button>
+      <button class="sp-filter" data-category="Function">Functions</button>
+      <button class="sp-filter" data-category="Macro">Macros</button>
+    </div>
+    <div id="referenceCount" class="sp-count"></div>
+    <div id="referenceList" class="sp-list"></div>
+  </div>
+
+  <!-- Snippets Tab -->
+  <div id="tab-snippets" class="sp-tab-content">
+    <div id="snippetCategories" class="sp-snippet-categories"></div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

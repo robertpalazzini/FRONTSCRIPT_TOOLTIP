@@ -1,52 +1,76 @@
-## 🔖 Version
+## Version
 
-Current version: **1.3**
+Current version: **2.0**
 
 # FrontScript Tooltip Helper
 
-This browser extension enhances the eFront embedded FrontReport coding window by displaying tooltips for FrontScript keywords, functions, procedures, and macros. Work on any chromium browser.
+This browser extension enhances the eFront embedded FrontReport coding window by providing tooltips, autocomplete, a searchable reference panel, and snippet insertion for FrontScript keywords, functions, procedures, and macros. Works on any Chromium browser.
 
-## 🔍 Features
+## Features
 
-- Hover over any FrontScript keyword inside the embedded FrontReport window (CodeMirror editor) in any efront environment (self-hosted or Cloud).
-- Instantly see a helpful description and example
-- Works with all major FrontScript syntax elements
-- Lightweight, no data collection, no performance hit
+### Hover Tooltips
+- Hover over any FrontScript keyword inside the embedded FrontReport window (CodeMirror editor) in any eFront environment (self-hosted or Cloud).
+- Instantly see a helpful description and example.
+- Works with all major FrontScript syntax elements.
 
-STILL A WORK IN PROGRESS - Please add comments, issues and i'll try to fix asap.
+### Autocomplete / IntelliSense (New in v2.0)
+- As you type in the CodeMirror editor, a dropdown appears with matching FrontScript keywords, procs, functions, and macros.
+- Each suggestion shows a color-coded category badge (Keyword, Proc, Function, Macro).
+- Navigate with Arrow keys, accept with Tab or Enter, dismiss with Escape.
+- Supports `%` prefix for macro suggestions.
 
-## 🛡 Security
+### Searchable Side Panel (New in v2.0)
+- Open a Chrome side panel from the extension popup with the "Open Reference Panel" button.
+- **Reference tab**: Browse all FrontScript keywords, procs, functions, and macros with instant search and category filtering.
+- **Snippets tab**: Browse 37 ready-made code templates across 11 categories (DATA Steps, PROC PRINT, PROC MEANS, PROC SORT, PROC FORMAT, PROC GCHART/GPLOT, Macro Statements, and more).
+- Expand any entry to see its description, example code, and copy/insert buttons.
 
-- 🟢 Runs in any **efront environemnt** (self-hosted or cloud)
-- 🟢 Activates **only inside `CodeMirror` FrotnScript editor**
-- 🟢 Loads static JSON definitions locally
-- 🟢 No tracking, analytics, or network requests
-- 🟢 Open source, auditable, minimal footprint
-- 🟢 no API calls, all runs locally
+### Snippet Insertion (New in v2.0)
+- Click "Insert into Editor" from the side panel to insert a code snippet directly into the CodeMirror editor at the cursor position.
+- Click "Copy" to copy any snippet or example to your clipboard.
 
-## 📦 Installation
+### General
+- Lightweight, no data collection, no performance hit.
+- Enable/disable tooltips and autocomplete independently from the extension popup.
 
-1. Download zip file and unzip into permament location (will create folder called FRONTSCRIPT_TOOLTIP - files must remain there)
-2. In you browser, click on "Manage Extensions" (Or visit `chrome://extensions`)
-3. Enable "Developer Mode"
-4. Click “Load unpacked” and select the unzipped folder [FRONTSCRIPT_TOOLTIP]
-5. Reload browser.
+## Security
 
+- Runs in any **eFront environment** (self-hosted or cloud)
+- Activates **only inside `CodeMirror` FrontScript editor**
+- Loads static JSON definitions locally
+- No tracking, analytics, or network requests
+- Open source, auditable, minimal footprint
+- No API calls, everything runs locally
 
-## 💬 Feedback
+## Installation
 
-Have a suggestion or found a bug?  
-Please [open an issue](https://github.com/robertpalazzini/FRONTSCRIPText/issues) or start a discussion!
+1. Download the zip file and unzip into a permanent location (will create a folder called FRONTSCRIPT_TOOLTIP — files must remain there).
+2. In your browser, click on "Manage Extensions" (or visit `chrome://extensions`).
+3. Enable "Developer Mode".
+4. Click "Load unpacked" and select the unzipped folder [FRONTSCRIPT_TOOLTIP].
+5. Reload your browser.
 
+## Usage
 
-## 💬 License
+1. **Tooltips**: Hover over any keyword in the FrontReport CodeMirror editor to see its description and example.
+2. **Autocomplete**: Start typing a keyword and suggestions will appear automatically. Use arrow keys to navigate and Tab/Enter to accept.
+3. **Side Panel**: Click the extension icon, then "Open Reference Panel" to browse the full reference and snippet library.
+4. **Snippets**: In the side panel, switch to the Snippets tab, expand a category, and click "Insert into Editor" or "Copy".
 
-use freely, but no warranty.
+## Feedback
+
+Have a suggestion or found a bug?
+Please [open an issue](https://github.com/robertpalazzini/FRONTSCRIPT_TOOLTIP/issues) or start a discussion!
+
+STILL A WORK IN PROGRESS - Please add comments, issues and I'll try to fix ASAP.
+
+## License
+
+Use freely, but no warranty.
 
 ---
-Developed by Robert Palazzini for personal use
+Developed by Robert Palazzini
 
 *Made for FrontScript developers working in eFront FrontReport environments.*
 
-
-This extension is provided “as is” without warranty of any kind. By downloading or using it, you agree that the author is not liable for any direct, indirect, incidental, or consequential damages arising from its use. Use at your own risk.
+This extension is provided "as is" without warranty of any kind. By downloading or using it, you agree that the author is not liable for any direct, indirect, incidental, or consequential damages arising from its use. Use at your own risk.

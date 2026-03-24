@@ -1,0 +1,493 @@
+/* FrontScript Side Panel Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #e0e0e0;
+  background: #1e1e2e;
+  overflow-x: hidden;
+}
+
+/* Header */
+.sp-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1e1e2e;
+  padding: 12px 14px 8px;
+  border-bottom: 1px solid #333;
+}
+
+.sp-header h1 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #cdd6f4;
+  margin-bottom: 8px;
+}
+
+.sp-search-wrap {
+  position: relative;
+}
+
+.sp-search-wrap input {
+  width: 100%;
+  padding: 7px 30px 7px 10px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #2a2a3c;
+  color: #e0e0e0;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.sp-search-wrap input:focus {
+  border-color: #89b4fa;
+}
+
+.sp-search-wrap input::placeholder {
+  color: #777;
+}
+
+.sp-clear-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.sp-clear-btn.visible {
+  display: block;
+}
+
+.sp-clear-btn:hover {
+  color: #ccc;
+}
+
+/* Tabs */
+.sp-tabs {
+  display: flex;
+  background: #252536;
+  border-bottom: 1px solid #333;
+}
+
+.sp-tab {
+  flex: 1;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sp-tab:hover {
+  color: #bbb;
+}
+
+.sp-tab.active {
+  color: #89b4fa;
+  border-bottom-color: #89b4fa;
+}
+
+/* Tab Content */
+.sp-tab-content {
+  display: none;
+}
+
+.sp-tab-content.active {
+  display: block;
+}
+
+/* Category Filters */
+.sp-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px 14px;
+  background: #252536;
+  border-bottom: 1px solid #333;
+}
+
+.sp-filter {
+  padding: 3px 10px;
+  border: 1px solid #444;
+  border-radius: 12px;
+  background: transparent;
+  color: #999;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sp-filter:hover {
+  border-color: #666;
+  color: #ccc;
+}
+
+.sp-filter.active {
+  background: #89b4fa;
+  border-color: #89b4fa;
+  color: #1e1e2e;
+}
+
+/* Count */
+.sp-count {
+  padding: 4px 14px;
+  font-size: 11px;
+  color: #666;
+}
+
+/* Reference List */
+.sp-list {
+  padding: 0 10px 16px;
+}
+
+.sp-entry {
+  margin-top: 6px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #252536;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.sp-entry:hover {
+  border-color: #555;
+}
+
+.sp-entry-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sp-entry-header:hover {
+  background: #2a2a3c;
+}
+
+.sp-entry-name {
+  font-weight: 600;
+  color: #89b4fa;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 13px;
+}
+
+.sp-entry-badge {
+  margin-left: 8px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.sp-entry-badge.keyword { background: #31324a; color: #89b4fa; }
+.sp-entry-badge.proc    { background: #2d3a2d; color: #a6e3a1; }
+.sp-entry-badge.function { background: #3a2d2d; color: #f38ba8; }
+.sp-entry-badge.macro   { background: #3a352d; color: #fab387; }
+
+.sp-entry-chevron {
+  margin-left: auto;
+  color: #555;
+  font-size: 11px;
+  transition: transform 0.2s;
+}
+
+.sp-entry.open .sp-entry-chevron {
+  transform: rotate(90deg);
+}
+
+.sp-entry-body {
+  display: none;
+  padding: 0 10px 10px;
+  border-top: 1px solid #333;
+}
+
+.sp-entry.open .sp-entry-body {
+  display: block;
+}
+
+.sp-entry-desc {
+  color: #aaa;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 8px 0;
+}
+
+.sp-entry-example {
+  position: relative;
+}
+
+.sp-entry-example pre {
+  background: #1a1a28;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 12px;
+  color: #cdd6f4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.4;
+  overflow-x: auto;
+}
+
+.sp-copy-btn,
+.sp-insert-btn {
+  position: absolute;
+  top: 4px;
+  padding: 3px 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #2a2a3c;
+  color: #ccc;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sp-copy-btn {
+  right: 40px;
+}
+
+.sp-insert-btn {
+  right: 4px;
+}
+
+.sp-copy-btn:hover,
+.sp-insert-btn:hover {
+  background: #89b4fa;
+  color: #1e1e2e;
+  border-color: #89b4fa;
+}
+
+/* Snippet Categories */
+.sp-snippet-categories {
+  padding: 10px;
+}
+
+.sp-snippet-cat {
+  margin-bottom: 10px;
+}
+
+.sp-snippet-cat-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  background: #252536;
+  border: 1px solid #333;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.sp-snippet-cat-header:hover {
+  background: #2a2a3c;
+}
+
+.sp-snippet-cat-name {
+  font-weight: 600;
+  color: #a6e3a1;
+  font-size: 13px;
+}
+
+.sp-snippet-cat-count {
+  margin-left: 8px;
+  color: #666;
+  font-size: 11px;
+}
+
+.sp-snippet-cat-chevron {
+  margin-left: auto;
+  color: #555;
+  font-size: 11px;
+  transition: transform 0.2s;
+}
+
+.sp-snippet-cat.open .sp-snippet-cat-chevron {
+  transform: rotate(90deg);
+}
+
+.sp-snippet-cat-items {
+  display: none;
+  padding: 4px 0 0 0;
+}
+
+.sp-snippet-cat.open .sp-snippet-cat-items {
+  display: block;
+}
+
+.sp-snippet-item {
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #252536;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.sp-snippet-item-header {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sp-snippet-item-header:hover {
+  background: #2a2a3c;
+}
+
+.sp-snippet-title {
+  font-weight: 500;
+  color: #cdd6f4;
+  font-size: 12px;
+}
+
+.sp-snippet-desc {
+  margin-left: 8px;
+  color: #666;
+  font-size: 11px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sp-snippet-item-chevron {
+  margin-left: auto;
+  color: #555;
+  font-size: 11px;
+  transition: transform 0.2s;
+}
+
+.sp-snippet-item.open .sp-snippet-item-chevron {
+  transform: rotate(90deg);
+}
+
+.sp-snippet-body {
+  display: none;
+  padding: 0 10px 8px;
+  border-top: 1px solid #333;
+}
+
+.sp-snippet-item.open .sp-snippet-body {
+  display: block;
+}
+
+.sp-snippet-body pre {
+  background: #1a1a28;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 12px;
+  color: #cdd6f4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.4;
+  margin-top: 6px;
+  position: relative;
+}
+
+.sp-snippet-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.sp-snippet-actions button {
+  flex: 1;
+  padding: 5px 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #2a2a3c;
+  color: #ccc;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sp-snippet-actions button:hover {
+  background: #89b4fa;
+  color: #1e1e2e;
+  border-color: #89b4fa;
+}
+
+.sp-snippet-actions button.insert-btn:hover {
+  background: #a6e3a1;
+  border-color: #a6e3a1;
+}
+
+/* Empty state */
+.sp-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #555;
+  font-size: 13px;
+}
+
+/* Highlight search matches */
+.sp-highlight {
+  background: #89b4fa33;
+  color: #89b4fa;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1e1e2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Toast notification */
+.sp-toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: #333;
+  color: #e0e0e0;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.sp-toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
