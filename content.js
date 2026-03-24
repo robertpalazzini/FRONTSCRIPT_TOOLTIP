@@ -38,7 +38,7 @@
   // ── Load tooltip definitions ──────────────────────────────────
   const rawData = await fetch(chrome.runtime.getURL('frontscript-tooltips.json')).then(r => r.json());
   const tooltipData = {};
-  const allKeywords = []; // for autocomplete
+  const allKeywords = []; // sent to page-script for autocomplete
 
   for (const category in rawData) {
     rawData[category].forEach(entry => {
@@ -57,10 +57,9 @@
     });
   }
 
-  // Sort for autocomplete display
   allKeywords.sort((a, b) => a.name.localeCompare(b.name));
 
-  // ── Hover Tooltip ─────────────────────────────────────────────
+  // ── Hover Tooltip (works in isolated world via DOM inspection) ─
   const tooltip = document.createElement('div');
   tooltip.className = "frontscript-tooltip";
   document.body.appendChild(tooltip);
@@ -178,196 +177,38 @@
     tooltip.style.display = 'none';
   });
 
-  // ── Autocomplete / IntelliSense ───────────────────────────────
+  // ── Inject page-world script for CodeMirror API access ────────
+  // Content scripts run in an isolated world and cannot access JS
+  // properties on DOM elements (like element.CodeMirror). We inject
+  // page-script.js into the MAIN world and communicate via CustomEvents.
 
-  // Get the CodeMirror instance
-  function getCodeMirrorInstance() {
-    const cmEl = document.querySelector('.CodeMirror.cm-s-frontscript');
-    return cmEl && cmEl.CodeMirror;
-  }
+  const pageScript = document.createElement('script');
+  pageScript.src = chrome.runtime.getURL('page-script.js');
+  pageScript.onload = () => pageScript.remove();
+  (document.head || document.documentElement).appendChild(pageScript);
 
-  // Create autocomplete dropdown
-  const acDropdown = document.createElement('div');
-  acDropdown.className = 'fs-autocomplete';
-  acDropdown.style.display = 'none';
-  document.body.appendChild(acDropdown);
-
-  let acItems = [];
-  let acSelectedIndex = -1;
-  let acVisible = false;
-  let acPrefix = '';
-  let acCursorToken = null;
-
-  function showAutocomplete(cm) {
-    const cursor = cm.getCursor();
-    const token = cm.getTokenAt(cursor);
-    const line = cm.getLine(cursor.line);
-
-    // Get the current word being typed (from token start to cursor)
-    let wordStart = token.start;
-    let prefix = line.slice(wordStart, cursor.ch).toUpperCase();
-
-    // Handle % prefix for macros
-    if (wordStart > 0 && line[wordStart - 1] === '%') {
-      wordStart--;
-      prefix = '%' + prefix;
-    }
-
-    // Need at least 1 character to trigger
-    if (prefix.length < 1 || prefix === '%') {
-      hideAutocomplete();
-      return;
-    }
-
-    acPrefix = prefix;
-    acCursorToken = { line: cursor.line, start: wordStart, end: cursor.ch };
-
-    // Filter matching keywords
-    const matches = allKeywords.filter(kw => {
-      const target = kw.upperName;
-      return target.startsWith(acPrefix) && target !== acPrefix;
-    });
-
-    if (matches.length === 0) {
-      hideAutocomplete();
-      return;
-    }
-
-    acItems = matches.slice(0, 12); // limit to 12 items
-    acSelectedIndex = 0;
-    renderAutocomplete(cm);
-  }
-
-  function renderAutocomplete(cm) {
-    const cursor = cm.getCursor();
-    const coords = cm.cursorCoords(cursor, 'page');
-
-    acDropdown.innerHTML = acItems.map((item, i) => {
-      const catClass = item.category.toLowerCase();
-      const sel = i === acSelectedIndex ? ' selected' : '';
-      return `<div class="fs-ac-item${sel}" data-index="${i}">
-        <span class="fs-ac-name">${escapeHtml(item.name)}</span>
-        <span class="fs-ac-badge ${catClass}">${item.category}</span>
-      </div>`;
-    }).join('');
-
-    acDropdown.style.left = coords.left + 'px';
-    acDropdown.style.top = (coords.bottom + 2) + 'px';
-    acDropdown.style.display = 'block';
-    acVisible = true;
-  }
-
-  function hideAutocomplete() {
-    acDropdown.style.display = 'none';
-    acVisible = false;
-    acItems = [];
-    acSelectedIndex = -1;
-  }
-
-  function acceptAutocomplete(cm, index) {
-    if (index < 0 || index >= acItems.length) return;
-    const item = acItems[index];
-    const tok = acCursorToken;
-    if (!tok) return;
-
-    // Replace the typed prefix with the full keyword
-    cm.replaceRange(
-      item.name,
-      { line: tok.line, ch: tok.start },
-      { line: tok.line, ch: tok.end }
+  // Send keyword data to page-script once it's loaded
+  function sendKeywordsToPage() {
+    document.dispatchEvent(
+      new CustomEvent('__FS_SET_KEYWORDS', { detail: allKeywords })
     );
-
-    hideAutocomplete();
   }
 
-  // Attach autocomplete to CodeMirror
-  function attachAutocomplete() {
-    const cm = getCodeMirrorInstance();
-    if (!cm) {
-      // Retry after a short delay
-      setTimeout(attachAutocomplete, 500);
-      return;
-    }
+  // Page script signals it's ready — but also send immediately in
+  // case the script loads before the listener is set up.
+  document.addEventListener('__FS_PAGE_READY', sendKeywordsToPage);
+  // Small delay to let the script element execute
+  setTimeout(sendKeywordsToPage, 300);
 
-    // On text input changes
-    cm.on('inputRead', (instance, changeObj) => {
-      if (changeObj.origin === '+input' || changeObj.origin === '+completion') {
-        showAutocomplete(instance);
-      }
-    });
-
-    // On cursor activity (e.g., delete/backspace)
-    cm.on('cursorActivity', (instance) => {
-      if (acVisible) {
-        // Re-evaluate autocomplete
-        const cursor = instance.getCursor();
-        const token = instance.getTokenAt(cursor);
-        const line = instance.getLine(cursor.line);
-        let wordStart = token.start;
-        let prefix = line.slice(wordStart, cursor.ch).toUpperCase();
-        if (wordStart > 0 && line[wordStart - 1] === '%') {
-          prefix = '%' + prefix;
-        }
-        if (prefix.length < 1) {
-          hideAutocomplete();
-        } else {
-          showAutocomplete(instance);
-        }
-      }
-    });
-
-    // Intercept keys for navigation in autocomplete
-    cm.on('keydown', (instance, e) => {
-      if (!acVisible) return;
-
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        acSelectedIndex = (acSelectedIndex + 1) % acItems.length;
-        renderAutocomplete(instance);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        acSelectedIndex = (acSelectedIndex - 1 + acItems.length) % acItems.length;
-        renderAutocomplete(instance);
-      } else if (e.key === 'Enter' || e.key === 'Tab') {
-        if (acSelectedIndex >= 0) {
-          e.preventDefault();
-          acceptAutocomplete(instance, acSelectedIndex);
-        }
-      } else if (e.key === 'Escape') {
-        hideAutocomplete();
-      }
-    });
-
-    // Hide on blur/scroll
-    cm.on('blur', () => hideAutocomplete());
-    cm.on('scroll', () => hideAutocomplete());
-
-    // Click on autocomplete item
-    acDropdown.addEventListener('mousedown', (e) => {
-      e.preventDefault(); // Prevent blur
-      const itemEl = e.target.closest('.fs-ac-item');
-      if (itemEl) {
-        acceptAutocomplete(cm, parseInt(itemEl.dataset.index));
-      }
-    });
-  }
-
-  attachAutocomplete();
-
-  // ── Snippet Insertion Handler ─────────────────────────────────
+  // ── Bridge: Chrome messages → page-world events ───────────────
+  // The side panel / background sends DO_INSERT_SNIPPET via chrome
+  // messaging, which only the content script (isolated world) can
+  // receive. We forward it to the page-world script.
   chrome.runtime.onMessage.addListener((message) => {
-    if (message.type === "DO_INSERT_SNIPPET") {
-      const cm = getCodeMirrorInstance();
-      if (cm) {
-        const cursor = cm.getCursor();
-        cm.replaceRange(message.code + '\n', cursor);
-        cm.focus();
-      }
+    if (message.type === 'DO_INSERT_SNIPPET') {
+      document.dispatchEvent(
+        new CustomEvent('__FS_INSERT_SNIPPET', { detail: message.code })
+      );
     }
   });
-
-  // ── Helper ────────────────────────────────────────────────────
-  function escapeHtml(str) {
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  }
 })();
