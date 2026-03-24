@@ -1,0 +1,244 @@
+{
+  "categories": [
+    {
+      "name": "DATA Steps",
+      "snippets": [
+        {
+          "title": "Basic DATA Step",
+          "description": "Create a new table from an existing one",
+          "code": "DATA output_table;\nSET input_table;\n// your transformations here\nRUN;"
+        },
+        {
+          "title": "DATA Step with Column Creation",
+          "description": "Create a table with new columns",
+          "code": "DATA output_table;\nSET input_table;\nCOLUMN new_col (TYPE=FLOAT);\nnew_col = existing_col * 2;\nRUN;"
+        },
+        {
+          "title": "DATA Step with MERGE",
+          "description": "Merge two tables by a common column",
+          "code": "DATA merged_table;\nMERGE table_one table_two;\nBY common_column;\nRUN;"
+        },
+        {
+          "title": "MERGE with IN Flag",
+          "description": "Merge two tables keeping only matching rows",
+          "code": "DATA merged_table;\nMERGE table_one (IN=IN1) table_two (IN=IN2);\nBY common_column;\nIF (IN1 AND IN2) THEN OUTPUT;\nEND;\nRUN;"
+        },
+        {
+          "title": "DATA Step with INFILE",
+          "description": "Import an external file into a table",
+          "code": "DATA output_table;\nINFILE \"path/to/file.csv\";\nCOLUMN col1;\nCOLUMN col2;\nRUN;"
+        },
+        {
+          "title": "DATA Step with INLINE",
+          "description": "Create a table with inline data",
+          "code": "DATA output_table;\nINFILE INLINE;\nCOLUMN col1;\nCOLUMN col2;\nINLINE;\nvalue1 value2\nvalue3 value4\n;\nRUN;"
+        },
+        {
+          "title": "DATA Step with IF/THEN/ELSE",
+          "description": "Conditional logic in a data step",
+          "code": "DATA output_table;\nSET input_table;\nCOLUMN status (TYPE=STRING LENGTH=20);\nIF amount > 1000 THEN DO;\n  status = \"High\";\nEND;\nELSE DO;\n  status = \"Low\";\nEND;\nRUN;"
+        },
+        {
+          "title": "DATA Step with FOR Loop",
+          "description": "Loop through values in a data step",
+          "code": "DATA output_table;\nSET input_table;\nFOR i = 1 TO 10;\n  // loop body\nNEXT;\nRUN;"
+        },
+        {
+          "title": "RECURSE (Hierarchy)",
+          "description": "Generate parent-child dependency links",
+          "code": "DATA hierarchy;\nRECURSE parent_child (VAR=child_id PARENT=parent_id);\nCOLUMN level;\nlevel = _LEVEL_;\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "PROC PRINT",
+      "snippets": [
+        {
+          "title": "Basic PROC PRINT",
+          "description": "Display a table with selected columns",
+          "code": "PROC PRINT DATA=mytable LABEL;\nVAR col1 col2 col3;\nRUN;"
+        },
+        {
+          "title": "PROC PRINT with SUM",
+          "description": "Print table with column totals",
+          "code": "PROC PRINT DATA=mytable LABEL;\nVAR col1 col2;\nSUM amount;\nRUN;"
+        },
+        {
+          "title": "PROC PRINT with FORMAT and STYLE",
+          "description": "Formatted and styled table output",
+          "code": "PROC PRINT DATA=mytable LABEL;\nVAR col1 col2 amount;\nFORMAT amount COMMA12.2.;\nSUM amount (STYLE=(BACKGROUND=LIGHTBLUE));\nRUN;"
+        },
+        {
+          "title": "PROC PRINT with BY Groups",
+          "description": "Print with grouped data",
+          "code": "PROC SORT DATA=mytable;\nBY category;\nRUN;\n\nPROC PRINT DATA=mytable LABEL;\nBY category;\nVAR col1 col2;\nSUM amount;\nRUN;"
+        },
+        {
+          "title": "PROC PRINT with EXPORT",
+          "description": "Print and export to file",
+          "code": "PROC PRINT DATA=mytable;\nVAR col1 col2;\nEXPORT \"output_file.MDB\";\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "PROC MEANS",
+      "snippets": [
+        {
+          "title": "Basic PROC MEANS",
+          "description": "Calculate SUM statistics with CLASS grouping",
+          "code": "PROC MEANS DATA=mytable OUT=results;\nCLASS category;\nSUM amount (NAME=total_amount);\nRUN;"
+        },
+        {
+          "title": "PROC MEANS with IRR",
+          "description": "Calculate Internal Rate of Return",
+          "code": "PROC MEANS DATA=cashflows OUT=irr_results;\nCLASS fund_id;\nIRR cashflow_amount (NAME=fund_irr DATE=cashflow_date RESIDUALVALUE=nav RESIDUALDATE=valuation_date);\nRUN;"
+        },
+        {
+          "title": "PROC MEANS with TWR",
+          "description": "Calculate Time Weighted Return",
+          "code": "PROC MEANS DATA=cashflows OUT=twr_results;\nCLASS fund_id;\nTWR cashflow_amount (NAME=fund_twr DATE=cashflow_date RESIDUALVALUE=nav RESIDUALDATE=valuation_date);\nRUN;"
+        },
+        {
+          "title": "PROC MEANS with MULTIPLE",
+          "description": "Calculate Multiple of Return",
+          "code": "PROC MEANS DATA=cashflows OUT=multiple_results;\nCLASS fund_id;\nMULTIPLE cashflow_amount (NAME=fund_multiple DATE=cashflow_date AMOUNT=cashflow_amount);\nRUN;"
+        },
+        {
+          "title": "PROC MEANS with Multiple Statistics",
+          "description": "Calculate several statistics at once",
+          "code": "PROC MEANS DATA=mytable OUT=stats;\nCLASS category;\nSUM amount (NAME=total);\nMEAN amount (NAME=average);\nMIN amount (NAME=minimum);\nMAX amount (NAME=maximum);\nN amount (NAME=count);\nRUN;"
+        },
+        {
+          "title": "PROC MEANS with FIRST/LAST",
+          "description": "Get first and last values per group",
+          "code": "PROC MEANS DATA=mytable OUT=results;\nCLASS category;\nFIRST amount (NAME=first_amount);\nLAST amount (NAME=last_amount);\nRUN;"
+        },
+        {
+          "title": "PROC MEANS with JOIN",
+          "description": "Group values into a delimited list",
+          "code": "PROC MEANS DATA=mytable OUT=results;\nCLASS fund_id;\nJOIN fund_name (NAME=all_names DELIMITER=\",\");\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "PROC SORT",
+      "snippets": [
+        {
+          "title": "Basic PROC SORT",
+          "description": "Sort a table by one or more columns",
+          "code": "PROC SORT DATA=mytable;\nBY col1 col2;\nRUN;"
+        },
+        {
+          "title": "PROC SORT Descending",
+          "description": "Sort in descending order",
+          "code": "PROC SORT DATA=mytable;\nBY DESCENDING amount;\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "PROC TABULATE",
+      "snippets": [
+        {
+          "title": "Basic PROC TABULATE",
+          "description": "Cross-tabulation with statistics",
+          "code": "PROC TABULATE DATA=mytable;\nCLASS category region;\nVAR amount;\nTABLE category, region * amount * (SUM);\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "PROC FORMAT",
+      "snippets": [
+        {
+          "title": "VALUE Format (Character)",
+          "description": "Create a character format mapping",
+          "code": "PROC FORMAT;\nVALUE $STATUS_FMT\n\"A\" = \"Active\"\n\"I\" = \"Inactive\"\n\"P\" = \"Pending\";\nRUN;"
+        },
+        {
+          "title": "PICTURE Format (Numeric)",
+          "description": "Create a numeric format template",
+          "code": "PROC FORMAT;\nPICTURE P_Money\nLOW-HIGH = \"$ 00.00\";\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "PROC GCHART / GPLOT",
+      "snippets": [
+        {
+          "title": "Vertical Bar Chart",
+          "description": "Create a vertical bar chart",
+          "code": "PROC GCHART DATA=mytable;\nVBAR category (TYPE=SUM SUMVAR=amount);\nTITLE \"Revenue by Category\";\nRUN;"
+        },
+        {
+          "title": "Pie Chart",
+          "description": "Create a pie chart",
+          "code": "PROC GCHART DATA=mytable;\nPIE category (TYPE=SUM SUMVAR=amount);\nTITLE \"Distribution\";\nRUN;"
+        },
+        {
+          "title": "Line/Plot Chart",
+          "description": "Create a plots and lines chart",
+          "code": "PROC GPLOT DATA=mytable;\nPLOT value*date (INTERPOL=JOIN SYMBOL=CIRCLE);\nTITLE \"Trend Over Time\";\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "PROC TRANSPOSE",
+      "snippets": [
+        {
+          "title": "Basic Transpose",
+          "description": "Transpose columns into rows",
+          "code": "PROC TRANSPOSE DATA=mytable OUT=transposed;\nVAR amount;\nID year;\nIDLABEL year_label;\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "Macro Statements",
+      "snippets": [
+        {
+          "title": "%LET Variable",
+          "description": "Define a macro variable",
+          "code": "%LET my_var = \"value\";\n\nDATA output_table;\nSET input_table;\nCOLUMN result (TYPE=STRING);\nresult = %my_var;\nRUN;"
+        },
+        {
+          "title": "%PARAM User Input",
+          "description": "Define interactive user parameter",
+          "code": "%PARAM my_param LABEL=\"Select a fund\" TYPE=STRING INFORMAT=\"??PICKID(VCFUND;FUND)\";\n\nDATA output_table;\nSET input_table;\nWHERE fund_id = %my_param;\nRUN;"
+        },
+        {
+          "title": "%INCLUDE Program",
+          "description": "Include an external program",
+          "code": "%INCLUDE \"shared_library\";\n\nDATA output_table;\nSET input_table;\nRUN;"
+        },
+        {
+          "title": "%DEFINE Macro",
+          "description": "Declare the existence of a macro",
+          "code": "%DEFINE my_macro;\n\nDATA output_table;\nSET input_table;\nIF EXISTMACRO(\"my_macro\") THEN DO;\n  // macro-specific logic\nEND;\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "PROC EXCEL / OFFICE",
+      "snippets": [
+        {
+          "title": "PROC EXCEL with Template",
+          "description": "Generate an Excel report from a template",
+          "code": "PROC EXCEL DATA=mytable;\nTEMPLATE &\"MyTemplate.xls\";\nSET mytable;\nRUN;"
+        }
+      ]
+    },
+    {
+      "name": "Common Patterns",
+      "snippets": [
+        {
+          "title": "LIBNAME + Full Workflow",
+          "description": "Complete workflow with library, data step, and print",
+          "code": "LIBNAME LIB \"\\\\SERVER\\Folder\\SubFolder\";\n\nDATA work_table;\nSET LIB.source_table;\nCOLUMN new_col (TYPE=FLOAT);\nnew_col = amount * rate;\nRUN;\n\nPROC SORT DATA=work_table;\nBY category;\nRUN;\n\nPROC PRINT DATA=work_table LABEL;\nBY category;\nVAR name amount new_col;\nSUM new_col;\nRUN;"
+        },
+        {
+          "title": "ODS HTML Output",
+          "description": "Generate styled HTML output",
+          "code": "ODS HTML;\n\nPROC PRINT DATA=mytable LABEL;\nVAR col1 col2 amount;\nFORMAT amount COMMA12.2.;\nRUN;\n\nODS HTML CLOSE;"
+        }
+      ]
+    }
+  ]
+}
