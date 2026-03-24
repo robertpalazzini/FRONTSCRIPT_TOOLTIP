@@ -180,35 +180,43 @@
   // ── Inject page-world script for CodeMirror API access ────────
   // Content scripts run in an isolated world and cannot access JS
   // properties on DOM elements (like element.CodeMirror). We inject
-  // page-script.js into the MAIN world and communicate via CustomEvents.
+  // page-script.js into the MAIN world and communicate via postMessage.
 
   const pageScript = document.createElement('script');
   pageScript.src = chrome.runtime.getURL('page-script.js');
   pageScript.onload = () => pageScript.remove();
   (document.head || document.documentElement).appendChild(pageScript);
 
-  // Send keyword data to page-script once it's loaded
+  // Send keyword data to page-script via postMessage
   function sendKeywordsToPage() {
-    document.dispatchEvent(
-      new CustomEvent('__FS_SET_KEYWORDS', { detail: allKeywords })
-    );
+    window.postMessage({
+      source: '__FRONTSCRIPT_EXT',
+      type: 'SET_KEYWORDS',
+      keywords: allKeywords
+    }, '*');
   }
 
-  // Page script signals it's ready — but also send immediately in
-  // case the script loads before the listener is set up.
-  document.addEventListener('__FS_PAGE_READY', sendKeywordsToPage);
-  // Small delay to let the script element execute
+  // Page script signals it's ready
+  window.addEventListener('message', (event) => {
+    if (event.data?.source === '__FRONTSCRIPT_PAGE' && event.data?.type === 'PAGE_READY') {
+      sendKeywordsToPage();
+    }
+  });
+  // Also send after a delay in case page-script loads first
   setTimeout(sendKeywordsToPage, 300);
+  setTimeout(sendKeywordsToPage, 1000);
 
-  // ── Bridge: Chrome messages → page-world events ───────────────
+  // ── Bridge: Chrome messages → page-world via postMessage ──────
   // The side panel / background sends DO_INSERT_SNIPPET via chrome
   // messaging, which only the content script (isolated world) can
   // receive. We forward it to the page-world script.
   chrome.runtime.onMessage.addListener((message) => {
     if (message.type === 'DO_INSERT_SNIPPET') {
-      document.dispatchEvent(
-        new CustomEvent('__FS_INSERT_SNIPPET', { detail: message.code })
-      );
+      window.postMessage({
+        source: '__FRONTSCRIPT_EXT',
+        type: 'INSERT_SNIPPET',
+        code: message.code
+      }, '*');
     }
   });
 })();

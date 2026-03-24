@@ -1,5 +1,5 @@
 // Page-world script — runs in the page's JS context so it can access CodeMirror instances.
-// Communicates with the content script (isolated world) via CustomEvents on document.
+// Communicates with the content script (isolated world) via window.postMessage.
 (function () {
   "use strict";
 
@@ -11,6 +11,7 @@
   let acPrefix = "";
   let acCursorToken = null;
   let acDropdown = null;
+  let initialized = false;
 
   // ── Get the CodeMirror instance ─────────────────────────────
   function getCodeMirrorInstance() {
@@ -20,34 +21,45 @@
 
   // ── Wait for CM then initialise ─────────────────────────────
   function waitAndInit(timeout) {
+    if (initialized) return;
     if (timeout <= 0) return;
     cm = getCodeMirrorInstance();
     if (cm) {
-      init();
+      initAutocomplete();
     } else {
       setTimeout(() => waitAndInit(timeout - 200), 200);
     }
   }
 
-  // ── Receive keyword list from content script ────────────────
-  document.addEventListener("__FS_SET_KEYWORDS", (e) => {
-    allKeywords = e.detail || [];
-    waitAndInit(10000);
-  });
+  // ── Listen for messages from content script ─────────────────
+  window.addEventListener("message", (event) => {
+    // Only accept messages from our extension
+    if (event.data?.source !== "__FRONTSCRIPT_EXT") return;
 
-  // ── Receive snippet insertion request from content script ───
-  document.addEventListener("__FS_INSERT_SNIPPET", (e) => {
-    const code = e.detail;
-    const editor = cm || getCodeMirrorInstance();
-    if (editor && code) {
-      const cursor = editor.getCursor();
-      editor.replaceRange(code + "\n", cursor);
-      editor.focus();
+    if (event.data.type === "SET_KEYWORDS") {
+      allKeywords = event.data.keywords || [];
+      waitAndInit(10000);
+    }
+
+    if (event.data.type === "INSERT_SNIPPET") {
+      const code = event.data.code;
+      const editor = cm || getCodeMirrorInstance();
+      if (editor && code) {
+        const cursor = editor.getCursor();
+        editor.replaceRange(code + "\n", cursor);
+        editor.focus();
+      }
     }
   });
 
+  // Signal to content script that we're loaded
+  window.postMessage({ source: "__FRONTSCRIPT_PAGE", type: "PAGE_READY" }, "*");
+
   // ── Init autocomplete ───────────────────────────────────────
-  function init() {
+  function initAutocomplete() {
+    if (initialized) return;
+    initialized = true;
+
     // Create autocomplete dropdown
     acDropdown = document.createElement("div");
     acDropdown.className = "fs-autocomplete";
@@ -99,9 +111,6 @@
       const el = e.target.closest(".fs-ac-item");
       if (el) acceptItem(parseInt(el.dataset.index));
     });
-
-    // Let content script know we're ready
-    document.dispatchEvent(new CustomEvent("__FS_PAGE_READY"));
   }
 
   // ── Autocomplete logic ──────────────────────────────────────
@@ -154,10 +163,10 @@
       .map((item, i) => {
         const catClass = item.category.toLowerCase();
         const sel = i === acSelectedIndex ? " selected" : "";
-        return `<div class="fs-ac-item${sel}" data-index="${i}">
-          <span class="fs-ac-name">${esc(item.name)}</span>
-          <span class="fs-ac-badge ${catClass}">${item.category}</span>
-        </div>`;
+        return '<div class="fs-ac-item' + sel + '" data-index="' + i + '">'
+          + '<span class="fs-ac-name">' + esc(item.name) + '</span>'
+          + '<span class="fs-ac-badge ' + catClass + '">' + item.category + '</span>'
+          + '</div>';
       })
       .join("");
   }
