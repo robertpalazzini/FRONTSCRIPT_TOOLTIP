@@ -28,24 +28,27 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === "INSERT_SNIPPET") {
-    // Forward snippet insertion to the active tab's content script
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    // Forward snippet insertion to the active tab's content script.
+    // Use lastFocusedWindow (not currentWindow) so the query finds the browser
+    // tab even when the side panel has focus — critical on Windows/Edge where
+    // the side panel runs in its own window context.
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       if (tabs[0]) {
         chrome.tabs.sendMessage(tabs[0].id, {
           type: "DO_INSERT_SNIPPET",
           code: message.code
-        });
+        }, () => { void chrome.runtime.lastError; });
       }
     });
     return;
   }
 
   if (message.type === "SEARCH_KEYWORD") {
-    // Forward search request to side panel
+    // Forward search request to side panel (panel may not be open — ignore errors)
     chrome.runtime.sendMessage({
       type: "HIGHLIGHT_IN_PANEL",
       keyword: message.keyword
-    });
+    }).catch(() => {});
     return;
   }
 });
