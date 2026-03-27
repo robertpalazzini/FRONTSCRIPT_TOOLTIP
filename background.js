@@ -28,14 +28,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === "INSERT_SNIPPET") {
-    // Query all active tabs across all windows, then pick the first real browser
-    // tab (not an extension page). This works on Mac, Windows, and Edge regardless
-    // of which window has focus — currentWindow/lastFocusedWindow both fail when
-    // the side panel has focus in its own window context.
-    chrome.tabs.query({ active: true }, (tabs) => {
-      const tab = tabs.find(t => t.url && !t.url.startsWith("chrome-extension://") && !t.url.startsWith("chrome://"));
-      if (tab) {
-        chrome.tabs.sendMessage(tab.id, {
+    // Forward snippet insertion to the active tab's content script.
+    // Use lastFocusedWindow (not currentWindow) so the query finds the browser
+    // tab even when the side panel has focus — critical on Windows/Edge where
+    // the side panel runs in its own window context.
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+      if (tabs[0]) {
+        chrome.tabs.sendMessage(tabs[0].id, {
           type: "DO_INSERT_SNIPPET",
           code: message.code
         }, () => { void chrome.runtime.lastError; });
