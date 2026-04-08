@@ -23,13 +23,22 @@
   if (!found) return;
 
   // ── Tooltip enabled check ─────────────────────────────────────
+  // Edge sometimes doesn't call the sendMessage callback if the background
+  // service worker is sleeping, causing the Promise to hang forever.
+  // We use a 2s timeout fallback so the script always continues.
   const tooltipEnabled = await new Promise((resolve) => {
+    let resolved = false;
+    const done = (val) => { if (!resolved) { resolved = true; resolve(val); } };
+    const timer = setTimeout(() => done(true), 2000);
     try {
       chrome.runtime.sendMessage({ type: "GET_TOOLTIP_ENABLED" }, (response) => {
-        resolve(response?.tooltipEnabled !== false);
+        clearTimeout(timer);
+        if (chrome.runtime.lastError) { done(true); return; }
+        done(response?.tooltipEnabled !== false);
       });
     } catch (e) {
-      resolve(true);
+      clearTimeout(timer);
+      done(true);
     }
   });
 
