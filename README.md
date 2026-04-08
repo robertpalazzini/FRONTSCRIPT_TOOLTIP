@@ -1,10 +1,10 @@
 ## Version
 
-Current version: **2.0**
+Current version: **2.1**
 
 # FrontScript Tooltip Helper
 
-This browser extension enhances the eFront embedded FrontReport coding window by providing tooltips, autocomplete, a searchable reference panel, and snippet insertion for FrontScript keywords, functions, procedures, and macros. Works on any Chromium browser.
+This browser extension enhances the eFront embedded FrontReport coding window by providing tooltips, autocomplete, a searchable reference panel, and snippet insertion for FrontScript keywords, functions, procedures, and macros. Works on any Chrome and Edge browsers.
 
 ## Features
 
@@ -13,19 +13,19 @@ This browser extension enhances the eFront embedded FrontReport coding window by
 - Instantly see a helpful description and example.
 - Works with all major FrontScript syntax elements.
 
-### Autocomplete / IntelliSense (New in v2.0)
+### Autocomplete / IntelliSense (New in v2.1)
 - As you type in the CodeMirror editor, a dropdown appears with matching FrontScript keywords, procs, functions, and macros.
 - Each suggestion shows a color-coded category badge (Keyword, Proc, Function, Macro).
 - Navigate with Arrow keys, accept with Tab or Enter, dismiss with Escape.
 - Supports `%` prefix for macro suggestions.
 
-### Searchable Side Panel (New in v2.0)
+### Searchable Side Panel (New in v2.1)
 - Open a Chrome side panel from the extension popup with the "Open Reference Panel" button.
 - **Reference tab**: Browse all FrontScript keywords, procs, functions, and macros with instant search and category filtering.
 - **Snippets tab**: Browse 37 ready-made code templates across 11 categories (DATA Steps, PROC PRINT, PROC MEANS, PROC SORT, PROC FORMAT, PROC GCHART/GPLOT, Macro Statements, and more).
 - Expand any entry to see its description, example code, and copy/insert buttons.
 
-### Snippet Insertion (New in v2.0)
+### Snippet Insertion (New in v2.1)
 - Click "Insert into Editor" from the side panel to insert a code snippet directly into the CodeMirror editor at the cursor position.
 - Click "Copy" to copy any snippet or example to your clipboard.
 

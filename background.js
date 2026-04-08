@@ -1,4 +1,4 @@
-// Background service worker for FrontScript Tooltip Helper v2.0
+// Background service worker for FrontScript Tooltip Helper v2.1
 
 // Open side panel when extension icon is clicked (with Alt/Option key)
 chrome.action.onClicked.addListener((tab) => {
@@ -28,12 +28,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message.type === "INSERT_SNIPPET") {
-    // Query all active tabs across all windows, then pick the first real browser
-    // tab (not an extension page). This works on Mac, Windows, and Edge regardless
-    // of which window has focus — currentWindow/lastFocusedWindow both fail when
-    // the side panel has focus in its own window context.
+    // Query all active tabs across all windows, then pick the first real web
+    // tab (not an extension/browser internal page). Must exclude both Chrome
+    // and Edge URL schemes — Edge uses extension:// and edge:// instead of
+    // chrome-extension:// and chrome://.
     chrome.tabs.query({ active: true }, (tabs) => {
-      const tab = tabs.find(t => t.url && !t.url.startsWith("chrome-extension://") && !t.url.startsWith("chrome://"));
+      const internalPrefixes = [
+        "chrome-extension://", "chrome://",
+        "extension://", "edge://"
+      ];
+      const tab = tabs.find(t =>
+        t.url && !internalPrefixes.some(p => t.url.startsWith(p))
+      );
       if (tab) {
         chrome.tabs.sendMessage(tab.id, {
           type: "DO_INSERT_SNIPPET",
